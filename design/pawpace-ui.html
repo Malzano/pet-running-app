@@ -1,0 +1,2827 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Pawpace Ui</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Pawpace Ui" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Pawpace Ui&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;pawpace-ui-v1&quot;&gt;
+  &lt;style&gt;
+    #pawpace-ui-v1 {
+      --pp-canvas: light-dark(#eeeaf8, #17131f);
+      --pp-phone: light-dark(#17141d, #050506);
+      --pp-surface: light-dark(#f8f7fc, #211d29);
+      --pp-surface-2: light-dark(#ffffff, #2a2533);
+      --pp-ink: light-dark(#282232, #fbf8ff);
+      --pp-muted: light-dark(#756e7e, #bbb3c5);
+      --pp-line: light-dark(#e6e1ed, #3b3446);
+      --pp-purple: light-dark(#7256e8, #a78ff8);
+      --pp-purple-deep: light-dark(#5639ca, #8d72ee);
+      --pp-purple-soft: light-dark(#ede8ff, #342b4e);
+      --pp-lime: light-dark(#c9ee68, #b4da58);
+      --pp-lime-ink: light-dark(#24310d, #182008);
+      --pp-orange: light-dark(#f5a55f, #f3a55f);
+      --pp-orange-soft: light-dark(#fff0e0, #452f24);
+      --pp-sky: light-dark(#a9dff2, #82c9e4);
+      --pp-sky-soft: light-dark(#e6f7fd, #253d47);
+      --pp-pink: light-dark(#f4b9cf, #e99ab8);
+      --pp-grass: light-dark(#dff4aa, #607837);
+      --pp-shadow: light-dark(rgba(58, 40, 91, .17), rgba(0, 0, 0, .38));
+      color: var(--pp-ink);
+      font-family: -apple-system, BlinkMacSystemFont, &quot;SF Pro Display&quot;, &quot;SF Pro Text&quot;, sans-serif;
+      width: 100%;
+      background: transparent;
+      color-scheme: light dark;
+    }
+
+    #pawpace-ui-v1 * { box-sizing: border-box; }
+    #pawpace-ui-v1 button,
+    #pawpace-ui-v1 input { font: inherit; }
+
+    #pawpace-ui-v1 .pp-stage {
+      min-height: 870px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 4px 0 12px;
+    }
+
+    #pawpace-ui-v1 .pp-prototype-nav {
+      display: flex;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--pp-line);
+      border-radius: 15px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 7px 22px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-prototype-nav button {
+      border: 0;
+      border-radius: 11px;
+      padding: 8px 13px;
+      background: transparent;
+      color: var(--pp-muted);
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-prototype-nav button[aria-pressed=&quot;true&quot;] {
+      color: var(--pp-ink);
+      background: var(--pp-purple-soft);
+    }
+
+    #pawpace-ui-v1 .pp-phone {
+      width: min(390px, calc(100% - 8px));
+      height: 800px;
+      padding: 9px;
+      border-radius: 48px;
+      background: var(--pp-phone);
+      box-shadow: 0 24px 60px var(--pp-shadow);
+      position: relative;
+    }
+
+    #pawpace-ui-v1 .pp-screen {
+      height: 100%;
+      border-radius: 40px;
+      overflow: hidden;
+      background: var(--pp-surface);
+      position: relative;
+    }
+
+    #pawpace-ui-v1 .pp-dynamic-island {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      z-index: 30;
+      transform: translateX(-50%);
+      width: 116px;
+      height: 31px;
+      border-radius: 20px;
+      background: #050505;
+      color: #fff;
+    }
+
+    #pawpace-ui-v1 .pp-statusbar {
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 21px;
+      position: relative;
+      z-index: 20;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-signals {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    #pawpace-ui-v1 .pp-signal-bars {
+      display: flex;
+      gap: 2px;
+      align-items: flex-end;
+      height: 10px;
+    }
+
+    #pawpace-ui-v1 .pp-signal-bars span {
+      display: block;
+      width: 2px;
+      border-radius: 2px;
+      background: currentColor;
+    }
+
+    #pawpace-ui-v1 .pp-signal-bars span:nth-child(1) { height: 4px; }
+    #pawpace-ui-v1 .pp-signal-bars span:nth-child(2) { height: 6px; }
+    #pawpace-ui-v1 .pp-signal-bars span:nth-child(3) { height: 8px; }
+    #pawpace-ui-v1 .pp-signal-bars span:nth-child(4) { height: 10px; }
+
+    #pawpace-ui-v1 .pp-battery {
+      width: 20px;
+      height: 9px;
+      border: 1px solid currentColor;
+      border-radius: 3px;
+      padding: 1px;
+    }
+
+    #pawpace-ui-v1 .pp-battery::after {
+      content: &quot;&quot;;
+      display: block;
+      width: 75%;
+      height: 100%;
+      border-radius: 1px;
+      background: currentColor;
+    }
+
+    #pawpace-ui-v1 .pp-view {
+      height: calc(100% - 48px);
+      position: relative;
+    }
+
+    #pawpace-ui-v1 .pp-view[hidden],
+    #pawpace-ui-v1 .pp-app-page[hidden] { display: none; }
+
+    #pawpace-ui-v1 .pp-app-page {
+      height: calc(100% - 66px);
+      overflow: hidden;
+    }
+
+    #pawpace-ui-v1 .pp-scroll {
+      height: 100%;
+      overflow-y: auto;
+      padding: 8px 18px 22px;
+      scrollbar-width: none;
+    }
+
+    #pawpace-ui-v1 .pp-scroll::-webkit-scrollbar { display: none; }
+
+    #pawpace-ui-v1 .pp-home-top,
+    #pawpace-ui-v1 .pp-page-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    #pawpace-ui-v1 .pp-eyebrow {
+      color: var(--pp-muted);
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    #pawpace-ui-v1 .pp-title {
+      font-size: 24px;
+      line-height: 1.08;
+      font-weight: 500;
+      letter-spacing: -.5px;
+    }
+
+    #pawpace-ui-v1 .pp-avatar-button,
+    #pawpace-ui-v1 .pp-icon-button {
+      border: 0;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      color: var(--pp-ink);
+      background: var(--pp-surface-2);
+      box-shadow: 0 3px 10px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-avatar-button {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      font-size: 18px;
+    }
+
+    #pawpace-ui-v1 .pp-icon-button {
+      width: 36px;
+      height: 36px;
+      border-radius: 13px;
+    }
+
+    #pawpace-ui-v1 .pp-hero {
+      min-height: 318px;
+      border-radius: 30px;
+      overflow: hidden;
+      position: relative;
+      padding: 18px;
+      background: linear-gradient(155deg, var(--pp-sky-soft), var(--pp-purple-soft));
+    }
+
+    #pawpace-ui-v1 .pp-hero::before {
+      content: &quot;&quot;;
+      position: absolute;
+      width: 260px;
+      height: 170px;
+      left: -35px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: var(--pp-grass);
+      transform: rotate(7deg);
+      opacity: .78;
+    }
+
+    #pawpace-ui-v1 .pp-hero::after {
+      content: &quot;&quot;;
+      position: absolute;
+      width: 250px;
+      height: 150px;
+      right: -70px;
+      bottom: -72px;
+      border-radius: 50%;
+      background: var(--pp-lime);
+      opacity: .48;
+    }
+
+    #pawpace-ui-v1 .pp-level-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    #pawpace-ui-v1 .pp-level-pill,
+    #pawpace-ui-v1 .pp-streak-pill,
+    #pawpace-ui-v1 .pp-state-pill {
+      padding: 7px 10px;
+      border-radius: 99px;
+      background: color-mix(in srgb, var(--pp-surface-2) 86%, transparent);
+      font-size: 11px;
+      font-weight: 500;
+      box-shadow: 0 3px 10px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-streak-pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    #pawpace-ui-v1 .pp-speech {
+      position: absolute;
+      z-index: 5;
+      top: 57px;
+      right: 16px;
+      max-width: 145px;
+      padding: 10px 12px;
+      border-radius: 15px 15px 4px 15px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 6px 18px var(--pp-shadow);
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    #pawpace-ui-v1 .pp-pet-stage {
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      bottom: 8px;
+      transform: translateX(-50%);
+      width: 224px;
+      height: 230px;
+    }
+
+    #pawpace-ui-v1 .pp-pet-shadow {
+      position: absolute;
+      left: 32px;
+      right: 32px;
+      bottom: 7px;
+      height: 23px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--pp-ink) 14%, transparent);
+      filter: blur(2px);
+    }
+
+    #pawpace-ui-v1 .pp-pet-svg {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 2;
+      filter: drop-shadow(0 8px 9px var(--pp-shadow));
+    }
+
+    #pawpace-ui-v1 .pp-bounce { animation: pp-hop .5s ease; }
+    @keyframes pp-hop {
+      0%, 100% { transform: translateY(0); }
+      45% { transform: translateY(-13px) rotate(-2deg); }
+    }
+
+    #pawpace-ui-v1 .pp-progress-wrap {
+      margin: 13px 4px 4px;
+    }
+
+    #pawpace-ui-v1 .pp-progress-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--pp-muted);
+      margin-bottom: 6px;
+    }
+
+    #pawpace-ui-v1 .pp-progress-track {
+      width: 100%;
+      height: 8px;
+      border-radius: 99px;
+      background: var(--pp-line);
+      overflow: hidden;
+    }
+
+    #pawpace-ui-v1 .pp-progress-fill {
+      width: 68%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--pp-purple);
+      transition: width .25s ease;
+    }
+
+    #pawpace-ui-v1 .pp-actions {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+      margin-top: 13px;
+    }
+
+    #pawpace-ui-v1 .pp-action {
+      min-width: 0;
+      border: 0;
+      border-radius: 17px;
+      padding: 10px 3px 9px;
+      cursor: pointer;
+      background: var(--pp-surface-2);
+      color: var(--pp-ink);
+      box-shadow: 0 3px 12px var(--pp-shadow);
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-action span {
+      width: 31px;
+      height: 31px;
+      margin: 0 auto 5px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-purple-soft);
+      font-size: 16px;
+    }
+
+    #pawpace-ui-v1 .pp-action:nth-child(2) span { background: var(--pp-orange-soft); }
+    #pawpace-ui-v1 .pp-action:nth-child(3) span { background: var(--pp-sky-soft); }
+    #pawpace-ui-v1 .pp-action:nth-child(4) span { background: color-mix(in srgb, var(--pp-pink) 30%, var(--pp-surface-2)); }
+
+    #pawpace-ui-v1 .pp-section-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 17px 2px 9px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-section-label span:last-child {
+      color: var(--pp-muted);
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    #pawpace-ui-v1 .pp-quest {
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 19px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 3px 12px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-quest-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-lime);
+      color: var(--pp-lime-ink);
+      font-size: 19px;
+    }
+
+    #pawpace-ui-v1 .pp-quest-title { font-size: 12px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-quest-sub { font-size: 10px; color: var(--pp-muted); margin-top: 3px; }
+    #pawpace-ui-v1 .pp-coin { color: var(--pp-purple); font-size: 11px; font-weight: 500; }
+
+    #pawpace-ui-v1 .pp-tabbar {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 15;
+      height: 66px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 7px 13px 9px;
+      background: color-mix(in srgb, var(--pp-surface-2) 94%, transparent);
+      border-top: 1px solid var(--pp-line);
+      backdrop-filter: blur(16px);
+    }
+
+    #pawpace-ui-v1 .pp-tabbar button {
+      border: 0;
+      background: transparent;
+      color: var(--pp-muted);
+      font-size: 9px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+    }
+
+    #pawpace-ui-v1 .pp-tabbar button[aria-selected=&quot;true&quot;] { color: var(--pp-purple); }
+    #pawpace-ui-v1 .pp-tabbar svg { width: 19px; height: 19px; }
+
+    #pawpace-ui-v1 .pp-chat-page {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 7px 15px 12px;
+      background: linear-gradient(180deg, var(--pp-surface), var(--pp-purple-soft));
+    }
+
+    #pawpace-ui-v1 .pp-chat-head {
+      display: grid;
+      grid-template-columns: 36px 1fr 36px;
+      gap: 9px;
+      align-items: center;
+      padding: 0 2px 12px;
+    }
+
+    #pawpace-ui-v1 .pp-mini-pet {
+      width: 36px;
+      height: 36px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-orange-soft);
+      font-size: 20px;
+    }
+
+    #pawpace-ui-v1 .pp-chat-name { font-size: 14px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-online { color: var(--pp-muted); font-size: 10px; }
+
+    #pawpace-ui-v1 .pp-messages {
+      flex: 1;
+      overflow: hidden;
+      padding: 10px 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    #pawpace-ui-v1 .pp-message {
+      max-width: 79%;
+      padding: 10px 12px;
+      border-radius: 17px;
+      font-size: 12px;
+      line-height: 1.35;
+      box-shadow: 0 2px 8px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-message.pet {
+      align-self: flex-start;
+      border-bottom-left-radius: 5px;
+      background: var(--pp-surface-2);
+    }
+
+    #pawpace-ui-v1 .pp-message.user {
+      align-self: flex-end;
+      border-bottom-right-radius: 5px;
+      background: var(--pp-purple);
+      color: var(--pp-surface-2);
+    }
+
+    #pawpace-ui-v1 .pp-chat-pet-moment {
+      align-self: center;
+      width: 82px;
+      height: 82px;
+      border-radius: 27px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-orange-soft);
+      font-size: 44px;
+      box-shadow: 0 5px 17px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-suggestions {
+      display: flex;
+      gap: 7px;
+      overflow: hidden;
+      padding-bottom: 9px;
+    }
+
+    #pawpace-ui-v1 .pp-suggestion {
+      flex: 0 0 auto;
+      border: 1px solid var(--pp-line);
+      border-radius: 99px;
+      background: var(--pp-surface-2);
+      color: var(--pp-ink);
+      padding: 7px 10px;
+      font-size: 10px;
+      cursor: pointer;
+    }
+
+    #pawpace-ui-v1 .pp-compose {
+      display: grid;
+      grid-template-columns: 38px 1fr 38px;
+      gap: 7px;
+      align-items: center;
+    }
+
+    #pawpace-ui-v1 .pp-compose input {
+      min-width: 0;
+      height: 39px;
+      border: 1px solid var(--pp-line);
+      border-radius: 15px;
+      padding: 0 12px;
+      background: var(--pp-surface-2);
+      color: var(--pp-ink);
+    }
+
+    #pawpace-ui-v1 .pp-send {
+      width: 38px;
+      height: 38px;
+      border: 0;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      background: var(--pp-purple);
+      color: var(--pp-surface-2);
+    }
+
+    #pawpace-ui-v1 .pp-run-page {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 7px 17px 16px;
+    }
+
+    #pawpace-ui-v1 .pp-run-map {
+      flex: 1;
+      min-height: 300px;
+      border-radius: 28px;
+      overflow: hidden;
+      position: relative;
+      background: var(--pp-sky-soft);
+      box-shadow: inset 0 0 0 1px var(--pp-line);
+    }
+
+    #pawpace-ui-v1 .pp-run-map svg { width: 100%; height: 100%; }
+    #pawpace-ui-v1 .pp-map-road { stroke: var(--pp-surface-2); stroke-width: 18; fill: none; }
+    #pawpace-ui-v1 .pp-map-road-thin { stroke: var(--pp-surface); stroke-width: 9; fill: none; }
+    #pawpace-ui-v1 .pp-route { stroke: var(--pp-purple); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    #pawpace-ui-v1 .pp-map-green { fill: var(--pp-grass); opacity: .9; }
+    #pawpace-ui-v1 .pp-map-water { fill: var(--pp-sky); opacity: .72; }
+
+    #pawpace-ui-v1 .pp-run-status {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 7px 9px;
+      border-radius: 99px;
+      background: color-mix(in srgb, var(--pp-surface-2) 90%, transparent);
+      font-size: 10px;
+      box-shadow: 0 3px 12px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-run-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--pp-purple);
+    }
+
+    #pawpace-ui-v1 .pp-run-pet {
+      position: absolute;
+      right: 11px;
+      bottom: 10px;
+      width: 76px;
+      height: 76px;
+      display: grid;
+      place-items: center;
+      border-radius: 25px;
+      background: var(--pp-orange-soft);
+      font-size: 41px;
+      box-shadow: 0 5px 18px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-run-data {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr 1fr;
+      gap: 8px;
+      margin: 11px 0;
+    }
+
+    #pawpace-ui-v1 .pp-run-metric {
+      min-width: 0;
+      padding: 12px 9px;
+      border-radius: 18px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 3px 10px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-run-metric strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 500;
+      letter-spacing: -.5px;
+    }
+
+    #pawpace-ui-v1 .pp-run-metric:not(:first-child) strong { font-size: 16px; }
+    #pawpace-ui-v1 .pp-run-metric span { font-size: 9px; color: var(--pp-muted); }
+
+    #pawpace-ui-v1 .pp-run-control {
+      height: 53px;
+      width: 100%;
+      border: 0;
+      border-radius: 19px;
+      cursor: pointer;
+      color: var(--pp-lime-ink);
+      background: var(--pp-lime);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    #pawpace-ui-v1 .pp-run-control.is-running {
+      background: var(--pp-purple);
+      color: var(--pp-surface-2);
+    }
+
+    #pawpace-ui-v1 .pp-closet-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    #pawpace-ui-v1 .pp-item {
+      border: 1px solid var(--pp-line);
+      border-radius: 23px;
+      min-height: 154px;
+      padding: 12px;
+      background: var(--pp-surface-2);
+      color: var(--pp-ink);
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+    }
+
+    #pawpace-ui-v1 .pp-item[aria-pressed=&quot;true&quot;] { box-shadow: 0 0 0 3px var(--pp-purple-soft); }
+    #pawpace-ui-v1 .pp-item-art {
+      height: 95px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-orange-soft);
+      font-size: 51px;
+      margin-bottom: 8px;
+    }
+
+    #pawpace-ui-v1 .pp-item:nth-child(2) .pp-item-art { background: var(--pp-purple-soft); }
+    #pawpace-ui-v1 .pp-item:nth-child(3) .pp-item-art { background: var(--pp-sky-soft); }
+    #pawpace-ui-v1 .pp-item:nth-child(4) .pp-item-art { background: color-mix(in srgb, var(--pp-pink) 35%, var(--pp-surface-2)); }
+    #pawpace-ui-v1 .pp-item-name { font-size: 11px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-item-cost { color: var(--pp-muted); font-size: 9px; margin-top: 2px; }
+    #pawpace-ui-v1 .pp-check {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--pp-purple);
+      color: var(--pp-surface-2);
+      display: none;
+      place-items: center;
+      font-size: 12px;
+    }
+    #pawpace-ui-v1 .pp-item[aria-pressed=&quot;true&quot;] .pp-check { display: grid; }
+
+    #pawpace-ui-v1 .pp-homescreen,
+    #pawpace-ui-v1 .pp-lockscreen {
+      height: 100%;
+      color: var(--pp-ink);
+      position: relative;
+    }
+
+    #pawpace-ui-v1 .pp-homescreen {
+      background: linear-gradient(160deg, var(--pp-purple-soft) 4%, var(--pp-sky-soft) 48%, var(--pp-orange-soft));
+      padding: 14px 17px 22px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-caption {
+      font-size: 11px;
+      color: var(--pp-muted);
+      text-align: center;
+      margin: 3px 0 13px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-large {
+      min-height: 188px;
+      padding: 14px;
+      border-radius: 27px;
+      overflow: hidden;
+      position: relative;
+      background: var(--pp-surface-2);
+      box-shadow: 0 8px 24px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-widget-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #pawpace-ui-v1 .pp-widget-brand { font-size: 11px; font-weight: 500; color: var(--pp-purple); }
+    #pawpace-ui-v1 .pp-widget-level { font-size: 10px; color: var(--pp-muted); }
+    #pawpace-ui-v1 .pp-widget-pet {
+      position: absolute;
+      left: 12px;
+      bottom: 14px;
+      font-size: 79px;
+      line-height: 1;
+      filter: drop-shadow(0 5px 7px var(--pp-shadow));
+    }
+
+    #pawpace-ui-v1 .pp-widget-copy {
+      position: absolute;
+      top: 47px;
+      left: 118px;
+      right: 12px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-talk { font-size: 14px; line-height: 1.22; font-weight: 500; }
+    #pawpace-ui-v1 .pp-widget-energy { font-size: 10px; color: var(--pp-muted); margin-top: 7px; }
+    #pawpace-ui-v1 .pp-widget-buttons {
+      position: absolute;
+      left: 118px;
+      right: 12px;
+      bottom: 13px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-buttons button {
+      border: 0;
+      border-radius: 12px;
+      padding: 8px 4px;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-widget-buttons button:first-child { background: var(--pp-lime); color: var(--pp-lime-ink); }
+    #pawpace-ui-v1 .pp-widget-buttons button:last-child { background: var(--pp-purple-soft); color: var(--pp-ink); }
+
+    #pawpace-ui-v1 .pp-app-icons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 23px 17px;
+      padding: 28px 7px 0;
+    }
+
+    #pawpace-ui-v1 .pp-app-icon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 8px;
+      color: var(--pp-muted);
+    }
+
+    #pawpace-ui-v1 .pp-app-icon span {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--pp-surface-2) 72%, transparent);
+      box-shadow: 0 4px 13px var(--pp-shadow);
+      font-size: 21px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-small-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px;
+      margin-top: 27px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-small {
+      height: 148px;
+      border-radius: 27px;
+      padding: 13px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 8px 24px var(--pp-shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #pawpace-ui-v1 .pp-widget-small-pet { font-size: 56px; line-height: 1; text-align: center; margin: 7px 0 8px; }
+    #pawpace-ui-v1 .pp-widget-small-text { font-size: 10px; text-align: center; font-weight: 500; }
+    #pawpace-ui-v1 .pp-widget-small-run { font-size: 27px; font-weight: 500; margin-top: 19px; }
+    #pawpace-ui-v1 .pp-widget-small-unit { color: var(--pp-muted); font-size: 9px; }
+
+    #pawpace-ui-v1 .pp-widget-size-switch {
+      width: 226px;
+      margin: 0 auto 17px;
+      padding: 4px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      border-radius: 15px;
+      background: color-mix(in srgb, var(--pp-surface-2) 72%, transparent);
+      box-shadow: 0 4px 14px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-widget-size-switch button {
+      border: 0;
+      border-radius: 11px;
+      padding: 8px 7px;
+      color: var(--pp-muted);
+      background: transparent;
+      cursor: pointer;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-widget-size-switch button[aria-pressed=&quot;true&quot;] {
+      color: var(--pp-ink);
+      background: var(--pp-surface-2);
+    }
+
+    #pawpace-ui-v1 .pp-widget-layout[hidden] { display: none; }
+
+    #pawpace-ui-v1 .pp-four-home-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 75px;
+      gap: 13px 10px;
+      padding: 1px 2px 0;
+    }
+
+    #pawpace-ui-v1 .pp-four-widget {
+      grid-column: span 2;
+      grid-row: span 2;
+      border-radius: 27px;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(150deg, var(--pp-surface-2), var(--pp-purple-soft));
+      box-shadow: 0 8px 24px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-four-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    #pawpace-ui-v1 .pp-four-heart { color: var(--pp-purple); font-size: 10px; font-weight: 500; }
+
+    #pawpace-ui-v1 .pp-four-pet {
+      position: absolute;
+      left: 13px;
+      bottom: 34px;
+      font-size: 65px;
+      line-height: 1;
+      filter: drop-shadow(0 4px 7px var(--pp-shadow));
+    }
+
+    #pawpace-ui-v1 .pp-four-bubble {
+      position: absolute;
+      top: 41px;
+      right: 9px;
+      width: 74px;
+      padding: 7px 7px;
+      border-radius: 12px 12px 4px 12px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 3px 9px var(--pp-shadow);
+      font-size: 9px;
+      line-height: 1.18;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-four-footer {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--pp-muted);
+      font-size: 8px;
+    }
+
+    #pawpace-ui-v1 .pp-four-feed {
+      width: 25px;
+      height: 25px;
+      border: 0;
+      border-radius: 9px;
+      display: grid;
+      place-items: center;
+      background: var(--pp-lime);
+      color: var(--pp-lime-ink);
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    #pawpace-ui-v1 .pp-grid-app {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: var(--pp-muted);
+      font-size: 8px;
+    }
+
+    #pawpace-ui-v1 .pp-grid-app span {
+      width: 49px;
+      height: 49px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--pp-surface-2) 76%, transparent);
+      box-shadow: 0 4px 13px var(--pp-shadow);
+      font-size: 21px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-page-dots {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 22px;
+    }
+
+    #pawpace-ui-v1 .pp-widget-page-dots span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--pp-muted) 45%, transparent);
+    }
+
+    #pawpace-ui-v1 .pp-widget-page-dots span:first-child { background: var(--pp-ink); }
+
+    #pawpace-ui-v1 .pp-sixteen-widget {
+      width: 100%;
+      aspect-ratio: 1;
+      padding: 14px;
+      border-radius: 31px;
+      position: relative;
+      overflow: hidden;
+      background: var(--pp-surface-2);
+      box-shadow: 0 10px 28px var(--pp-shadow);
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-head {
+      height: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-scene {
+      height: 143px;
+      margin-top: 8px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(155deg, var(--pp-sky-soft), var(--pp-purple-soft));
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-scene::after {
+      content: &quot;&quot;;
+      position: absolute;
+      left: -20px;
+      right: -20px;
+      bottom: -62px;
+      height: 112px;
+      border-radius: 50%;
+      background: var(--pp-grass);
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-pet {
+      position: absolute;
+      z-index: 2;
+      left: 23px;
+      bottom: 17px;
+      font-size: 91px;
+      line-height: 1;
+      filter: drop-shadow(0 5px 8px var(--pp-shadow));
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-bubble {
+      position: absolute;
+      z-index: 3;
+      top: 18px;
+      right: 13px;
+      width: 143px;
+      padding: 9px 10px;
+      border-radius: 15px 15px 5px 15px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 4px 12px var(--pp-shadow);
+      font-size: 10px;
+      line-height: 1.25;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-stats {
+      height: 42px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-stat {
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: var(--pp-purple-soft);
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-stat:nth-child(2) { background: var(--pp-orange-soft); }
+    #pawpace-ui-v1 .pp-sixteen-stat:nth-child(3) { background: var(--pp-sky-soft); }
+    #pawpace-ui-v1 .pp-sixteen-stat strong { display: block; font-size: 11px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-sixteen-stat span { display: block; margin-top: 2px; color: var(--pp-muted); font-size: 8px; }
+
+    #pawpace-ui-v1 .pp-sixteen-actions {
+      height: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 7px;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-actions button {
+      border: 0;
+      border-radius: 11px;
+      cursor: pointer;
+      color: var(--pp-ink);
+      background: var(--pp-purple-soft);
+      font-size: 9px;
+      font-weight: 500;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-actions button:first-child { color: var(--pp-lime-ink); background: var(--pp-lime); }
+
+    #pawpace-ui-v1 .pp-sixteen-quest {
+      height: 44px;
+      margin-top: 8px;
+      padding: 7px 9px;
+      border-radius: 13px;
+      background: var(--pp-surface);
+      display: grid;
+      grid-template-columns: 28px 1fr auto;
+      gap: 7px;
+      align-items: center;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-quest-icon {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: var(--pp-lime-ink);
+      background: var(--pp-lime);
+      font-size: 13px;
+    }
+
+    #pawpace-ui-v1 .pp-sixteen-quest-title { font-size: 9px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-sixteen-quest-sub { margin-top: 2px; color: var(--pp-muted); font-size: 8px; }
+    #pawpace-ui-v1 .pp-sixteen-reward { color: var(--pp-purple); font-size: 9px; font-weight: 500; }
+
+    #pawpace-ui-v1 .pp-lockscreen {
+      background: linear-gradient(180deg, var(--pp-purple-soft), var(--pp-sky-soft) 58%, var(--pp-orange-soft));
+      padding: 4px 14px 18px;
+      text-align: center;
+    }
+
+    #pawpace-ui-v1 .pp-lock-date { font-size: 13px; margin-top: 9px; }
+    #pawpace-ui-v1 .pp-lock-time { font-size: 66px; line-height: 1; font-weight: 400; letter-spacing: -3px; margin-top: 2px; }
+
+    #pawpace-ui-v1 .pp-island-live {
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      z-index: 40;
+      transform: translateX(-50%);
+      width: 136px;
+      height: 35px;
+      border-radius: 22px;
+      padding: 0 10px;
+      background: #050505;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+
+    #pawpace-ui-v1 .pp-lock-pet-scene {
+      height: 294px;
+      margin: 9px 1px 15px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      background: linear-gradient(155deg, color-mix(in srgb, var(--pp-sky) 58%, transparent), color-mix(in srgb, var(--pp-lime) 38%, transparent));
+    }
+
+    #pawpace-ui-v1 .pp-lock-pet-scene::after {
+      content: &quot;&quot;;
+      position: absolute;
+      left: -20px;
+      right: -20px;
+      bottom: -70px;
+      height: 180px;
+      border-radius: 50%;
+      background: var(--pp-grass);
+    }
+
+    #pawpace-ui-v1 .pp-lock-pet {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 36px;
+      transform: translateX(-50%);
+      font-size: 116px;
+      filter: drop-shadow(0 8px 12px var(--pp-shadow));
+    }
+
+    #pawpace-ui-v1 .pp-lock-bubble {
+      position: absolute;
+      z-index: 3;
+      right: 16px;
+      top: 18px;
+      width: 153px;
+      border-radius: 17px 17px 5px 17px;
+      background: var(--pp-surface-2);
+      box-shadow: 0 4px 14px var(--pp-shadow);
+      padding: 10px;
+      font-size: 11px;
+      line-height: 1.3;
+      text-align: left;
+    }
+
+    #pawpace-ui-v1 .pp-live-card {
+      border-radius: 25px;
+      background: color-mix(in srgb, var(--pp-surface-2) 92%, transparent);
+      box-shadow: 0 8px 24px var(--pp-shadow);
+      padding: 13px;
+      text-align: left;
+    }
+
+    #pawpace-ui-v1 .pp-live-head { display: flex; justify-content: space-between; align-items: center; }
+    #pawpace-ui-v1 .pp-live-name { color: var(--pp-purple); font-size: 10px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-live-time { color: var(--pp-muted); font-size: 10px; }
+    #pawpace-ui-v1 .pp-live-metrics { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 8px; margin: 12px 0; }
+    #pawpace-ui-v1 .pp-live-metric strong { display: block; font-size: 20px; font-weight: 500; }
+    #pawpace-ui-v1 .pp-live-metric:not(:first-child) strong { font-size: 16px; }
+    #pawpace-ui-v1 .pp-live-metric span { color: var(--pp-muted); font-size: 9px; }
+    #pawpace-ui-v1 .pp-live-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    #pawpace-ui-v1 .pp-live-actions button {
+      border: 0;
+      border-radius: 13px;
+      padding: 9px;
+      cursor: pointer;
+      background: var(--pp-purple-soft);
+      color: var(--pp-ink);
+      font-size: 11px;
+      font-weight: 500;
+    }
+    #pawpace-ui-v1 .pp-live-actions button:last-child { background: var(--pp-lime); color: var(--pp-lime-ink); }
+
+    #pawpace-ui-v1 .pp-lock-footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding: 0 21px;
+    }
+
+    #pawpace-ui-v1 .pp-lock-button {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--pp-surface-2) 68%, transparent);
+      font-size: 18px;
+    }
+
+    #pawpace-ui-v1 .pp-toast {
+      position: absolute;
+      z-index: 80;
+      left: 50%;
+      bottom: 77px;
+      transform: translate(-50%, 12px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 8px 12px;
+      border-radius: 99px;
+      background: var(--pp-ink);
+      color: var(--pp-surface-2);
+      font-size: 10px;
+      transition: opacity .2s ease, transform .2s ease;
+      white-space: nowrap;
+    }
+
+    #pawpace-ui-v1 .pp-toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+    @media (max-width: 430px) {
+      #pawpace-ui-v1 .pp-stage { min-height: 830px; }
+      #pawpace-ui-v1 .pp-phone { width: 100%; height: 772px; border-radius: 38px; padding: 7px; }
+      #pawpace-ui-v1 .pp-screen { border-radius: 32px; }
+      #pawpace-ui-v1 .pp-prototype-nav { max-width: 100%; }
+      #pawpace-ui-v1 .pp-prototype-nav button { padding: 7px 9px; font-size: 11px; }
+      #pawpace-ui-v1 .pp-hero { min-height: 295px; }
+      #pawpace-ui-v1 .pp-pet-stage { height: 215px; }
+      #pawpace-ui-v1 .pp-app-icons { gap: 17px 11px; }
+      #pawpace-ui-v1 .pp-four-home-grid { grid-auto-rows: 65px; gap: 10px 8px; }
+      #pawpace-ui-v1 .pp-four-pet { font-size: 55px; bottom: 31px; }
+      #pawpace-ui-v1 .pp-four-bubble { top: 36px; width: 65px; }
+      #pawpace-ui-v1 .pp-sixteen-scene { height: 105px; margin-top: 5px; }
+      #pawpace-ui-v1 .pp-sixteen-pet { left: 15px; bottom: 11px; font-size: 65px; }
+      #pawpace-ui-v1 .pp-sixteen-bubble { top: 10px; right: 8px; width: 108px; padding: 7px 8px; font-size: 9px; }
+      #pawpace-ui-v1 .pp-sixteen-stats { height: 32px; margin-top: 4px; }
+      #pawpace-ui-v1 .pp-sixteen-stat { padding: 4px 6px; }
+      #pawpace-ui-v1 .pp-sixteen-actions { height: 28px; margin-top: 4px; }
+      #pawpace-ui-v1 .pp-sixteen-quest { height: 34px; margin-top: 4px; padding: 4px 7px; grid-template-columns: 22px 1fr auto; gap: 5px; }
+      #pawpace-ui-v1 .pp-sixteen-quest-icon { width: 22px; height: 22px; border-radius: 7px; font-size: 11px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #pawpace-ui-v1 .pp-bounce { animation: none; }
+      #pawpace-ui-v1 .pp-progress-fill,
+      #pawpace-ui-v1 .pp-toast { transition: none; }
+    }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;pp-stage&quot;&gt;
+    &lt;nav class=&quot;pp-prototype-nav&quot; aria-label=&quot;Prototype view&quot;&gt;
+      &lt;button type=&quot;button&quot; data-mode=&quot;app&quot; aria-pressed=&quot;true&quot;&gt;App&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-mode=&quot;widgets&quot; aria-pressed=&quot;false&quot;&gt;Widgets&lt;/button&gt;
+      &lt;button type=&quot;button&quot; data-mode=&quot;activity&quot; aria-pressed=&quot;false&quot;&gt;Live Activity&lt;/button&gt;
+    &lt;/nav&gt;
+
+    &lt;section class=&quot;pp-phone&quot; aria-label=&quot;Interactive PawPace iPhone prototype&quot;&gt;
+      &lt;div class=&quot;pp-screen&quot;&gt;
+        &lt;div class=&quot;pp-dynamic-island&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+        &lt;div class=&quot;pp-statusbar&quot; aria-hidden=&quot;true&quot;&gt;
+          &lt;span&gt;9:41&lt;/span&gt;
+          &lt;div class=&quot;pp-signals&quot;&gt;
+            &lt;span class=&quot;pp-signal-bars&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/span&gt;
+            &lt;span&gt;⌁&lt;/span&gt;
+            &lt;span class=&quot;pp-battery&quot;&gt;&lt;/span&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;section class=&quot;pp-view&quot; data-view=&quot;app&quot;&gt;
+          &lt;section class=&quot;pp-app-page&quot; data-page=&quot;home&quot;&gt;
+            &lt;div class=&quot;pp-scroll&quot;&gt;
+              &lt;div class=&quot;pp-home-top&quot;&gt;
+                &lt;div&gt;
+                  &lt;div class=&quot;pp-eyebrow&quot;&gt;Sunday · 3 day streak 🔥&lt;/div&gt;
+                  &lt;div class=&quot;pp-title&quot;&gt;Morning, Ping&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-avatar-button&quot; aria-label=&quot;Open profile&quot;&gt;👤&lt;/button&gt;
+              &lt;/div&gt;
+
+              &lt;section class=&quot;pp-hero&quot; aria-label=&quot;Mochi the virtual pet&quot;&gt;
+                &lt;div class=&quot;pp-level-row&quot;&gt;
+                  &lt;span class=&quot;pp-level-pill&quot;&gt;Level 7 · Trail Buddy&lt;/span&gt;
+                  &lt;span class=&quot;pp-streak-pill&quot;&gt;🪙 240&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;pp-speech&quot; data-pet-speech&gt;Can we chase the morning breeze?&lt;/div&gt;
+                &lt;div class=&quot;pp-pet-stage&quot; data-pet-stage&gt;
+                  &lt;div class=&quot;pp-pet-shadow&quot;&gt;&lt;/div&gt;
+                  &lt;svg class=&quot;pp-pet-svg&quot; viewBox=&quot;0 0 230 230&quot; role=&quot;img&quot; aria-label=&quot;Happy orange dog named Mochi&quot;&gt;
+                    &lt;path d=&quot;M55 78 31 42c-5-8 1-17 10-14l38 15Z&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;path d=&quot;m175 78 24-36c5-8-1-17-10-14l-38 15Z&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;path d=&quot;m54 63-12-18 24 9Z&quot; fill=&quot;var(--pp-pink)&quot;/&gt;
+                    &lt;path d=&quot;m176 63 12-18-24 9Z&quot; fill=&quot;var(--pp-pink)&quot;/&gt;
+                    &lt;ellipse cx=&quot;115&quot; cy=&quot;142&quot; rx=&quot;67&quot; ry=&quot;67&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;ellipse cx=&quot;115&quot; cy=&quot;98&quot; rx=&quot;70&quot; ry=&quot;62&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;path d=&quot;M71 92c10-26 29-40 44-40s34 14 44 40c-15-6-30-9-44-9s-29 3-44 9Z&quot; fill=&quot;var(--pp-surface-2)&quot; opacity=&quot;.88&quot;/&gt;
+                    &lt;ellipse cx=&quot;115&quot; cy=&quot;120&quot; rx=&quot;39&quot; ry=&quot;31&quot; fill=&quot;var(--pp-surface-2)&quot;/&gt;
+                    &lt;ellipse cx=&quot;87&quot; cy=&quot;99&quot; rx=&quot;6&quot; ry=&quot;8&quot; fill=&quot;var(--pp-ink)&quot;/&gt;
+                    &lt;ellipse cx=&quot;143&quot; cy=&quot;99&quot; rx=&quot;6&quot; ry=&quot;8&quot; fill=&quot;var(--pp-ink)&quot;/&gt;
+                    &lt;circle cx=&quot;85&quot; cy=&quot;96&quot; r=&quot;2&quot; fill=&quot;var(--pp-surface-2)&quot;/&gt;
+                    &lt;circle cx=&quot;141&quot; cy=&quot;96&quot; r=&quot;2&quot; fill=&quot;var(--pp-surface-2)&quot;/&gt;
+                    &lt;path d=&quot;M106 115q9-8 18 0-2 12-9 12t-9-12Z&quot; fill=&quot;var(--pp-ink)&quot;/&gt;
+                    &lt;path d=&quot;M97 130q18 17 36 0&quot; stroke=&quot;var(--pp-ink)&quot; stroke-width=&quot;4&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;/&gt;
+                    &lt;path d=&quot;M108 139q7 12 14 0&quot; fill=&quot;var(--pp-pink)&quot;/&gt;
+                    &lt;ellipse cx=&quot;77&quot; cy=&quot;120&quot; rx=&quot;10&quot; ry=&quot;6&quot; fill=&quot;var(--pp-pink)&quot; opacity=&quot;.6&quot;/&gt;
+                    &lt;ellipse cx=&quot;153&quot; cy=&quot;120&quot; rx=&quot;10&quot; ry=&quot;6&quot; fill=&quot;var(--pp-pink)&quot; opacity=&quot;.6&quot;/&gt;
+                    &lt;rect x=&quot;68&quot; y=&quot;184&quot; width=&quot;34&quot; height=&quot;31&quot; rx=&quot;16&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;rect x=&quot;128&quot; y=&quot;184&quot; width=&quot;34&quot; height=&quot;31&quot; rx=&quot;16&quot; fill=&quot;var(--pp-orange)&quot;/&gt;
+                    &lt;path d=&quot;M66 155q49 22 98 0&quot; stroke=&quot;var(--pp-purple)&quot; stroke-width=&quot;12&quot; stroke-linecap=&quot;round&quot; fill=&quot;none&quot;/&gt;
+                    &lt;circle cx=&quot;115&quot; cy=&quot;165&quot; r=&quot;10&quot; fill=&quot;var(--pp-lime)&quot;/&gt;
+                  &lt;/svg&gt;
+                &lt;/div&gt;
+              &lt;/section&gt;
+
+              &lt;div class=&quot;pp-progress-wrap&quot;&gt;
+                &lt;div class=&quot;pp-progress-label&quot;&gt;&lt;span&gt;68 XP to level 8&lt;/span&gt;&lt;span data-xp-label&gt;340 / 500&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-progress-track&quot; role=&quot;progressbar&quot; aria-label=&quot;Level progress&quot; aria-valuemin=&quot;0&quot; aria-valuemax=&quot;500&quot; aria-valuenow=&quot;340&quot;&gt;&lt;div class=&quot;pp-progress-fill&quot; data-xp-bar&gt;&lt;/div&gt;&lt;/div&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pp-actions&quot; aria-label=&quot;Pet actions&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-action&quot; data-pet-action=&quot;fed&quot;&gt;&lt;span&gt;🥕&lt;/span&gt;Feed&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-action&quot; data-pet-action=&quot;loved&quot;&gt;&lt;span&gt;💜&lt;/span&gt;Pet&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-action&quot; data-tab-jump=&quot;chat&quot;&gt;&lt;span&gt;💬&lt;/span&gt;Talk&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-action&quot; data-pet-action=&quot;played&quot;&gt;&lt;span&gt;🎾&lt;/span&gt;Play&lt;/button&gt;
+              &lt;/div&gt;
+
+              &lt;div class=&quot;pp-section-label&quot;&gt;&lt;span&gt;Today’s quest&lt;/span&gt;&lt;span&gt;1 of 3&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;pp-quest&quot;&gt;
+                &lt;div class=&quot;pp-quest-icon&quot;&gt;👟&lt;/div&gt;
+                &lt;div&gt;&lt;div class=&quot;pp-quest-title&quot;&gt;Run 2 km with Mochi&lt;/div&gt;&lt;div class=&quot;pp-quest-sub&quot;&gt;1.2 km left · +80 XP&lt;/div&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-coin&quot;&gt;+40 🪙&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;pp-app-page&quot; data-page=&quot;chat&quot; hidden&gt;
+            &lt;div class=&quot;pp-chat-page&quot;&gt;
+              &lt;div class=&quot;pp-chat-head&quot;&gt;
+                &lt;div class=&quot;pp-mini-pet&quot;&gt;🐶&lt;/div&gt;
+                &lt;div&gt;&lt;div class=&quot;pp-chat-name&quot;&gt;Mochi&lt;/div&gt;&lt;div class=&quot;pp-online&quot;&gt;Happy · ready to chat&lt;/div&gt;&lt;/div&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-icon-button&quot; aria-label=&quot;Start voice conversation&quot;&gt;🎙️&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-messages&quot; data-messages aria-live=&quot;polite&quot;&gt;
+                &lt;div class=&quot;pp-chat-pet-moment&quot;&gt;🐶&lt;/div&gt;
+                &lt;div class=&quot;pp-message pet&quot;&gt;Good morning! My paws are tingling. Did you sleep well?&lt;/div&gt;
+                &lt;div class=&quot;pp-message user&quot;&gt;Pretty well. What should we do today?&lt;/div&gt;
+                &lt;div class=&quot;pp-message pet&quot;&gt;A gentle 2 km run, then snacks. I’ll cheer for every step! 🌿&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-suggestions&quot; aria-label=&quot;Suggested replies&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-suggestion&quot;&gt;Let’s run!&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-suggestion&quot;&gt;Tell me a story&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-suggestion&quot;&gt;How are you?&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;form class=&quot;pp-compose&quot; data-chat-form&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-icon-button&quot; aria-label=&quot;Add attachment&quot;&gt;＋&lt;/button&gt;
+                &lt;input type=&quot;text&quot; data-chat-input aria-label=&quot;Message Mochi&quot; placeholder=&quot;Message Mochi…&quot; autocomplete=&quot;off&quot;&gt;
+                &lt;button type=&quot;submit&quot; class=&quot;pp-send&quot; aria-label=&quot;Send message&quot;&gt;↑&lt;/button&gt;
+              &lt;/form&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;pp-app-page&quot; data-page=&quot;run&quot; hidden&gt;
+            &lt;div class=&quot;pp-run-page&quot;&gt;
+              &lt;div class=&quot;pp-page-top&quot;&gt;
+                &lt;div&gt;&lt;div class=&quot;pp-eyebrow&quot;&gt;Sunday morning&lt;/div&gt;&lt;div class=&quot;pp-title&quot;&gt;Run together&lt;/div&gt;&lt;/div&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-icon-button&quot; aria-label=&quot;Run settings&quot;&gt;⚙️&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-run-map&quot; aria-label=&quot;Sample running route map&quot;&gt;
+                &lt;svg viewBox=&quot;0 0 340 400&quot; role=&quot;img&quot; aria-label=&quot;Park map with a purple running route&quot;&gt;
+                  &lt;path class=&quot;pp-map-water&quot; d=&quot;M221-20c-34 70 18 93-20 142s7 90-15 146-5 99 37 151h126V-20Z&quot;/&gt;
+                  &lt;path class=&quot;pp-map-green&quot; d=&quot;M-30 50q86-59 161-13t42 101q-27 43-114 37T-30 50Z&quot;/&gt;
+                  &lt;path class=&quot;pp-map-green&quot; d=&quot;M-21 266q81-57 145-18t27 137H-21Z&quot;/&gt;
+                  &lt;path class=&quot;pp-map-road&quot; d=&quot;M-20 225C64 193 97 166 138 99s112-88 216-60&quot;/&gt;
+                  &lt;path class=&quot;pp-map-road-thin&quot; d=&quot;M50 420c-1-80 40-113 82-147s82-63 87-138&quot;/&gt;
+                  &lt;path class=&quot;pp-map-road-thin&quot; d=&quot;M-20 116c64 17 112 46 138 94s78 71 135 73 82 29 101 73&quot;/&gt;
+                  &lt;path class=&quot;pp-route&quot; d=&quot;M68 351c-3-42 15-67 47-89s58-38 56-83-19-65-7-97 37-43 70-45&quot;/&gt;
+                  &lt;circle cx=&quot;68&quot; cy=&quot;351&quot; r=&quot;10&quot; fill=&quot;var(--pp-lime)&quot;/&gt;
+                  &lt;circle cx=&quot;234&quot; cy=&quot;37&quot; r=&quot;10&quot; fill=&quot;var(--pp-purple)&quot;/&gt;
+                  &lt;circle cx=&quot;234&quot; cy=&quot;37&quot; r=&quot;4&quot; fill=&quot;var(--pp-surface-2)&quot;/&gt;
+                &lt;/svg&gt;
+                &lt;div class=&quot;pp-run-status&quot;&gt;&lt;span class=&quot;pp-run-dot&quot;&gt;&lt;/span&gt;&lt;span data-run-status&gt;Ready with GPS&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-run-pet&quot;&gt;🐕&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-run-data&quot;&gt;
+                &lt;div class=&quot;pp-run-metric&quot;&gt;&lt;strong data-distance&gt;0.00&lt;/strong&gt;&lt;span&gt;kilometers&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-run-metric&quot;&gt;&lt;strong data-pace&gt;—&lt;/strong&gt;&lt;span&gt;avg pace&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-run-metric&quot;&gt;&lt;strong data-run-time&gt;00:00&lt;/strong&gt;&lt;span&gt;time&lt;/span&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;button type=&quot;button&quot; class=&quot;pp-run-control&quot; data-run-control&gt;▶ Start run with Mochi&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;section class=&quot;pp-app-page&quot; data-page=&quot;closet&quot; hidden&gt;
+            &lt;div class=&quot;pp-scroll&quot;&gt;
+              &lt;div class=&quot;pp-page-top&quot;&gt;
+                &lt;div&gt;&lt;div class=&quot;pp-eyebrow&quot;&gt;240 coins&lt;/div&gt;&lt;div class=&quot;pp-title&quot;&gt;Mochi’s closet&lt;/div&gt;&lt;/div&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-icon-button&quot; aria-label=&quot;Closet filters&quot;&gt;☷&lt;/button&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-closet-grid&quot; aria-label=&quot;Pet accessories&quot;&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-item&quot; aria-pressed=&quot;true&quot;&gt;&lt;span class=&quot;pp-check&quot;&gt;✓&lt;/span&gt;&lt;div class=&quot;pp-item-art&quot;&gt;🧣&lt;/div&gt;&lt;div class=&quot;pp-item-name&quot;&gt;Trail scarf&lt;/div&gt;&lt;div class=&quot;pp-item-cost&quot;&gt;Equipped&lt;/div&gt;&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-item&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;pp-check&quot;&gt;✓&lt;/span&gt;&lt;div class=&quot;pp-item-art&quot;&gt;🧢&lt;/div&gt;&lt;div class=&quot;pp-item-name&quot;&gt;Runner cap&lt;/div&gt;&lt;div class=&quot;pp-item-cost&quot;&gt;180 🪙&lt;/div&gt;&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-item&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;pp-check&quot;&gt;✓&lt;/span&gt;&lt;div class=&quot;pp-item-art&quot;&gt;🕶️&lt;/div&gt;&lt;div class=&quot;pp-item-name&quot;&gt;Sun chasers&lt;/div&gt;&lt;div class=&quot;pp-item-cost&quot;&gt;Level 9&lt;/div&gt;&lt;/button&gt;
+                &lt;button type=&quot;button&quot; class=&quot;pp-item&quot; aria-pressed=&quot;false&quot;&gt;&lt;span class=&quot;pp-check&quot;&gt;✓&lt;/span&gt;&lt;div class=&quot;pp-item-art&quot;&gt;🌸&lt;/div&gt;&lt;div class=&quot;pp-item-name&quot;&gt;Sakura charm&lt;/div&gt;&lt;div class=&quot;pp-item-cost&quot;&gt;120 🪙&lt;/div&gt;&lt;/button&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/section&gt;
+
+          &lt;nav class=&quot;pp-tabbar&quot; aria-label=&quot;App tabs&quot;&gt;
+            &lt;button type=&quot;button&quot; data-tab=&quot;home&quot; aria-selected=&quot;true&quot;&gt;&lt;i data-lucide=&quot;home&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Home&lt;/span&gt;&lt;/button&gt;
+            &lt;button type=&quot;button&quot; data-tab=&quot;chat&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;message-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Chat&lt;/span&gt;&lt;/button&gt;
+            &lt;button type=&quot;button&quot; data-tab=&quot;run&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;footprints&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Run&lt;/span&gt;&lt;/button&gt;
+            &lt;button type=&quot;button&quot; data-tab=&quot;closet&quot; aria-selected=&quot;false&quot;&gt;&lt;i data-lucide=&quot;sparkles&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Closet&lt;/span&gt;&lt;/button&gt;
+          &lt;/nav&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;pp-view&quot; data-view=&quot;widgets&quot; hidden&gt;
+          &lt;div class=&quot;pp-homescreen&quot;&gt;
+            &lt;div class=&quot;pp-widget-caption&quot;&gt;iPhone Home Screen · widget footprint&lt;/div&gt;
+            &lt;div class=&quot;pp-widget-size-switch&quot; aria-label=&quot;Widget size&quot;&gt;
+              &lt;button type=&quot;button&quot; data-widget-size=&quot;4&quot; aria-pressed=&quot;true&quot;&gt;4 blocks · 2×2&lt;/button&gt;
+              &lt;button type=&quot;button&quot; data-widget-size=&quot;16&quot; aria-pressed=&quot;false&quot;&gt;16 blocks · 4×4&lt;/button&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;pp-widget-layout&quot; data-widget-layout=&quot;4&quot;&gt;
+              &lt;div class=&quot;pp-four-home-grid&quot;&gt;
+                &lt;section class=&quot;pp-four-widget&quot; aria-label=&quot;Four-block compact PawPace widget&quot;&gt;
+                  &lt;div class=&quot;pp-four-head&quot;&gt;&lt;span class=&quot;pp-widget-brand&quot;&gt;PAWPACE&lt;/span&gt;&lt;span class=&quot;pp-four-heart&quot;&gt;♥ 142&lt;/span&gt;&lt;/div&gt;
+                  &lt;div class=&quot;pp-four-pet&quot; data-widget-pet&gt;🐶&lt;/div&gt;
+                  &lt;button type=&quot;button&quot; class=&quot;pp-four-bubble&quot; data-open-chat data-widget-talk&gt;Ready for our 2 km run?&lt;/button&gt;
+                  &lt;div class=&quot;pp-four-footer&quot;&gt;&lt;span data-widget-energy&gt;72% energy&lt;/span&gt;&lt;button type=&quot;button&quot; class=&quot;pp-four-feed&quot; data-widget-feed aria-label=&quot;Feed Mochi&quot;&gt;🥕&lt;/button&gt;&lt;/div&gt;
+                &lt;/section&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;📷&lt;/span&gt;Camera&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;🗺️&lt;/span&gt;Maps&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;🎵&lt;/span&gt;Music&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;🌤️&lt;/span&gt;Weather&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;📚&lt;/span&gt;Books&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;📝&lt;/span&gt;Notes&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;📅&lt;/span&gt;Calendar&lt;/div&gt;
+                &lt;div class=&quot;pp-grid-app&quot;&gt;&lt;span&gt;⚙️&lt;/span&gt;Settings&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-widget-page-dots&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;div class=&quot;pp-widget-layout&quot; data-widget-layout=&quot;16&quot; hidden&gt;
+              &lt;section class=&quot;pp-sixteen-widget&quot; aria-label=&quot;Sixteen-block large PawPace widget&quot;&gt;
+                &lt;div class=&quot;pp-sixteen-head&quot;&gt;&lt;span class=&quot;pp-widget-brand&quot;&gt;PAWPACE&lt;/span&gt;&lt;span class=&quot;pp-widget-level&quot;&gt;Mochi · Level 7&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-sixteen-scene&quot;&gt;
+                  &lt;div class=&quot;pp-sixteen-pet&quot; data-widget-pet&gt;🐶&lt;/div&gt;
+                  &lt;div class=&quot;pp-sixteen-bubble&quot; data-widget-talk&gt;I saved some zoomies for you. Shall we run?&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;pp-sixteen-stats&quot;&gt;
+                  &lt;div class=&quot;pp-sixteen-stat&quot;&gt;&lt;strong data-widget-energy&gt;72%&lt;/strong&gt;&lt;span&gt;energy&lt;/span&gt;&lt;/div&gt;
+                  &lt;div class=&quot;pp-sixteen-stat&quot;&gt;&lt;strong&gt;Happy&lt;/strong&gt;&lt;span&gt;mood&lt;/span&gt;&lt;/div&gt;
+                  &lt;div class=&quot;pp-sixteen-stat&quot;&gt;&lt;strong&gt;340 XP&lt;/strong&gt;&lt;span&gt;next level&lt;/span&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;pp-sixteen-actions&quot;&gt;
+                  &lt;button type=&quot;button&quot; data-widget-feed&gt;🥕 Feed&lt;/button&gt;
+                  &lt;button type=&quot;button&quot; data-open-chat&gt;💬 Talk&lt;/button&gt;
+                  &lt;button type=&quot;button&quot; data-widget-play&gt;🎾 Play&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;pp-sixteen-quest&quot;&gt;
+                  &lt;div class=&quot;pp-sixteen-quest-icon&quot;&gt;👟&lt;/div&gt;
+                  &lt;div&gt;&lt;div class=&quot;pp-sixteen-quest-title&quot;&gt;Run 2 km with Mochi&lt;/div&gt;&lt;div class=&quot;pp-sixteen-quest-sub&quot;&gt;1.2 km left · 68% complete&lt;/div&gt;&lt;/div&gt;
+                  &lt;div class=&quot;pp-sixteen-reward&quot;&gt;+80 XP&lt;/div&gt;
+                &lt;/div&gt;
+              &lt;/section&gt;
+              &lt;div class=&quot;pp-widget-page-dots&quot; aria-hidden=&quot;true&quot;&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;section class=&quot;pp-view&quot; data-view=&quot;activity&quot; hidden&gt;
+          &lt;div class=&quot;pp-lockscreen&quot;&gt;
+            &lt;div class=&quot;pp-island-live&quot;&gt;&lt;span&gt;🐕&lt;/span&gt;&lt;span data-island-distance&gt;2.34 km&lt;/span&gt;&lt;span&gt;♥ 142&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;pp-lock-date&quot;&gt;Sunday, 23 August&lt;/div&gt;
+            &lt;div class=&quot;pp-lock-time&quot;&gt;09:41&lt;/div&gt;
+            &lt;div class=&quot;pp-lock-pet-scene&quot;&gt;
+              &lt;div class=&quot;pp-lock-bubble&quot; data-lock-bubble&gt;That pace is perfect—keep your shoulders relaxed!&lt;/div&gt;
+              &lt;div class=&quot;pp-lock-pet&quot;&gt;🐕&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;section class=&quot;pp-live-card&quot; aria-label=&quot;Active run Live Activity&quot;&gt;
+              &lt;div class=&quot;pp-live-head&quot;&gt;&lt;span class=&quot;pp-live-name&quot;&gt;PAWPACE · MORNING RUN&lt;/span&gt;&lt;span class=&quot;pp-live-time&quot; data-live-state&gt;18:42 active&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;pp-live-metrics&quot;&gt;
+                &lt;div class=&quot;pp-live-metric&quot;&gt;&lt;strong&gt;2.34&lt;/strong&gt;&lt;span&gt;kilometers&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-live-metric&quot;&gt;&lt;strong&gt;7′59″&lt;/strong&gt;&lt;span&gt;avg pace&lt;/span&gt;&lt;/div&gt;
+                &lt;div class=&quot;pp-live-metric&quot;&gt;&lt;strong&gt;+94&lt;/strong&gt;&lt;span&gt;pet XP&lt;/span&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;pp-live-actions&quot;&gt;&lt;button type=&quot;button&quot; data-live-pause&gt;Ⅱ Pause&lt;/button&gt;&lt;button type=&quot;button&quot; data-live-cheer&gt;♡ Cheer Mochi&lt;/button&gt;&lt;/div&gt;
+            &lt;/section&gt;
+            &lt;div class=&quot;pp-lock-footer&quot; aria-hidden=&quot;true&quot;&gt;&lt;span class=&quot;pp-lock-button&quot;&gt;◉&lt;/span&gt;&lt;span class=&quot;pp-lock-button&quot;&gt;⌁&lt;/span&gt;&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/section&gt;
+
+        &lt;div class=&quot;pp-toast&quot; data-toast aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;pawpace-ui-v1&#x27;);
+      if (!root) return;
+
+      const toast = root.querySelector(&#x27;[data-toast]&#x27;);
+      let toastTimer;
+      const showToast = (message) =&gt; {
+        toast.textContent = message;
+        toast.classList.add(&#x27;show&#x27;);
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() =&gt; toast.classList.remove(&#x27;show&#x27;), 1600);
+      };
+
+      const setMode = (mode) =&gt; {
+        root.querySelectorAll(&#x27;[data-mode]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-pressed&#x27;, String(button.dataset.mode === mode)));
+        root.querySelectorAll(&#x27;[data-view]&#x27;).forEach((view) =&gt; { view.hidden = view.dataset.view !== mode; });
+      };
+
+      root.querySelectorAll(&#x27;[data-mode]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; setMode(button.dataset.mode)));
+
+      const setTab = (tab) =&gt; {
+        root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-selected&#x27;, String(button.dataset.tab === tab)));
+        root.querySelectorAll(&#x27;[data-page]&#x27;).forEach((page) =&gt; { page.hidden = page.dataset.page !== tab; });
+      };
+
+      root.querySelectorAll(&#x27;[data-tab]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; setTab(button.dataset.tab)));
+      root.querySelectorAll(&#x27;[data-tab-jump]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; setTab(button.dataset.tabJump)));
+
+      const petSpeech = root.querySelector(&#x27;[data-pet-speech]&#x27;);
+      const petStage = root.querySelector(&#x27;[data-pet-stage]&#x27;);
+      const petReplies = {
+        fed: [&#x27;Crunch! Carrots make my tail faster.&#x27;, &#x27;Snack power restored!&#x27;],
+        loved: [&#x27;That is exactly the right spot! 💜&#x27;, &#x27;Best human. No contest.&#x27;],
+        played: [&#x27;Catch me if you can!&#x27;, &#x27;One more throw—please? 🎾&#x27;]
+      };
+      let xp = 340;
+
+      root.querySelectorAll(&#x27;[data-pet-action]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        const choices = petReplies[button.dataset.petAction];
+        petSpeech.textContent = choices[Math.floor(Math.random() * choices.length)];
+        xp = Math.min(500, xp + 8);
+        root.querySelector(&#x27;[data-xp-label]&#x27;).textContent = `${xp} / 500`;
+        root.querySelector(&#x27;[data-xp-bar]&#x27;).style.width = `${(xp / 500) * 100}%`;
+        root.querySelector(&#x27;[role=&quot;progressbar&quot;]&#x27;).setAttribute(&#x27;aria-valuenow&#x27;, String(xp));
+        petStage.classList.remove(&#x27;pp-bounce&#x27;);
+        void petStage.offsetWidth;
+        petStage.classList.add(&#x27;pp-bounce&#x27;);
+        showToast(&#x27;+8 pet XP&#x27;);
+      }));
+
+      const chatForm = root.querySelector(&#x27;[data-chat-form]&#x27;);
+      const chatInput = root.querySelector(&#x27;[data-chat-input]&#x27;);
+      const messages = root.querySelector(&#x27;[data-messages]&#x27;);
+      const sendChat = (text) =&gt; {
+        const clean = text.trim();
+        if (!clean) return;
+        const userMessage = document.createElement(&#x27;div&#x27;);
+        userMessage.className = &#x27;pp-message user&#x27;;
+        userMessage.textContent = clean;
+        messages.appendChild(userMessage);
+        const petMessage = document.createElement(&#x27;div&#x27;);
+        petMessage.className = &#x27;pp-message pet&#x27;;
+        petMessage.textContent = &#x27;I’m listening! Let’s make today an adventure together. 🐾&#x27;;
+        messages.appendChild(petMessage);
+        while (messages.children.length &gt; 5) messages.removeChild(messages.children[1]);
+        chatInput.value = &#x27;&#x27;;
+      };
+
+      chatForm.addEventListener(&#x27;submit&#x27;, (event) =&gt; { event.preventDefault(); sendChat(chatInput.value); });
+      root.querySelectorAll(&#x27;.pp-suggestion&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; sendChat(button.textContent || &#x27;&#x27;)));
+
+      let isRunning = false;
+      const runControl = root.querySelector(&#x27;[data-run-control]&#x27;);
+      runControl.addEventListener(&#x27;click&#x27;, () =&gt; {
+        isRunning = !isRunning;
+        runControl.classList.toggle(&#x27;is-running&#x27;, isRunning);
+        runControl.textContent = isRunning ? &#x27;Ⅱ Pause run&#x27; : &#x27;▶ Resume run with Mochi&#x27;;
+        root.querySelector(&#x27;[data-run-status]&#x27;).textContent = isRunning ? &#x27;Tracking with GPS&#x27; : &#x27;Run paused&#x27;;
+        root.querySelector(&#x27;[data-distance]&#x27;).textContent = isRunning ? &#x27;0.03&#x27; : &#x27;0.03&#x27;;
+        root.querySelector(&#x27;[data-pace]&#x27;).textContent = isRunning ? &#x27;8′12″&#x27; : &#x27;—&#x27;;
+        root.querySelector(&#x27;[data-run-time]&#x27;).textContent = &#x27;00:14&#x27;;
+        showToast(isRunning ? &#x27;Mochi is running with you&#x27; : &#x27;Run paused&#x27;);
+      });
+
+      root.querySelectorAll(&#x27;.pp-item&#x27;).forEach((item) =&gt; item.addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelectorAll(&#x27;.pp-item&#x27;).forEach((peer) =&gt; peer.setAttribute(&#x27;aria-pressed&#x27;, &#x27;false&#x27;));
+        item.setAttribute(&#x27;aria-pressed&#x27;, &#x27;true&#x27;);
+        showToast(`${item.querySelector(&#x27;.pp-item-name&#x27;).textContent} equipped`);
+      }));
+
+      const setWidgetSize = (size) =&gt; {
+        root.querySelectorAll(&#x27;[data-widget-size]&#x27;).forEach((button) =&gt; button.setAttribute(&#x27;aria-pressed&#x27;, String(button.dataset.widgetSize === size)));
+        root.querySelectorAll(&#x27;[data-widget-layout]&#x27;).forEach((layout) =&gt; { layout.hidden = layout.dataset.widgetLayout !== size; });
+      };
+
+      root.querySelectorAll(&#x27;[data-widget-size]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; setWidgetSize(button.dataset.widgetSize)));
+
+      let widgetEnergy = 72;
+      root.querySelectorAll(&#x27;[data-widget-feed]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        widgetEnergy = Math.min(100, widgetEnergy + 12);
+        root.querySelectorAll(&#x27;[data-widget-pet]&#x27;).forEach((pet) =&gt; { pet.textContent = &#x27;😋&#x27;; });
+        root.querySelectorAll(&#x27;[data-widget-talk]&#x27;).forEach((talk) =&gt; { talk.textContent = &#x27;Carrot received. You understand me.&#x27;; });
+        root.querySelectorAll(&#x27;[data-widget-energy]&#x27;).forEach((energy) =&gt; { energy.textContent = `${widgetEnergy}% energy`; });
+        showToast(&#x27;Mochi ate a carrot&#x27;);
+      }));
+
+      root.querySelectorAll(&#x27;[data-open-chat]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; { setMode(&#x27;app&#x27;); setTab(&#x27;chat&#x27;); }));
+      root.querySelectorAll(&#x27;[data-widget-play]&#x27;).forEach((button) =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelectorAll(&#x27;[data-widget-talk]&#x27;).forEach((talk) =&gt; { talk.textContent = &#x27;Ball acquired. Activating maximum zoomies! 🎾&#x27;; });
+        showToast(&#x27;+5 friendship&#x27;);
+      }));
+
+      let livePaused = false;
+      root.querySelector(&#x27;[data-live-pause]&#x27;).addEventListener(&#x27;click&#x27;, (event) =&gt; {
+        livePaused = !livePaused;
+        event.currentTarget.textContent = livePaused ? &#x27;▶ Resume&#x27; : &#x27;Ⅱ Pause&#x27;;
+        root.querySelector(&#x27;[data-live-state]&#x27;).textContent = livePaused ? &#x27;Paused&#x27; : &#x27;18:42 active&#x27;;
+        showToast(livePaused ? &#x27;Run paused&#x27; : &#x27;Run resumed&#x27;);
+      });
+
+      root.querySelector(&#x27;[data-live-cheer]&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelector(&#x27;[data-lock-bubble]&#x27;).textContent = &#x27;A cheer! My tail is officially turbocharged. 💜&#x27;;
+        showToast(&#x27;+5 friendship&#x27;);
+      });
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

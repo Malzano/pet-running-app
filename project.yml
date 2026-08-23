@@ -1,0 +1,83 @@
+name: PawPace
+options:
+  minimumXcodeGenVersion: 2.40.0
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: 5.10
+    IPHONEOS_DEPLOYMENT_TARGET: 17.0
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 0.1.0
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+    ENABLE_USER_SCRIPT_SANDBOXING: true
+
+targets:
+  PawPace:
+    type: application
+    platform: iOS
+    sources:
+      - path: PawPace
+      - path: Shared
+      - path: SharedUI
+      - path: PawPaceWidgets/PetWidgetIntents.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app
+        PRODUCT_NAME: PawPace
+        INFOPLIST_FILE: Config/PawPace-Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/PawPace.entitlements
+        TARGETED_DEVICE_FAMILY: 1
+        SUPPORTS_MACCATALYST: false
+    dependencies:
+      - target: PawPaceWidgets
+        embed: true
+
+  PawPaceWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: PawPaceWidgets
+      - path: Shared
+      - path: SharedUI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.widgets
+        PRODUCT_NAME: PawPaceWidgets
+        INFOPLIST_FILE: Config/PawPaceWidgets-Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/PawPaceWidgets.entitlements
+        TARGETED_DEVICE_FAMILY: 1
+        SKIP_INSTALL: true
+        APPLICATION_EXTENSION_API_ONLY: true
+
+  PawPaceTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: PawPaceTests
+    dependencies:
+      - target: PawPace
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.tests
+        GENERATE_INFOPLIST_FILE: true
+
+schemes:
+  PawPace:
+    build:
+      targets:
+        PawPace: all
+        PawPaceWidgets: all
+        PawPaceTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - PawPaceTests
+    archive:
+      config: Release

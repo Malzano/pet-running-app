@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDisplayName</key>
+    <string>PawPace</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.pawpace.app</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>pawpace</string>
+            </array>
+        </dict>
+    </array>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>NSHealthShareUsageDescription</key>
+    <string>PawPace reads workout and heart-rate information to show your run progress with your companion.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>PawPace saves completed runs to Apple Health when you choose to record them.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>PawPace uses your location during an active run to calculate distance, pace, and route.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>PawPace uses the microphone when you talk with your companion.</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>PawPace converts your voice into text for companion conversations.</string>
+    <key>NSSupportsLiveActivities</key>
+    <true/>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+    </array>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+</dict>
+</plist>
+
