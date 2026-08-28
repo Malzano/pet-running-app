@@ -4,6 +4,7 @@ import SwiftUI
 
 struct RunView: View {
     @ObservedObject var tracker: RunTracker
+    let pet: PetSnapshot
     let onFinish: () async -> Void
 
     var body: some View {
@@ -58,12 +59,36 @@ struct RunView: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    MochiCreatureView(mood: tracker.phase == .running ? .excited : .happy, stage: .sprout)
+                    MochiCreatureView(
+                        mood: tracker.phase == .running ? .excited : .happy,
+                        stage: pet.stage,
+                        accessory: pet.equippedAccessory,
+                        decoration: pet.activeDecoration,
+                        motion: tracker.phase == .running ? .running : .idle
+                    )
                         .frame(width: 76, height: 76)
                         .padding(6)
                         .background(PawTheme.surface.opacity(0.92), in: RoundedRectangle(cornerRadius: 24, style: .continuous))
                         .shadow(color: PawTheme.ink.opacity(0.12), radius: 10, y: 5)
                         .padding(12)
+                }
+            }
+
+            if let heartRate = tracker.heartRate,
+               let zone = PawPaceHeartRateZone.zone(for: heartRate) {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Label("\(heartRate) BPM · Z\(zone.rawValue) \(zone.label)", systemImage: "heart.fill")
+                            .font(.caption2.weight(.bold))
+                            .foregroundStyle(zone.tint)
+                            .padding(.horizontal, 11)
+                            .padding(.vertical, 8)
+                            .background(.ultraThickMaterial, in: Capsule())
+                            .accessibilityLabel("\(heartRate) beats per minute, \(zone.accessibilityLabel)")
+                        Spacer()
+                    }
+                    .padding(12)
                 }
             }
         }
@@ -87,11 +112,21 @@ struct RunView: View {
     private var controls: some View {
         switch tracker.phase {
         case .idle, .finished:
-            Button {
-                tracker.start()
-            } label: {
-                Label("Start run with Mochi", systemImage: "play.fill")
-                    .runControlStyle(background: PawTheme.energyYellow, foreground: PawTheme.ink)
+            if tracker.isFinishing {
+                HStack(spacing: 9) {
+                    ProgressView()
+                    Text("Finishing Watch workout…")
+                        .font(.subheadline.weight(.semibold))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 14)
+            } else {
+                Button {
+                    tracker.start()
+                } label: {
+                    Label("Start run with Mochi", systemImage: "play.fill")
+                        .runControlStyle(background: PawTheme.energyYellow, foreground: PawTheme.ink)
+                }
             }
         case .running, .paused:
             HStack(spacing: 9) {
@@ -189,4 +224,3 @@ private extension View {
             .background(background, in: RoundedRectangle(cornerRadius: 17, style: .continuous))
     }
 }
-

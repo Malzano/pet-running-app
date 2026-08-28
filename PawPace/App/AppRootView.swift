@@ -14,7 +14,7 @@ struct AppRootView: View {
                 case .chat:
                     ChatView(petStore: model.petStore)
                 case .run:
-                    RunView(tracker: model.runTracker) {
+                    RunView(tracker: model.runTracker, pet: model.petStore.snapshot) {
                         await model.finishRun()
                     }
                 case .collection:
@@ -68,4 +68,3 @@ private struct PawTabBar: View {
         .overlay(alignment: .top) { Divider().opacity(0.5) }
     }
 }
-

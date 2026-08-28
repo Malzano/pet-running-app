@@ -20,7 +20,13 @@ struct RunSummaryView: View {
 
                     ZStack {
                         Circle().fill(PawTheme.energyYellow.opacity(0.22)).frame(width: 240, height: 240)
-                        MochiCreatureView(mood: .proud, stage: pet.stage, accessory: pet.equippedAccessory)
+                        MochiCreatureView(
+                            mood: .proud,
+                            stage: pet.stage,
+                            accessory: pet.equippedAccessory,
+                            decoration: pet.activeDecoration,
+                            motion: .celebrating
+                        )
                             .frame(width: 230, height: 230)
                     }
 
@@ -81,4 +87,3 @@ private struct RewardRow: View {
         }
     }
 }
-

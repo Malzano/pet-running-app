@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(UIKit)
 import UIKit
+#endif
 
 enum PawTheme {
     static let adventureBlue = Color(hex: 0x3568E8)
@@ -22,6 +24,18 @@ enum PawTheme {
     )
 }
 
+extension PawPaceHeartRateZone {
+    var tint: Color {
+        switch self {
+        case .recovery: PawTheme.teal
+        case .endurance: PawTheme.grassGreen
+        case .tempo: PawTheme.energyYellow
+        case .threshold: PawTheme.coralOrange
+        case .peak: .pink
+        }
+    }
+}
+
 extension Color {
     init(hex: UInt, alpha: Double = 1) {
         self.init(
@@ -34,6 +48,9 @@ extension Color {
     }
 
     static func dynamic(light: UInt, dark: UInt) -> Color {
+#if os(watchOS)
+        Color(hex: dark)
+#else
         Color(uiColor: UIColor { traits in
             let hex = traits.userInterfaceStyle == .dark ? dark : light
             return UIColor(
@@ -43,6 +60,7 @@ extension Color {
                 alpha: 1
             )
         })
+#endif
     }
 }
 
@@ -98,4 +116,3 @@ struct MetricPill: View {
         .background(tint.opacity(0.12), in: RoundedRectangle(cornerRadius: 14, style: .continuous))
     }
 }
-

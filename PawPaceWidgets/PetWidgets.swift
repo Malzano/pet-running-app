@@ -77,7 +77,12 @@ private struct CompactPetWidgetView: View {
                 }
 
                 ZStack(alignment: .topTrailing) {
-                    MochiCreatureView(mood: entry.pet.mood, stage: entry.pet.stage, accessory: entry.pet.equippedAccessory)
+                    MochiCreatureView(
+                        mood: entry.pet.mood,
+                        stage: entry.pet.stage,
+                        accessory: entry.pet.equippedAccessory,
+                        decoration: entry.pet.activeDecoration
+                    )
                         .frame(width: 94, height: 94)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     Link(destination: URL(string: "pawpace://chat")!) {
@@ -145,7 +150,12 @@ private struct HabitatPetWidgetView: View {
                     .frame(width: 390, height: 115)
                     .offset(y: 82)
                 HStack {
-                    MochiCreatureView(mood: entry.pet.mood, stage: entry.pet.stage, accessory: entry.pet.equippedAccessory)
+                    MochiCreatureView(
+                        mood: entry.pet.mood,
+                        stage: entry.pet.stage,
+                        accessory: entry.pet.equippedAccessory,
+                        decoration: entry.pet.activeDecoration
+                    )
                         .frame(width: 150, height: 150)
                     Spacer()
                 }

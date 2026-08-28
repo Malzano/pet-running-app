@@ -6,7 +6,5 @@ struct PawPaceWidgetBundle: WidgetBundle {
     var body: some Widget {
         PawPaceCompactWidget()
         PawPaceHabitatWidget()
-        PawPaceLiveActivityWidget()
     }
 }
-

@@ -61,6 +61,7 @@ struct PetSnapshot: Codable, Equatable, Sendable {
     var distanceTodayKilometers: Double
     var weeklyDistanceKilometers: Double
     var equippedAccessory: String?
+    var equippedDecoration: String?
     var lastUpdated: Date
 
     static let starter = PetSnapshot(
@@ -76,8 +77,13 @@ struct PetSnapshot: Codable, Equatable, Sendable {
         distanceTodayKilometers: 1.8,
         weeklyDistanceKilometers: 6.8,
         equippedAccessory: "Trail Scarf",
+        equippedDecoration: "Flower Meadow",
         lastUpdated: .now
     )
+
+    var activeDecoration: String {
+        equippedDecoration ?? "Flower Meadow"
+    }
 
     var stage: EvolutionStage {
         if level >= EvolutionStage.volaki.minimumLevel { return .volaki }
@@ -153,17 +159,29 @@ enum PawPaceShared {
     static let suiteName = "group.com.pawpace.shared"
     static let snapshotKey = "pawpace.pet.snapshot.v1"
     static let runPausedKey = "pawpace.run.isPaused"
+    static let rewardedWorkoutIDsKey = "pawpace.run.rewardedWorkoutIDs"
+    static let snapshotChangedDarwinName = "com.pawpace.pet-snapshot-changed"
 
     static var defaults: UserDefaults {
+#if os(watchOS)
+        .standard
+#else
         UserDefaults(suiteName: suiteName) ?? .standard
+#endif
     }
 
     static func loadSnapshot() -> PetSnapshot {
+        loadSnapshotIfPresent() ?? .starter
+    }
+
+    static func loadSnapshotIfPresent(
+        from defaults: UserDefaults = PawPaceShared.defaults
+    ) -> PetSnapshot? {
         guard
             let data = defaults.data(forKey: snapshotKey),
             let snapshot = try? JSONDecoder().decode(PetSnapshot.self, from: data)
         else {
-            return .starter
+            return nil
         }
         return snapshot
     }
@@ -171,6 +189,36 @@ enum PawPaceShared {
     static func saveSnapshot(_ snapshot: PetSnapshot) {
         guard let data = try? JSONEncoder().encode(snapshot) else { return }
         defaults.set(data, forKey: snapshotKey)
+#if !os(watchOS)
+        CFNotificationCenterPostNotification(
+            CFNotificationCenterGetDarwinNotifyCenter(),
+            CFNotificationName(snapshotChangedDarwinName as CFString),
+            nil,
+            nil,
+            true
+        )
+#endif
+    }
+
+    @discardableResult
+    static func registerReward(
+        for workoutID: UUID,
+        in defaults: UserDefaults = PawPaceShared.defaults
+    ) -> Bool {
+        var rewardedIDs = defaults.stringArray(forKey: rewardedWorkoutIDsKey) ?? []
+        let identifier = workoutID.uuidString
+        guard !rewardedIDs.contains(identifier) else { return false }
+
+        rewardedIDs.append(identifier)
+        defaults.set(rewardedIDs, forKey: rewardedWorkoutIDsKey)
+        return true
+    }
+
+    static func hasRegisteredReward(
+        for workoutID: UUID,
+        in defaults: UserDefaults = PawPaceShared.defaults
+    ) -> Bool {
+        defaults.stringArray(forKey: rewardedWorkoutIDsKey)?.contains(workoutID.uuidString) == true
     }
 }
 

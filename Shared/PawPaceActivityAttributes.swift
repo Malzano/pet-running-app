@@ -10,9 +10,12 @@ struct PawPaceActivityAttributes: ActivityAttributes {
         var experienceEarned: Int
         var isPaused: Bool
         var encouragement: String
+        var petMood: PetMood?
+        var petStage: EvolutionStage?
+        var petEnergy: Int?
+        var petAccessory: String?
     }
 
     var petName: String
     var questTargetKilometers: Double
 }
-

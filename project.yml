@@ -3,12 +3,13 @@ options:
   minimumXcodeGenVersion: 2.40.0
   deploymentTarget:
     iOS: "17.0"
+    watchOS: "10.0"
   createIntermediateGroups: true
   groupSortPosition: top
 
 settings:
   base:
-    SWIFT_VERSION: 5.10
+    SWIFT_VERSION: "5"
     IPHONEOS_DEPLOYMENT_TARGET: 17.0
     CURRENT_PROJECT_VERSION: 1
     MARKETING_VERSION: 0.1.0
@@ -36,18 +37,48 @@ targets:
     dependencies:
       - target: PawPaceWidgets
         embed: true
+      - target: PawPaceLiveActivity
+        embed: true
+      - target: PawPaceWatch
+        embed: true
+        link: false
+        copy:
+          destination: productsDirectory
+          subpath: "$(CONTENTS_FOLDER_PATH)/Watch"
 
   PawPaceWidgets:
     type: app-extension
     platform: iOS
     sources:
       - path: PawPaceWidgets
+        excludes:
+          - PawPaceLiveActivity.swift
       - path: Shared
       - path: SharedUI
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.widgets
         PRODUCT_NAME: PawPaceWidgets
+        INFOPLIST_FILE: Config/PawPaceWidgets-Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/PawPaceWidgets.entitlements
+        TARGETED_DEVICE_FAMILY: 1
+        SKIP_INSTALL: true
+        APPLICATION_EXTENSION_API_ONLY: true
+
+  PawPaceLiveActivity:
+    type: app-extension
+    platform: iOS
+    deploymentTarget: "18.0"
+    sources:
+      - path: PawPaceLiveActivityWidgets
+      - path: PawPaceWidgets/PawPaceLiveActivity.swift
+      - path: PawPaceWidgets/PetWidgetIntents.swift
+      - path: Shared
+      - path: SharedUI
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.liveactivity
+        PRODUCT_NAME: PawPaceLiveActivity
         INFOPLIST_FILE: Config/PawPaceWidgets-Info.plist
         CODE_SIGN_ENTITLEMENTS: Config/PawPaceWidgets.entitlements
         TARGETED_DEVICE_FAMILY: 1
@@ -66,11 +97,37 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.tests
         GENERATE_INFOPLIST_FILE: true
 
+  PawPaceWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - path: PawPaceWatch
+      - path: Shared/PawPaceShared.swift
+      - path: Shared/PawPaceFormatting.swift
+      - path: Shared/PawPaceWatchSync.swift
+      - path: SharedUI/PawTheme.swift
+      - path: SharedUI/MochiCreatureView.swift
+    dependencies:
+      - sdk: HealthKit.framework
+      - sdk: WatchConnectivity.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.watchkitapp
+        PRODUCT_NAME: PawPaceWatch
+        INFOPLIST_FILE: Config/PawPaceWatch-Info.plist
+        CODE_SIGN_ENTITLEMENTS: Config/PawPaceWatch.entitlements
+        WATCHOS_DEPLOYMENT_TARGET: 10.0
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SKIP_INSTALL: true
+        TARGETED_DEVICE_FAMILY: 4
+
 schemes:
   PawPace:
     build:
       targets:
         PawPace: all
+        PawPaceLiveActivity: all
         PawPaceWidgets: all
         PawPaceTests: [test]
     run:
@@ -79,5 +136,14 @@ schemes:
       config: Debug
       targets:
         - PawPaceTests
+    archive:
+      config: Release
+
+  PawPaceWatch:
+    build:
+      targets:
+        PawPaceWatch: all
+    run:
+      config: Debug
     archive:
       config: Release

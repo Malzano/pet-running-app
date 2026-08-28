@@ -2,13 +2,39 @@ import Foundation
 import SwiftUI
 import WidgetKit
 
+private let petSnapshotChangedCallback: CFNotificationCallback = { _, observer, _, _, _ in
+    guard let observer else { return }
+    let store = Unmanaged<PetStore>.fromOpaque(observer).takeUnretainedValue()
+    Task { @MainActor in
+        store.reloadFromSharedStorage()
+    }
+}
+
 @MainActor
 final class PetStore: ObservableObject {
     @Published private(set) var snapshot: PetSnapshot
     @Published var latestReaction: String?
+    var onSnapshotChange: ((PetSnapshot) -> Void)?
 
     init(snapshot: PetSnapshot = PawPaceShared.loadSnapshot()) {
         self.snapshot = snapshot
+        CFNotificationCenterAddObserver(
+            CFNotificationCenterGetDarwinNotifyCenter(),
+            Unmanaged.passUnretained(self).toOpaque(),
+            petSnapshotChangedCallback,
+            PawPaceShared.snapshotChangedDarwinName as CFString,
+            nil,
+            .deliverImmediately
+        )
+    }
+
+    deinit {
+        CFNotificationCenterRemoveObserver(
+            CFNotificationCenterGetDarwinNotifyCenter(),
+            Unmanaged.passUnretained(self).toOpaque(),
+            CFNotificationName(PawPaceShared.snapshotChangedDarwinName as CFString),
+            nil
+        )
     }
 
     func feed() {
@@ -36,8 +62,22 @@ final class PetStore: ObservableObject {
         }
     }
 
+    func equipDecoration(_ decoration: String) {
+        mutate(reaction: "\(decoration) is ready for our next adventure!") {
+            $0.equippedDecoration = decoration
+            $0.lastUpdated = .now
+        }
+    }
+
     func clearReaction() {
         latestReaction = nil
+    }
+
+    func reloadFromSharedStorage() {
+        let latest = PawPaceShared.loadSnapshot()
+        guard latest != snapshot else { return }
+        snapshot = latest
+        onSnapshotChange?(latest)
     }
 
     private func mutate(reaction: String?, _ update: (inout PetSnapshot) -> Void) {
@@ -47,6 +87,6 @@ final class PetStore: ObservableObject {
         latestReaction = reaction
         PawPaceShared.saveSnapshot(next)
         WidgetCenter.shared.reloadAllTimelines()
+        onSnapshotChange?(next)
     }
 }
-

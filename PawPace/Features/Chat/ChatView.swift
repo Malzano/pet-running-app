@@ -32,7 +32,12 @@ struct ChatView: View {
 
     private var chatHeader: some View {
         HStack(spacing: 11) {
-            MochiCreatureView(mood: petStore.snapshot.mood, stage: petStore.snapshot.stage)
+            MochiCreatureView(
+                mood: petStore.snapshot.mood,
+                stage: petStore.snapshot.stage,
+                accessory: petStore.snapshot.equippedAccessory,
+                decoration: petStore.snapshot.activeDecoration
+            )
                 .frame(width: 48, height: 48)
                 .padding(3)
                 .background(PawTheme.surfaceRaised, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -169,4 +174,3 @@ private struct ChatBubble: View {
         }
     }
 }
-

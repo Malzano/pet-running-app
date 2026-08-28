@@ -9,10 +9,14 @@ final class LiveActivityService {
 
     private init() {}
 
-    func start(petName: String, targetKilometers: Double) {
+    func start(pet: PetSnapshot, targetKilometers: Double) {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
+        if let existing = Activity<PawPaceActivityAttributes>.activities.first {
+            activity = existing
+            return
+        }
 
-        let attributes = PawPaceActivityAttributes(petName: petName, questTargetKilometers: targetKilometers)
+        let attributes = PawPaceActivityAttributes(petName: pet.name, questTargetKilometers: targetKilometers)
         let state = PawPaceActivityAttributes.ContentState(
             distanceKilometers: 0,
             elapsedSeconds: 0,
@@ -20,7 +24,11 @@ final class LiveActivityService {
             heartRate: 0,
             experienceEarned: 0,
             isPaused: false,
-            encouragement: "Adventure started—easy paws first!"
+            encouragement: "Adventure started—easy paws first!",
+            petMood: pet.mood,
+            petStage: pet.stage,
+            petEnergy: pet.energy,
+            petAccessory: pet.equippedAccessory
         )
 
         do {
@@ -48,4 +56,3 @@ final class LiveActivityService {
         activity = nil
     }
 }
-

@@ -96,7 +96,12 @@ struct HomeView: View {
                 }
 
                 ZStack(alignment: .topTrailing) {
-                    MochiCreatureView(mood: pet.mood, stage: pet.stage, accessory: pet.equippedAccessory)
+                    MochiCreatureView(
+                        mood: pet.mood,
+                        stage: pet.stage,
+                        accessory: pet.equippedAccessory,
+                        decoration: pet.activeDecoration
+                    )
                         .frame(maxWidth: 240)
                     Text(store.latestReaction ?? pet.mood.shortMessage)
                         .font(.caption.weight(.semibold))
@@ -240,4 +245,3 @@ private struct PetActionButton: View {
         .buttonStyle(.plain)
     }
 }
-

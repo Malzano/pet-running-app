@@ -3,17 +3,33 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
+@available(iOSApplicationExtension 18.0, *)
 struct PawPaceLiveActivityWidget: Widget {
     var body: some WidgetConfiguration {
+        activityConfiguration
+            .supplementalActivityFamilies([.small, .medium])
+    }
+
+    private var activityConfiguration: some WidgetConfiguration {
         ActivityConfiguration(for: PawPaceActivityAttributes.self) { context in
-            LiveActivityLockScreenView(context: context)
+            Group {
+                if #available(iOSApplicationExtension 18.0, *) {
+                    LiveActivityAdaptiveView(context: context)
+                } else {
+                    LiveActivityLockScreenView(context: context)
+                }
+            }
                 .activityBackgroundTint(PawTheme.surface)
                 .activitySystemActionForegroundColor(PawTheme.adventureBlue)
         } dynamicIsland: { context in
             DynamicIsland {
                 DynamicIslandExpandedRegion(.leading) {
                     HStack(spacing: 6) {
-                        MochiCreatureView(mood: context.state.isPaused ? .curious : .excited, stage: .sprout)
+                        MochiCreatureView(
+                            mood: context.state.resolvedPetMood,
+                            stage: context.state.resolvedPetStage,
+                            accessory: context.state.petAccessory
+                        )
                             .frame(width: 42, height: 42)
                         VStack(alignment: .leading, spacing: 2) {
                             Text(context.attributes.petName)
@@ -74,6 +90,67 @@ struct PawPaceLiveActivityWidget: Widget {
     }
 }
 
+@available(iOSApplicationExtension 18.0, *)
+private struct LiveActivityAdaptiveView: View {
+    @Environment(\.activityFamily) private var activityFamily
+    let context: ActivityViewContext<PawPaceActivityAttributes>
+
+    @ViewBuilder
+    var body: some View {
+        switch activityFamily {
+        case .small:
+            LiveActivitySmallView(context: context)
+        case .medium:
+            LiveActivityLockScreenView(context: context)
+        @unknown default:
+            LiveActivityLockScreenView(context: context)
+        }
+    }
+}
+
+@available(iOSApplicationExtension 18.0, *)
+private struct LiveActivitySmallView: View {
+    let context: ActivityViewContext<PawPaceActivityAttributes>
+
+    var body: some View {
+        HStack(spacing: 9) {
+            MochiCreatureView(
+                mood: context.state.resolvedPetMood,
+                stage: context.state.resolvedPetStage,
+                accessory: context.state.petAccessory
+            )
+            .frame(width: 52, height: 52)
+
+            VStack(alignment: .leading, spacing: 5) {
+                HStack {
+                    Text(context.state.isPaused ? "PAUSED" : "RUNNING")
+                        .font(.system(size: 9, weight: .bold, design: .rounded))
+                        .foregroundStyle(context.state.isPaused ? PawTheme.energyYellow : PawTheme.grassGreen)
+                    Spacer(minLength: 4)
+                    Label("\(context.state.heartRate)", systemImage: "heart.fill")
+                        .font(.caption2.monospacedDigit().bold())
+                        .foregroundStyle(.pink)
+                }
+
+                HStack(spacing: 8) {
+                    CompactMetric(
+                        value: PawPaceFormatting.distance(kilometers: context.state.distanceKilometers),
+                        label: "KM"
+                    )
+                    CompactMetric(
+                        value: PawPaceFormatting.duration(seconds: context.state.elapsedSeconds),
+                        label: "TIME"
+                    )
+                }
+
+                ProgressView(value: Double(context.state.petEnergy ?? 0), total: 100)
+                    .tint(PawTheme.energyYellow)
+            }
+        }
+        .padding(12)
+    }
+}
+
 private struct LiveActivityLockScreenView: View {
     let context: ActivityViewContext<PawPaceActivityAttributes>
 
@@ -91,7 +168,11 @@ private struct LiveActivityLockScreenView: View {
             }
 
             HStack(spacing: 12) {
-                MochiCreatureView(mood: context.state.isPaused ? .curious : .excited, stage: .sprout)
+                MochiCreatureView(
+                    mood: context.state.resolvedPetMood,
+                    stage: context.state.resolvedPetStage,
+                    accessory: context.state.petAccessory
+                )
                     .frame(width: 62, height: 62)
                     .padding(5)
                     .background(PawTheme.habitatGradient, in: RoundedRectangle(cornerRadius: 18, style: .continuous))
@@ -128,6 +209,34 @@ private struct LiveActivityLockScreenView: View {
     }
 }
 
+private struct CompactMetric: View {
+    let value: String
+    let label: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(value)
+                .font(.caption.monospacedDigit().bold())
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            Text(label)
+                .font(.system(size: 7, weight: .bold))
+                .foregroundStyle(PawTheme.inkSecondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}
+
+private extension PawPaceActivityAttributes.ContentState {
+    var resolvedPetMood: PetMood {
+        petMood ?? (isPaused ? .curious : .excited)
+    }
+
+    var resolvedPetStage: EvolutionStage {
+        petStage ?? .sprout
+    }
+}
+
 private struct LiveMetric: View {
     let value: String
     let label: String
@@ -146,4 +255,3 @@ private struct LiveMetric: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
-

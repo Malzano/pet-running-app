@@ -136,9 +136,15 @@ def main() -> None:
     required_project_tokens = [
         "PawPace:",
         "PawPaceWidgets:",
+        "PawPaceLiveActivity:",
         "PawPaceTests:",
+        "PawPaceWatch:",
         "Config/PawPace-Info.plist",
         "Config/PawPaceWidgets-Info.plist",
+        "Config/PawPaceWatch-Info.plist",
+        "Config/PawPaceWatch.entitlements",
+        "destination: productsDirectory",
+        'subpath: "$(CONTENTS_FOLDER_PATH)/Watch"',
     ]
     missing = [token for token in required_project_tokens if token not in project]
     if missing:
@@ -152,4 +158,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -10,6 +10,13 @@ struct CollectionView: View {
         AccessoryItem(name: "Sakura Charm", symbol: "camera.macro", price: 320, unlockLevel: 12, tint: Color.pink)
     ]
 
+    private let decorations = [
+        AccessoryItem(name: "Flower Meadow", symbol: "camera.macro", price: 0, unlockLevel: 1, tint: PawTheme.grassGreen),
+        AccessoryItem(name: "Trail Flags", symbol: "flag.fill", price: 160, unlockLevel: 7, tint: PawTheme.coralOrange),
+        AccessoryItem(name: "Star Lanterns", symbol: "sparkles", price: 280, unlockLevel: 12, tint: PawTheme.energyYellow),
+        AccessoryItem(name: "Camp Glow", symbol: "tent.fill", price: 420, unlockLevel: 18, tint: PawTheme.adventureBlue)
+    ]
+
     private let badges = [
         BadgeItem(name: "First Trail", symbol: "figure.run.circle.fill", color: PawTheme.grassGreen),
         BadgeItem(name: "5K Explorer", symbol: "map.fill", color: PawTheme.adventureBlue),
@@ -26,6 +33,7 @@ struct CollectionView: View {
                 creatureCard
                 evolutionPath
                 accessoriesSection
+                decorationsSection
                 badgesSection
             }
             .padding(.horizontal, 18)
@@ -57,7 +65,13 @@ struct CollectionView: View {
 
     private var creatureCard: some View {
         HStack(spacing: 15) {
-            MochiCreatureView(mood: .proud, stage: store.snapshot.stage, accessory: store.snapshot.equippedAccessory)
+            MochiCreatureView(
+                mood: .proud,
+                stage: store.snapshot.stage,
+                accessory: store.snapshot.equippedAccessory,
+                decoration: store.snapshot.activeDecoration,
+                motion: .celebrating
+            )
                 .frame(width: 132, height: 132)
                 .padding(7)
                 .background(PawTheme.habitatGradient, in: RoundedRectangle(cornerRadius: 24, style: .continuous))
@@ -121,6 +135,25 @@ struct CollectionView: View {
                     ) {
                         if store.snapshot.level >= item.unlockLevel {
                             store.equip(item.name)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private var decorationsSection: some View {
+        VStack(spacing: 11) {
+            SectionKicker(title: "Habitat decorations", trailing: store.snapshot.activeDecoration.uppercased())
+            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 10) {
+                ForEach(decorations) { item in
+                    AccessoryCard(
+                        item: item,
+                        isUnlocked: store.snapshot.level >= item.unlockLevel,
+                        isEquipped: store.snapshot.activeDecoration == item.name
+                    ) {
+                        if store.snapshot.level >= item.unlockLevel {
+                            store.equipDecoration(item.name)
                         }
                     }
                 }
