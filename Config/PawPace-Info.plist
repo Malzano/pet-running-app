@@ -31,16 +31,14 @@
     </array>
     <key>LSRequiresIPhoneOS</key>
     <true/>
+    <key>PawPaceClubAPIURL</key>
+    <string>$(PAWPACE_CLUB_API_URL)</string>
     <key>NSHealthShareUsageDescription</key>
-    <string>PawPace reads workout and heart-rate information to show your run progress with your companion.</string>
+    <string>PawPace reads workouts, heart rate, active energy, and distance for your companion. If you enable Everyday activity, shared steps and workouts also count toward growth and adventures.</string>
     <key>NSHealthUpdateUsageDescription</key>
-    <string>PawPace saves completed runs to Apple Health when you choose to record them.</string>
+    <string>PawPace saves completed workouts to Apple Health when you choose to record them.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>PawPace uses your location during an active run to calculate distance, pace, and route.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>PawPace uses the microphone when you talk with your companion.</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>PawPace converts your voice into text for companion conversations.</string>
+    <string>PawPace uses your location during an outdoor distance workout to calculate distance, pace, and route.</string>
     <key>NSSupportsLiveActivities</key>
     <true/>
     <key>UIBackgroundModes</key>
@@ -55,4 +53,3 @@
     </array>
 </dict>
 </plist>
-

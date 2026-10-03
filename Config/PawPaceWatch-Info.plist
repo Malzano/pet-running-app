@@ -19,9 +19,9 @@
     <key>CFBundleVersion</key>
     <string>$(CURRENT_PROJECT_VERSION)</string>
     <key>NSHealthShareUsageDescription</key>
-    <string>PawPace reads heart rate and running distance to show live progress with your companion.</string>
+    <string>PawPace reads workouts, heart rate, active energy, and workout distance to show your live activity progress with your companion.</string>
     <key>NSHealthUpdateUsageDescription</key>
-    <string>PawPace saves the runs you record on Apple Watch to Apple Health.</string>
+    <string>PawPace saves the workouts you record on Apple Watch, including available distance and active energy, to Apple Health.</string>
     <key>WKApplication</key>
     <true/>
     <key>WKBackgroundModes</key>

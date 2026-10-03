@@ -9,14 +9,14 @@ final class LiveActivityService {
 
     private init() {}
 
-    func start(pet: PetSnapshot, targetKilometers: Double) {
+    func start(pet: PetSnapshot, targetKilometers: Double, configuration: WorkoutConfiguration = .init()) {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         if let existing = Activity<PawPaceActivityAttributes>.activities.first {
             activity = existing
             return
         }
 
-        let attributes = PawPaceActivityAttributes(petName: pet.name, questTargetKilometers: targetKilometers)
+        let attributes = PawPaceActivityAttributes(petName: pet.lifeStage == .egg ? "Mystery egg" : pet.name, questTargetKilometers: targetKilometers)
         let state = PawPaceActivityAttributes.ContentState(
             distanceKilometers: 0,
             elapsedSeconds: 0,
@@ -28,7 +28,12 @@ final class LiveActivityService {
             petMood: pet.mood,
             petStage: pet.stage,
             petEnergy: pet.energy,
-            petAccessory: pet.equippedAccessory
+            petAccessory: pet.equippedAccessory,
+            petSpecies: pet.lifeStage == .egg ? nil : pet.species,
+            workoutConfiguration: configuration,
+            activeEnergyKilocalories: 0,
+            petLifeStage: pet.lifeStage,
+            petVariant: pet.lifecycle?.variant
         )
 
         do {

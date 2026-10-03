@@ -55,7 +55,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2908219E923508F1BC3A229"
             BuildableName = "PawPaceWatch.app"
-            BlueprintName = "PawPaceWatch"
             ReferencedContainer = "container:PawPace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -72,7 +71,6 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "B2908219E923508F1BC3A229"
             BuildableName = "PawPaceWatch.app"
-            BlueprintName = "PawPaceWatch"
             ReferencedContainer = "container:PawPace.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

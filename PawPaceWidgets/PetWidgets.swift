@@ -30,8 +30,8 @@ struct PawPaceCompactWidget: Widget {
             CompactPetWidgetView(entry: entry)
                 .containerBackground(for: .widget) { PawTheme.surface }
         }
-        .configurationDisplayName("Mochi Companion")
-        .description("A compact living companion with mood, energy, and a quick feed action.")
+        .configurationDisplayName("Your companion")
+        .description("Keep your egg’s hatching progress or your growing companion close by.")
         .supportedFamilies([.systemSmall])
         .contentMarginsDisabled()
     }
@@ -45,8 +45,8 @@ struct PawPaceHabitatWidget: Widget {
             HabitatPetWidgetView(entry: entry)
                 .containerBackground(for: .widget) { PawTheme.surface }
         }
-        .configurationDisplayName("Mochi Habitat")
-        .description("A full companion habitat with progression, actions, and today’s running quest.")
+        .configurationDisplayName("Your little world")
+        .description("A full companion habitat with progression, actions, and today’s movement goal.")
         .supportedFamilies([.systemLarge])
         .contentMarginsDisabled()
     }
@@ -54,6 +54,12 @@ struct PawPaceHabitatWidget: Widget {
 
 private struct CompactPetWidgetView: View {
     let entry: PetWidgetEntry
+
+    private var isEgg: Bool { entry.pet.lifeStage == .egg }
+
+    private var minutesRemaining: Int {
+        Int(ceil((entry.pet.lifecycle?.secondsUntilNextStage ?? 0) / 60))
+    }
 
     var body: some View {
         ZStack {
@@ -71,21 +77,16 @@ private struct CompactPetWidgetView: View {
                         .tracking(0.8)
                         .foregroundStyle(PawTheme.adventureBlue)
                     Spacer()
-                    Label("\(entry.pet.friendship)", systemImage: "heart.fill")
+                    Label(isEgg ? "\(Int((entry.pet.lifecycle?.growthProgress ?? 0) * 100))%" : "\(entry.pet.friendship)", systemImage: isEgg ? "sparkles" : "heart.fill")
                         .font(.system(size: 9, weight: .bold))
                         .foregroundStyle(Color.pink)
                 }
 
                 ZStack(alignment: .topTrailing) {
-                    MochiCreatureView(
-                        mood: entry.pet.mood,
-                        stage: entry.pet.stage,
-                        accessory: entry.pet.equippedAccessory,
-                        decoration: entry.pet.activeDecoration
-                    )
+                    AnimalPortraitView(pet: entry.pet)
                         .frame(width: 94, height: 94)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    Link(destination: URL(string: "pawpace://chat")!) {
+                    Link(destination: URL(string: "pawpace://home")!) {
                         Text(compactMessage)
                             .font(.system(size: 9, weight: .semibold, design: .rounded))
                             .foregroundStyle(PawTheme.ink)
@@ -98,19 +99,22 @@ private struct CompactPetWidgetView: View {
                 .frame(maxHeight: .infinity)
 
                 HStack {
-                    Text("\(entry.pet.energy)% energy")
+                    Text(isEgg ? "\(minutesRemaining) min to hatch" : "\(entry.pet.energy)% energy")
                         .font(.system(size: 8, weight: .semibold))
                         .foregroundStyle(PawTheme.inkSecondary)
                     Spacer()
-                    Button(intent: FeedPetIntent()) {
-                        Image(systemName: "carrot.fill")
-                            .font(.system(size: 12, weight: .bold))
-                            .foregroundStyle(PawTheme.ink)
-                            .frame(width: 27, height: 27)
-                            .background(PawTheme.energyYellow, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
+                    if isEgg {
+                        Link(destination: URL(string: "pawpace://workout")!) {
+                            compactAction(symbol: "figure.mixed.cardio")
+                        }
+                        .accessibilityLabel("Workout to hatch your egg")
+                    } else {
+                        Button(intent: FeedPetIntent()) {
+                            compactAction(symbol: "carrot.fill")
+                        }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel("Feed \(entry.pet.name)")
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityLabel("Feed \(entry.pet.name)")
                 }
             }
             .padding(12)
@@ -118,16 +122,33 @@ private struct CompactPetWidgetView: View {
     }
 
     private var compactMessage: String {
-        switch entry.pet.mood {
+        if isEgg { return "Who’s inside? Move together to find out." }
+        if entry.pet.lifeStage == .baby { return "\(minutesRemaining) workout min until I’m all grown up!" }
+        return switch entry.pet.mood {
         case .hungry: "Snack first, then adventure?"
         case .tired, .sleepy: "Tiny nap. Big quest later."
-        default: "Ready for our 3 km quest?"
+        default: "Ready for a little movement?"
         }
+    }
+
+    private func compactAction(symbol: String) -> some View {
+        Image(systemName: symbol)
+            .font(.system(size: 12, weight: .bold))
+            .foregroundStyle(PawTheme.ink)
+            .frame(width: 27, height: 27)
+            .background(PawTheme.energyYellow, in: RoundedRectangle(cornerRadius: 9, style: .continuous))
     }
 }
 
 private struct HabitatPetWidgetView: View {
     let entry: PetWidgetEntry
+
+    private var isEgg: Bool { entry.pet.lifeStage == .egg }
+    private var isGrowing: Bool { entry.pet.lifeStage != .adult }
+    private var companionName: String { isEgg ? "Mystery egg" : entry.pet.name }
+    private var minutesRemaining: Int {
+        Int(ceil((entry.pet.lifecycle?.secondsUntilNextStage ?? 0) / 60))
+    }
 
     var body: some View {
         VStack(spacing: 7) {
@@ -137,7 +158,7 @@ private struct HabitatPetWidgetView: View {
                     .tracking(1)
                     .foregroundStyle(PawTheme.adventureBlue)
                 Spacer()
-                Text("\(entry.pet.name) · Level \(entry.pet.level)")
+                Text(isEgg ? "Mystery egg" : "\(entry.pet.name) · \(entry.pet.lifeStage.displayName)")
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(PawTheme.inkSecondary)
             }
@@ -150,18 +171,13 @@ private struct HabitatPetWidgetView: View {
                     .frame(width: 390, height: 115)
                     .offset(y: 82)
                 HStack {
-                    MochiCreatureView(
-                        mood: entry.pet.mood,
-                        stage: entry.pet.stage,
-                        accessory: entry.pet.equippedAccessory,
-                        decoration: entry.pet.activeDecoration
-                    )
+                    AnimalPortraitView(pet: entry.pet)
                         .frame(width: 150, height: 150)
                     Spacer()
                 }
                 .padding(.leading, 10)
 
-                Text(entry.pet.mood.shortMessage)
+                Text(isEgg ? "A tiny surprise is waiting. Your workouts help it hatch!" : entry.pet.mood.shortMessage)
                     .font(.system(size: 11, weight: .semibold, design: .rounded))
                     .foregroundStyle(PawTheme.ink)
                     .lineLimit(3)
@@ -174,39 +190,49 @@ private struct HabitatPetWidgetView: View {
             .clipShape(RoundedRectangle(cornerRadius: 21, style: .continuous))
 
             HStack(spacing: 6) {
-                WidgetMetric(value: "\(entry.pet.energy)%", label: "energy", tint: PawTheme.adventureBlue)
-                WidgetMetric(value: entry.pet.mood.label, label: "mood", tint: PawTheme.coralOrange)
-                WidgetMetric(value: "\(entry.pet.experience) XP", label: "next level", tint: PawTheme.teal)
+                if isEgg {
+                    WidgetMetric(value: "\(Int((entry.pet.lifecycle?.growthProgress ?? 0) * 100))%", label: "hatching", tint: PawTheme.adventureBlue)
+                    WidgetMetric(value: "\(minutesRemaining) min", label: "workout to hatch", tint: PawTheme.coralOrange)
+                    WidgetMetric(value: "A surprise", label: "companion inside", tint: PawTheme.teal)
+                } else {
+                    WidgetMetric(value: "\(entry.pet.energy)%", label: "energy", tint: PawTheme.adventureBlue)
+                    WidgetMetric(value: entry.pet.mood.label, label: "mood", tint: PawTheme.coralOrange)
+                    WidgetMetric(value: isGrowing ? "\(Int((entry.pet.lifecycle?.growthProgress ?? 0) * 100))%" : "\(entry.pet.experience) XP", label: isGrowing ? "growing up" : "next level", tint: PawTheme.teal)
+                }
             }
             .frame(height: 43)
 
             HStack(spacing: 6) {
-                Button(intent: FeedPetIntent()) {
-                    WidgetActionLabel(title: "Feed", symbol: "carrot.fill", tint: PawTheme.energyYellow)
+                if !isEgg {
+                    Button(intent: FeedPetIntent()) {
+                        WidgetActionLabel(title: "Feed", symbol: "carrot.fill", tint: PawTheme.energyYellow)
+                    }
                 }
-                Link(destination: URL(string: "pawpace://chat")!) {
-                    WidgetActionLabel(title: "Talk", symbol: "message.fill", tint: PawTheme.adventureBlue.opacity(0.15))
+                Link(destination: URL(string: "pawpace://workout")!) {
+                    WidgetActionLabel(title: isEgg ? "Workout to hatch" : "Workout", symbol: "figure.mixed.cardio", tint: PawTheme.adventureBlue.opacity(0.15))
                 }
-                Button(intent: PlayWithPetIntent()) {
-                    WidgetActionLabel(title: "Play", symbol: "tennisball.fill", tint: PawTheme.grassGreen.opacity(0.18))
+                if !isEgg {
+                    Button(intent: PlayWithPetIntent()) {
+                        WidgetActionLabel(title: "Play", symbol: "tennisball.fill", tint: PawTheme.grassGreen.opacity(0.18))
+                    }
                 }
             }
             .buttonStyle(.plain)
             .frame(height: 36)
 
             HStack(spacing: 8) {
-                Image(systemName: "figure.run.circle.fill")
+                Image(systemName: "figure.mixed.cardio")
                     .font(.title2)
                     .foregroundStyle(PawTheme.grassGreen)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("Run 3 km with \(entry.pet.name)")
+                    Text(isGrowing ? (isEgg ? "A little closer to hatching" : "Growing with every workout") : "Move 30 min with \(companionName)")
                         .font(.caption2.weight(.bold))
-                    Text("\(max(3 - entry.pet.distanceTodayKilometers, 0), specifier: "%.1f") km left · \(Int(min(entry.pet.distanceTodayKilometers / 3, 1) * 100))% complete")
+                    Text(isGrowing ? "\(minutesRemaining) workout min to \(isEgg ? "hatch" : "adulthood") · At your pace" : "\(max(30 - entry.pet.currentDayWorkoutMinutes, 0)) min left · Every workout counts")
                         .font(.system(size: 8, weight: .medium))
                         .foregroundStyle(PawTheme.inkSecondary)
                 }
                 Spacer()
-                Text("+120 XP")
+                Image(systemName: isGrowing ? "sparkles" : (entry.pet.currentDayWorkoutMinutes >= 30 ? "checkmark.circle.fill" : "flag.checkered"))
                     .font(.caption2.weight(.bold))
                     .foregroundStyle(PawTheme.adventureBlue)
             }

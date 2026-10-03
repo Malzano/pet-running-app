@@ -45,6 +45,10 @@ final class HealthKitService: NSObject, ObservableObject {
         }
     }
 
+    var mirroredWorkoutConfiguration: WorkoutConfiguration? {
+        mirroredSession.map { WorkoutConfiguration(healthKit: $0.workoutConfiguration) }
+    }
+
     var hasActiveMirroredWorkout: Bool {
         mirroredSession != nil
     }
@@ -60,9 +64,13 @@ final class HealthKitService: NSObject, ObservableObject {
         if let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate) {
             readTypes.insert(heartRate)
         }
-        if let distance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning) {
-            shareTypes.insert(distance)
-            readTypes.insert(distance)
+        let identifiers = Set(WorkoutActivity.allCases.compactMap { WorkoutConfiguration(activity: $0).distanceQuantityIdentifier })
+            .union([.activeEnergyBurned])
+        for identifier in identifiers {
+            if let quantity = HKObjectType.quantityType(forIdentifier: identifier) {
+                shareTypes.insert(quantity)
+                readTypes.insert(quantity)
+            }
         }
 
         do {
@@ -83,7 +91,7 @@ final class HealthKitService: NSObject, ObservableObject {
         }
     }
 
-    func latestHeartRate() async -> Int? {
+    func latestHeartRate(since startedAt: Date? = nil) async -> Int? {
         guard
             authorizationState == .authorized,
             let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)
@@ -91,7 +99,8 @@ final class HealthKitService: NSObject, ObservableObject {
 
         return await withCheckedContinuation { continuation in
             let sort = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-            let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 1, sortDescriptors: [sort]) { _, samples, _ in
+            let predicate = HKQuery.predicateForSamples(withStart: max(startedAt ?? .distantPast, Date().addingTimeInterval(-120)), end: nil, options: .strictStartDate)
+            let query = HKSampleQuery(sampleType: heartRateType, predicate: predicate, limit: 1, sortDescriptors: [sort]) { _, samples, _ in
                 guard let sample = samples?.first as? HKQuantitySample else {
                     continuation.resume(returning: nil)
                     return
@@ -103,7 +112,31 @@ final class HealthKitService: NSObject, ObservableObject {
         }
     }
 
-    func startWatchWorkout(workoutID: UUID, startedAt: Date) async -> Bool {
+    func activeEnergy(during intervals: [DateInterval]) async -> Double? {
+        await cumulativeQuantity(.activeEnergyBurned, unit: .kilocalorie(), during: intervals)
+    }
+
+    func distance(during intervals: [DateInterval], configuration: WorkoutConfiguration) async -> Double? {
+        guard let identifier = configuration.distanceQuantityIdentifier else { return nil }
+        return await cumulativeQuantity(identifier, unit: .meter(), during: intervals)
+    }
+
+    private func cumulativeQuantity(_ identifier: HKQuantityTypeIdentifier, unit: HKUnit, during intervals: [DateInterval]) async -> Double? {
+        guard authorizationState == .authorized, let type = HKQuantityType.quantityType(forIdentifier: identifier) else { return nil }
+        guard !intervals.isEmpty else { return 0 }
+        return await withCheckedContinuation { continuation in
+            let activePeriods = intervals.map {
+                HKQuery.predicateForSamples(withStart: $0.start, end: $0.end, options: [.strictStartDate, .strictEndDate])
+            }
+            let predicate = NSCompoundPredicate(orPredicateWithSubpredicates: activePeriods)
+            let query = HKStatisticsQuery(quantityType: type, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+                continuation.resume(returning: result?.sumQuantity()?.doubleValue(for: unit))
+            }
+            store.execute(query)
+        }
+    }
+
+    func startWatchWorkout(workoutID: UUID, startedAt: Date, configuration: WorkoutConfiguration = .init()) async -> Bool {
         guard authorizationState == .authorized else { return false }
         guard !Task.isCancelled else { return false }
         if let mirroredSessionIdentifier {
@@ -117,11 +150,9 @@ final class HealthKitService: NSObject, ObservableObject {
             pendingMirroredControl = nil
         }
 
-        let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
-        configuration.locationType = .outdoor
+        let healthConfiguration = configuration.makeHealthKitConfiguration()
         do {
-            try await store.startWatchApp(toHandle: configuration)
+            try await store.startWatchApp(toHandle: healthConfiguration)
             return true
         } catch {
             if expectedLaunchedWorkoutID == workoutID {
@@ -223,9 +254,7 @@ final class HealthKitService: NSObject, ObservableObject {
             return
         }
 
-        let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
-        configuration.locationType = .outdoor
+        let configuration = summary.workoutConfiguration.makeHealthKitConfiguration()
 
         let builder = HKWorkoutBuilder(healthStore: store, configuration: configuration, device: .local())
         try await builder.beginCollection(at: summary.startedAt)
@@ -234,7 +263,9 @@ final class HealthKitService: NSObject, ObservableObject {
             HKMetadataKeySyncVersion: 1
         ])
 
-        if let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) {
+        if summary.distanceMeters > 0,
+           let identifier = summary.workoutConfiguration.distanceQuantityIdentifier,
+           let distanceType = HKQuantityType.quantityType(forIdentifier: identifier) {
             let distanceSample = HKQuantitySample(
                 type: distanceType,
                 quantity: HKQuantity(unit: .meter(), doubleValue: summary.distanceMeters),
@@ -244,6 +275,31 @@ final class HealthKitService: NSObject, ObservableObject {
             try await builder.addSamples([distanceSample])
         }
 
+        if summary.activeEnergyKilocalories > 0,
+           let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned) {
+            let energy = HKQuantitySample(
+                type: energyType,
+                quantity: HKQuantity(unit: .kilocalorie(), doubleValue: summary.activeEnergyKilocalories),
+                start: summary.startedAt,
+                end: summary.endedAt
+            )
+            try await builder.addSamples([energy])
+        }
+        let events = summary.pauseIntervals.flatMap { interval in
+            [HKWorkoutEvent(type: .pause, dateInterval: DateInterval(start: interval.start, duration: 0), metadata: nil),
+             HKWorkoutEvent(type: .resume, dateInterval: DateInterval(start: interval.end, duration: 0), metadata: nil)]
+        }
+        if !events.isEmpty { try await builder.addWorkoutEvents(events) }
+        for segment in summary.activitySegments {
+            let end = segment.endedAt ?? summary.endedAt
+            guard end > segment.startedAt else { continue }
+            let activity = HKWorkoutActivity(workoutConfiguration: segment.configuration.makeHealthKitConfiguration(), start: segment.startedAt, end: end, metadata: nil)
+            try await builder.addWorkoutActivity(activity)
+            if segment.distanceMeters > 0, let identifier = segment.configuration.distanceQuantityIdentifier,
+               let distanceType = HKQuantityType.quantityType(forIdentifier: identifier) {
+                try await builder.addSamples([HKQuantitySample(type: distanceType, quantity: HKQuantity(unit: .meter(), doubleValue: segment.distanceMeters), start: segment.startedAt, end: end)])
+            }
+        }
         try await builder.endCollection(at: summary.endedAt)
         _ = try await builder.finishWorkout()
     }

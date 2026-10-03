@@ -15,15 +15,27 @@ struct PawPaceApp: App {
                 .preferredColorScheme(nil)
                 .onOpenURL { model.handle(url: $0) }
                 .onChange(of: scenePhase) { _, newPhase in
+                    if newPhase != .active {
+                        model.runTracker.checkpointInterruptedWorkout()
+                    }
                     if newPhase == .active {
                         model.refreshPetFromSharedStorage()
-                        Task { await model.retryPendingWatchHealthSaves() }
+                        model.planner.refreshReminders()
+                        Task {
+                            await model.retryPendingWatchHealthSaves()
+                            await model.syncEverydayActivity()
+                            model.club.observeActivity(model.petStore.snapshot)
+                            await model.club.refresh()
+                        }
                     }
                 }
                 .task {
-                    await model.healthKit.requestAuthorization()
+                    model.petStore.refreshQuests()
+                    model.planner.refreshReminders()
                     await model.retryPendingWatchHealthSaves()
-                    model.runTracker.requestLocationPermission()
+                    await model.syncEverydayActivity()
+                    model.club.observeActivity(model.petStore.snapshot)
+                    await model.club.refresh()
                 }
         }
     }

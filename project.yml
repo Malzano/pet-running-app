@@ -12,10 +12,17 @@ settings:
     SWIFT_VERSION: "5"
     IPHONEOS_DEPLOYMENT_TARGET: 17.0
     CURRENT_PROJECT_VERSION: 1
-    MARKETING_VERSION: 0.1.0
+    MARKETING_VERSION: 1.0.0
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: ""
     ENABLE_USER_SCRIPT_SANDBOXING: true
+  configs:
+    Release:
+      DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
+      SWIFT_COMPILATION_MODE: wholemodule
+      SWIFT_OPTIMIZATION_LEVEL: "-O"
+      ENABLE_TESTABILITY: false
+      VALIDATE_PRODUCT: true
 
 targets:
   PawPace:
@@ -23,17 +30,25 @@ targets:
     platform: iOS
     sources:
       - path: PawPace
+        excludes:
+          - Features/Chat
+          - Services/CompanionChatService.swift
+          - Services/VoiceInputService.swift
       - path: Shared
       - path: SharedUI
       - path: PawPaceWidgets/PetWidgetIntents.swift
+      - path: Config/Privacy/Phone/PrivacyInfo.xcprivacy
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app
+        PAWPACE_CLUB_API_URL: ""
         PRODUCT_NAME: PawPace
         INFOPLIST_FILE: Config/PawPace-Info.plist
         CODE_SIGN_ENTITLEMENTS: Config/PawPace.entitlements
         TARGETED_DEVICE_FAMILY: 1
         SUPPORTS_MACCATALYST: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
     dependencies:
       - target: PawPaceWidgets
         embed: true
@@ -55,6 +70,8 @@ targets:
           - PawPaceLiveActivity.swift
       - path: Shared
       - path: SharedUI
+      - path: Config/Privacy/iOS/PrivacyInfo.xcprivacy
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.widgets
@@ -75,6 +92,8 @@ targets:
       - path: PawPaceWidgets/PetWidgetIntents.swift
       - path: Shared
       - path: SharedUI
+      - path: Config/Privacy/iOS/PrivacyInfo.xcprivacy
+        buildPhase: resources
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.pawpace.app.liveactivity
@@ -104,10 +123,23 @@ targets:
     sources:
       - path: PawPaceWatch
       - path: Shared/PawPaceShared.swift
+      - path: Shared/PawPacePrivateStorage.swift
+      - path: Shared/WatchWorkoutRecoveryRecord.swift
+      - path: Shared/PetLifecycle.swift
+      - path: Shared/CompanionJourney.swift
+      - path: Shared/BuddyBond.swift
+      - path: Shared/BuddyKeepsakes.swift
+      - path: Shared/DailyQuests.swift
       - path: Shared/PawPaceFormatting.swift
       - path: Shared/PawPaceWatchSync.swift
+      - path: Shared/WorkoutActivity.swift
       - path: SharedUI/PawTheme.swift
       - path: SharedUI/MochiCreatureView.swift
+      - path: SharedUI/AnimalPortraitView.swift
+      - path: SharedUI/AnimalPortraits.xcassets
+      - path: SharedUI/WorkoutPickerView.swift
+      - path: Config/Privacy/watchOS/PrivacyInfo.xcprivacy
+        buildPhase: resources
     dependencies:
       - sdk: HealthKit.framework
       - sdk: WatchConnectivity.framework

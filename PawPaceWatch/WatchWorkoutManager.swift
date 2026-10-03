@@ -8,6 +8,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     static let shared = WatchWorkoutManager()
     private static let syncLog = Logger(subsystem: "com.pawpace.app.sync", category: "watch-workout")
 
+    @Published private(set) var selectedConfiguration = WorkoutConfiguration()
     @Published private(set) var state: PawPaceRunState = .idle
     @Published private(set) var errorMessage: String?
     @Published private(set) var isStarting = false
@@ -30,9 +31,16 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     private var handledPhoneControlIDs: [UUID: Date] = [:]
     private var queuedPhoneControls: [UUID: PawPaceWatchControl] = [:]
     private var awaitingPhoneBinding = false
+    private var recoveryMetadataReadFailed = false
+    private var recoveryMetadataNeedsRetry = false
 
     private override init() {
         super.init()
+    }
+
+    func configure(_ configuration: WorkoutConfiguration) {
+        guard !isStarting, !isCompleting, state.phase == .idle || state.phase == .finished || state.phase == .failed else { return }
+        selectedConfiguration = configuration.normalized
     }
 
     func start(configuration: HKWorkoutConfiguration? = nil) {
@@ -46,6 +54,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         let now = Date()
         let attemptedStart = now
         awaitingPhoneBinding = configuration != nil
+        if let configuration { selectedConfiguration = WorkoutConfiguration(healthKit: configuration) }
         errorMessage = nil
         state = PawPaceRunState(
             workoutID: UUID(),
@@ -57,8 +66,12 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             experienceEarned: 0,
             encouragement: "Adventure starting…",
             startedAt: attemptedStart,
-            updatedAt: attemptedStart
+            updatedAt: attemptedStart,
+            workoutConfiguration: selectedConfiguration
         )
+        if selectedConfiguration.activity.requiresMultisportSession {
+            state.activitySegments = [WorkoutActivitySegment(configuration: selectedConfiguration.configuration(forMultisportLeg: 0), startedAt: attemptedStart, endedAt: nil)]
+        }
         pendingPhoneControl = nil
         replayQueuedPhoneControlIfMatching()
         Task { [weak self] in
@@ -106,7 +119,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
 
     func applyPhoneControl(_ control: PawPaceWatchControl) {
         Self.syncLog.notice(
-            "control action=\(control.action.rawValue, privacy: .public) incoming=\(control.workoutID.uuidString, privacy: .public) local=\(self.state.workoutID?.uuidString ?? "-", privacy: .public) reply=\(control.replyToWatchWorkoutID?.uuidString ?? "-", privacy: .public) awaiting=\(self.awaitingPhoneBinding)"
+            "control action=\(control.action.rawValue, privacy: .private) incoming=\(control.workoutID.uuidString, privacy: .private) local=\(self.state.workoutID?.uuidString ?? "-", privacy: .private) reply=\(control.replyToWatchWorkoutID?.uuidString ?? "-", privacy: .private) awaiting=\(self.awaitingPhoneBinding)"
         )
         guard handledPhoneControlIDs[control.id] == nil else { return }
         handledPhoneControlIDs[control.id] = control.issuedAt
@@ -131,19 +144,20 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             || state.phase == .running
             || state.phase == .paused
         let matchingBinding = canRebindCurrentState
+            && state.workoutConfiguration.activity == control.workoutConfiguration.activity
             && PawPaceSyncPolicy.canBindPhoneControl(
                 control,
                 provisionalWatchWorkoutID: localWorkoutID
             )
         guard matchingIdentity || matchingBinding else {
-            Self.syncLog.notice("queue unmatched action=\(control.action.rawValue, privacy: .public)")
+            Self.syncLog.notice("queue unmatched action=\(control.action.rawValue, privacy: .private)")
             queuePhoneControl(control)
             return
         }
 
         if matchingBinding {
             Self.syncLog.notice(
-                "bind phone=\(control.workoutID.uuidString, privacy: .public) watch=\(localWorkoutID.uuidString, privacy: .public)"
+                "bind phone=\(control.workoutID.uuidString, privacy: .private) watch=\(localWorkoutID.uuidString, privacy: .private)"
             )
             state.workoutID = control.workoutID
             awaitingPhoneBinding = false
@@ -159,12 +173,32 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     }
 
     private func applyAcceptedPhoneControl(_ control: PawPaceWatchControl) {
+        if isStarting, session == nil {
+            selectedConfiguration = control.workoutConfiguration.normalized
+            state.workoutConfiguration = selectedConfiguration
+            state.isAwaitingPhoneConfiguration = false
+            if selectedConfiguration.activity.requiresMultisportSession {
+                state.activitySegments = [WorkoutActivitySegment(configuration: selectedConfiguration.configuration(forMultisportLeg: 0), startedAt: state.startedAt ?? control.startedAt, endedAt: nil)]
+            } else {
+                state.activitySegments = []
+            }
+        }
+        // Every control carries the desired leg, so a later pause/finish can
+        // safely supersede a next-leg message that arrived out of order.
+        while control.multisportLegIndex > state.multisportLegIndex,
+              state.workoutConfiguration.activity.requiresMultisportSession,
+              state.multisportLegIndex + 1 < state.workoutConfiguration.multisportLegs.count,
+              state.phase == .running || state.phase == .paused,
+              session != nil {
+            advanceMultisportActivity(to: state.multisportLegIndex + 1)
+        }
+        if control.action == .nextActivity { return }
         if state.phase == control.phase, pendingPhoneControl == nil {
-            Self.syncLog.notice("already phase=\(self.state.phase.rawValue, privacy: .public)")
+            Self.syncLog.notice("already phase=\(self.state.phase.rawValue, privacy: .private)")
             return
         }
         Self.syncLog.notice(
-            "pending phase=\(control.phase.rawValue, privacy: .public) current=\(self.state.phase.rawValue, privacy: .public)"
+            "pending phase=\(control.phase.rawValue, privacy: .private) current=\(self.state.phase.rawValue, privacy: .private)"
         )
         pendingPhoneControl = control.phase
         applyPendingPhoneControlIfPossible()
@@ -218,7 +252,26 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             return
         }
 
-        let workoutConfiguration = configuration ?? Self.runningConfiguration()
+        if awaitingPhoneBinding {
+            state.isAwaitingPhoneConfiguration = true
+            publish(force: true)
+            // The HealthKit launch omits our pool/leg settings. Resolve the exact
+            // nonce-bound command before recording any activity or sensor data.
+            for _ in 0..<80 {
+                guard awaitingPhoneBinding else { break }
+                try? await Task.sleep(for: .milliseconds(100))
+            }
+            guard !awaitingPhoneBinding else {
+                state.isAwaitingPhoneConfiguration = false
+                state.phase = .failed
+                state.endedAt = .now
+                state.encouragement = "The phone could not send the workout settings. Start again from your Watch."
+                errorMessage = state.encouragement
+                publish(force: true)
+                return
+            }
+        }
+        let workoutConfiguration = selectedConfiguration.makeHealthKitConfiguration()
         do {
             let session = try HKWorkoutSession(healthStore: healthStore, configuration: workoutConfiguration)
             let createdSessionIdentifier = ObjectIdentifier(session)
@@ -251,16 +304,20 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
                 !isCompleting
             else { return }
 
-            // Preserve the launch timestamp created before authorization. This
-            // keeps the phone/Watch handshake stable even when the first Health
-            // permission sheet remains onscreen for more than a minute.
-            let startedAt = state.startedAt ?? Date()
-            state.startedAt = startedAt
-            segmentStartedAt = startedAt
+            // state.startedAt remains the launch identity, including when a
+            // permission sheet stays open. Active time starts only now, once
+            // authorization, configuration binding and mirroring are ready.
+            let activeStartedAt = Date()
+            state.startedAt = state.startedAt ?? activeStartedAt
+            state.excludeSetupTime(until: activeStartedAt)
+            segmentStartedAt = activeStartedAt
             persistRecoveryMetadata()
-            session.startActivity(with: startedAt)
+            session.startActivity(with: activeStartedAt)
+            if selectedConfiguration.activity.requiresMultisportSession {
+                session.beginNewActivity(configuration: selectedConfiguration.configuration(forMultisportLeg: 0).makeHealthKitConfiguration(), date: activeStartedAt, metadata: nil)
+            }
             do {
-                try await builder.beginCollection(at: startedAt)
+                try await builder.beginCollection(at: activeStartedAt)
             } catch {
                 guard
                     sessionIdentifier == createdSessionIdentifier,
@@ -299,11 +356,9 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         let workout = HKObjectType.workoutType()
         var shareTypes: Set<HKSampleType> = [workout]
         var readTypes: Set<HKObjectType> = [workout]
-        for identifier in [
-            HKQuantityTypeIdentifier.heartRate,
-            .distanceWalkingRunning,
-            .activeEnergyBurned
-        ] {
+        let identifiers = Set(WorkoutActivity.allCases.compactMap(\.distanceQuantityIdentifier))
+            .union([.heartRate, .activeEnergyBurned])
+        for identifier in identifiers {
             if let type = HKQuantityType.quantityType(forIdentifier: identifier) {
                 readTypes.insert(type)
                 if identifier != .heartRate {
@@ -334,7 +389,9 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     private func attachRecoveredSession(_ session: HKWorkoutSession) {
         isStarting = false
         errorMessage = nil
-        awaitingPhoneBinding = PawPaceShared.defaults.bool(forKey: RecoveryKey.awaitingPhoneBinding)
+        let recovery = loadRecoveryMetadata()
+        selectedConfiguration = recovery?.configuration ?? WorkoutConfiguration(healthKit: session.workoutConfiguration)
+        awaitingPhoneBinding = recovery?.awaitingPhoneBinding ?? false
         let builder = session.associatedWorkoutBuilder()
         builder.dataSource = HKLiveWorkoutDataSource(
             healthStore: healthStore,
@@ -346,12 +403,8 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         let recoveredSessionIdentifier = ObjectIdentifier(session)
         sessionIdentifier = recoveredSessionIdentifier
         self.builder = builder
-        let defaults = PawPaceShared.defaults
-        let restoredWorkoutID = defaults.string(forKey: RecoveryKey.workoutID)
-            .flatMap(UUID.init(uuidString:)) ?? UUID()
-        let restoredStartDate = defaults.object(forKey: RecoveryKey.startedAt) as? Date
-            ?? session.startDate
-            ?? .now
+        let restoredWorkoutID = recovery?.workoutID ?? UUID()
+        let restoredStartDate = recovery?.startedAt ?? session.startDate ?? .now
         accumulatedSeconds = max(0, builder.elapsedTime)
         segmentStartedAt = nil
         state = PawPaceSyncPolicy.recoveredRunState(
@@ -360,12 +413,19 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             sessionStart: session.startDate,
             elapsedSeconds: accumulatedSeconds
         )
+        state.workoutConfiguration = selectedConfiguration
+        state.multisportLegIndex = recovery?.multisportLegIndex ?? 0
+        state.activitySegments = recovery?.activitySegments ?? []
+        restorePauseIntervals(from: builder.workoutEvents)
+        if let activeStartedAt = session.startDate {
+            state.excludeSetupTime(until: activeStartedAt)
+        }
         if session.state == .stopped {
             let endedAt = session.endDate ?? .now
+            restoreCurrentStatistics(from: builder, publishUpdates: false)
             applySessionPhase(.finished, at: endedAt, publishChange: false)
             replayQueuedPhoneControlIfMatching()
             persistRecoveryMetadata()
-            restoreCurrentStatistics(from: builder, publishUpdates: false)
             Task { [weak self] in
                 await self?.completeWorkout(
                     at: endedAt,
@@ -392,10 +452,10 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     private func tick(publishUpdates: Bool = true) {
         let elapsed = accumulatedSeconds + (segmentStartedAt.map { Date().timeIntervalSince($0) } ?? 0)
         state.elapsedSeconds = max(Int(elapsed.rounded()), 0)
-        state.paceSecondsPerKilometer = state.distanceKilometers >= 0.05
+        state.paceSecondsPerKilometer = state.workoutConfiguration.supportsPace && state.distanceKilometers >= 0.05
             ? Int(Double(state.elapsedSeconds) / state.distanceKilometers)
             : 0
-        state.experienceEarned = max(0, Int((state.distanceKilometers * 52).rounded()))
+        state.experienceEarned = state.workoutConfiguration.activity.experienceEarned(elapsedSeconds: state.elapsedSeconds, distanceKilometers: state.distanceKilometers)
         state.encouragement = encouragement(for: state.distanceKilometers)
         state.updatedAt = .now
         if publishUpdates {
@@ -410,10 +470,20 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     ) {
         switch phase {
         case .running:
+            if let pauseStartedAt = state.pauseStartedAt {
+                state.pauseIntervals.append(DateInterval(start: pauseStartedAt, end: max(date, pauseStartedAt)))
+                state.pauseStartedAt = nil
+            }
             if segmentStartedAt == nil {
                 segmentStartedAt = date
             }
         case .paused, .finished, .failed:
+            if phase == .paused, state.pauseStartedAt == nil {
+                state.pauseStartedAt = date
+            } else if phase != .paused, let pauseStartedAt = state.pauseStartedAt {
+                state.pauseIntervals.append(DateInterval(start: pauseStartedAt, end: max(date, pauseStartedAt)))
+                state.pauseStartedAt = nil
+            }
             if let segmentStartedAt {
                 accumulatedSeconds += max(0, date.timeIntervalSince(segmentStartedAt))
             }
@@ -422,8 +492,10 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             break
         }
         state.phase = phase
+        if phase == .finished || phase == .failed { state.endedAt = date }
+        refreshActivitySegments(endingAt: phase == .finished || phase == .failed ? date : nil)
         Self.syncLog.notice(
-            "session phase=\(phase.rawValue, privacy: .public) pending=\(self.pendingPhoneControl?.rawValue ?? "-", privacy: .public)"
+            "session phase=\(phase.rawValue, privacy: .private) pending=\(self.pendingPhoneControl?.rawValue ?? "-", privacy: .private)"
         )
         state.updatedAt = .now
         tick(publishUpdates: false)
@@ -440,14 +512,19 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     private func applyStatistics(
         heartRate: Int?,
         distanceMeters: Double?,
+        activeEnergyKilocalories: Double? = nil,
         publishUpdates: Bool = true
     ) {
         if let heartRate, heartRate > 0 {
             state.heartRate = heartRate
         }
-        if let distanceMeters, distanceMeters >= 0 {
+        if let activeEnergyKilocalories, activeEnergyKilocalories >= 0 {
+            state.activeEnergyKilocalories = activeEnergyKilocalories
+        }
+        if state.workoutConfiguration.supportsDistance, let distanceMeters, distanceMeters >= 0 {
             state.distanceKilometers = distanceMeters / 1_000
         }
+        refreshActivitySegments()
         tick(publishUpdates: publishUpdates)
     }
 
@@ -487,6 +564,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         isCompleting = true
         timer?.cancel()
         timer = nil
+        restoreCurrentStatistics(from: completingBuilder, publishUpdates: false)
         applySessionPhase(.finished, at: date, publishChange: false)
 
         do {
@@ -507,7 +585,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             guard self.sessionIdentifier == sessionIdentifier else { return }
             errorMessage = error.localizedDescription
             state.phase = .failed
-            state.encouragement = "Run recorded locally, but Apple Health could not save it."
+            state.encouragement = "Workout recorded locally, but Apple Health could not save it."
             state.updatedAt = .now
             await publishTerminalState(sessionIdentifier: sessionIdentifier)
             guard self.sessionIdentifier == sessionIdentifier else { return }
@@ -563,7 +641,7 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     private func applyPendingPhoneControlIfPossible() {
         guard let pendingPhoneControl, let session else { return }
         Self.syncLog.notice(
-            "apply pending=\(pendingPhoneControl.rawValue, privacy: .public) current=\(self.state.phase.rawValue, privacy: .public) session=\(session.state.rawValue)"
+            "apply pending=\(pendingPhoneControl.rawValue, privacy: .private) current=\(self.state.phase.rawValue, privacy: .private) session=\(session.state.rawValue)"
         )
         switch pendingPhoneControl {
         case .running where state.phase == .paused:
@@ -601,17 +679,57 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         }
     }
 
+    private func recoveryStore() throws -> WatchWorkoutRecoveryStore {
+        WatchWorkoutRecoveryStore(storage: try .shared(), legacyDefaults: PawPaceShared.defaults)
+    }
+
+    private func loadRecoveryMetadata() -> WatchWorkoutRecoveryRecord? {
+        do {
+            let record = try recoveryStore().load()
+            recoveryMetadataReadFailed = false
+            return record
+        } catch {
+            // Continue controlling HealthKit's recovered session, but never
+            // replace an unreadable identity with the fallback ID from memory.
+            recoveryMetadataReadFailed = true
+            errorMessage = "Your saved workout recovery data could not be read. It has been kept on this Watch."
+            Self.syncLog.error("Recovery load failed: \(error.localizedDescription, privacy: .private)")
+            return nil
+        }
+    }
+
     private func persistRecoveryMetadata() {
+        guard !recoveryMetadataReadFailed else {
+            errorMessage = "Your saved workout recovery data could not be read. It has been kept on this Watch."
+            return
+        }
         guard let workoutID = state.workoutID, let startedAt = state.startedAt else { return }
-        PawPaceShared.defaults.set(workoutID.uuidString, forKey: RecoveryKey.workoutID)
-        PawPaceShared.defaults.set(startedAt, forKey: RecoveryKey.startedAt)
-        PawPaceShared.defaults.set(awaitingPhoneBinding, forKey: RecoveryKey.awaitingPhoneBinding)
+        let record = WatchWorkoutRecoveryRecord(
+            workoutID: workoutID, startedAt: startedAt,
+            awaitingPhoneBinding: awaitingPhoneBinding,
+            configuration: state.workoutConfiguration,
+            multisportLegIndex: state.multisportLegIndex,
+            activitySegments: state.activitySegments
+        )
+        do {
+            try recoveryStore().save(record)
+            recoveryMetadataNeedsRetry = false
+        } catch {
+            recoveryMetadataNeedsRetry = true
+            errorMessage = "Workout recovery could not be saved. Existing recovery data has been kept."
+            Self.syncLog.error("Recovery save failed: \(error.localizedDescription, privacy: .private)")
+        }
     }
 
     private func clearRecoveryMetadata() {
-        PawPaceShared.defaults.removeObject(forKey: RecoveryKey.workoutID)
-        PawPaceShared.defaults.removeObject(forKey: RecoveryKey.startedAt)
-        PawPaceShared.defaults.removeObject(forKey: RecoveryKey.awaitingPhoneBinding)
+        guard !recoveryMetadataReadFailed, !recoveryMetadataNeedsRetry else { return }
+        do {
+            try recoveryStore().clear()
+        } catch {
+            recoveryMetadataNeedsRetry = true
+            errorMessage = "Workout recovery data could not be cleared. It has been kept on this Watch."
+            Self.syncLog.error("Recovery cleanup failed: \(error.localizedDescription, privacy: .private)")
+        }
     }
 
     private func restoreCurrentStatistics(
@@ -625,12 +743,23 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
             let unit = HKUnit.count().unitDivided(by: .minute())
             heartRate = Int(quantity.doubleValue(for: unit).rounded())
         }
-        if let type = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning) {
-            distanceMeters = builder.statistics(for: type)?.sumQuantity()?.doubleValue(for: .meter())
+        let distanceIdentifiers: [HKQuantityTypeIdentifier]
+        if state.workoutConfiguration.activity.requiresMultisportSession {
+            distanceIdentifiers = [.distanceWalkingRunning, .distanceCycling, .distanceSwimming]
+        } else {
+            distanceIdentifiers = state.workoutConfiguration.distanceQuantityIdentifier.map { [$0] } ?? []
         }
+        let distances = distanceIdentifiers.compactMap { identifier -> Double? in
+            guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else { return nil }
+            return builder.statistics(for: type)?.sumQuantity()?.doubleValue(for: .meter())
+        }
+        if !distances.isEmpty { distanceMeters = distances.reduce(0, +) }
+        let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)
+        let energy = energyType.flatMap { builder.statistics(for: $0)?.sumQuantity()?.doubleValue(for: .kilocalorie()) }
         applyStatistics(
             heartRate: heartRate,
             distanceMeters: distanceMeters,
+            activeEnergyKilocalories: energy,
             publishUpdates: publishUpdates
         )
     }
@@ -640,7 +769,8 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
     }
 
     private func encouragement(for distance: Double) -> String {
-        switch distance {
+        if !state.workoutConfiguration.supportsDistance { return "Every minute together counts." }
+        return switch distance {
         case ..<0.5: "Easy paws first—find your rhythm."
         case ..<1.5: "Great pace! The trail is opening up."
         case ..<2.5: "I can smell quest rewards ahead!"
@@ -648,11 +778,54 @@ final class WatchWorkoutManager: NSObject, ObservableObject {
         }
     }
 
-    private static func runningConfiguration() -> HKWorkoutConfiguration {
-        let configuration = HKWorkoutConfiguration()
-        configuration.activityType = .running
-        configuration.locationType = .outdoor
-        return configuration
+    var canAdvanceMultisportActivity: Bool {
+        state.phase == .running && state.workoutConfiguration.activity.requiresMultisportSession
+            && state.multisportLegIndex + 1 < state.workoutConfiguration.multisportLegs.count
+    }
+
+    var canAdvanceActivity: Bool { canAdvanceMultisportActivity }
+    func nextActivity() { advanceMultisportActivity() }
+
+    func advanceMultisportActivity() {
+        guard canAdvanceMultisportActivity else { return }
+        advanceMultisportActivity(to: state.multisportLegIndex + 1)
+    }
+
+    private func advanceMultisportActivity(to index: Int) {
+        guard state.phase == .running || state.phase == .paused,
+              state.workoutConfiguration.activity.requiresMultisportSession,
+              state.workoutConfiguration.multisportLegs.indices.contains(index),
+              index == state.multisportLegIndex + 1,
+              let session else { return }
+        let configuration = state.workoutConfiguration.configuration(forMultisportLeg: index)
+        let now = Date()
+        refreshActivitySegments(endingAt: now)
+        state.activitySegments.append(WorkoutActivitySegment(configuration: configuration, startedAt: now, endedAt: nil))
+        session.beginNewActivity(configuration: configuration.makeHealthKitConfiguration(), date: now, metadata: nil)
+        state.multisportLegIndex = index
+        persistRecoveryMetadata()
+        publish(force: true)
+    }
+
+    private func refreshActivitySegments(endingAt date: Date? = nil) {
+        guard let last = state.activitySegments.indices.last, state.activitySegments[last].endedAt == nil else { return }
+        state.activitySegments[last].distanceMeters = max(0, state.distanceKilometers * 1_000 - state.activitySegments.dropLast().reduce(0) { $0 + $1.distanceMeters })
+        state.activitySegments[last].activeEnergyKilocalories = max(0, state.activeEnergyKilocalories - state.activitySegments.dropLast().reduce(0) { $0 + $1.activeEnergyKilocalories })
+        state.activitySegments[last].endedAt = date
+    }
+
+    private func restorePauseIntervals(from events: [HKWorkoutEvent]) {
+        state.pauseIntervals = []
+        state.pauseStartedAt = nil
+        for event in events.sorted(by: { $0.dateInterval.start < $1.dateInterval.start }) {
+            if event.type == .pause || event.type == .motionPaused {
+                state.pauseStartedAt = event.dateInterval.start
+            } else if event.type == .resume || event.type == .motionResumed,
+                      let pausedAt = state.pauseStartedAt {
+                state.pauseIntervals.append(DateInterval(start: pausedAt, end: max(pausedAt, event.dateInterval.start)))
+                state.pauseStartedAt = nil
+            }
+        }
     }
 
     private nonisolated static func phase(for state: HKWorkoutSessionState) -> PawPaceRunPhase {
@@ -694,7 +867,7 @@ extension WatchWorkoutManager: HKWorkoutSessionDelegate {
             guard self?.sessionIdentifier == sessionIdentifier else { return }
             guard let self else { return }
             self.errorMessage = message
-            self.state.phase = .failed
+            self.applySessionPhase(.failed, at: .now, publishChange: false)
             self.state.encouragement = "Workout ended unexpectedly."
             self.state.updatedAt = .now
             self.cleanupSession(keepState: true)
@@ -722,32 +895,9 @@ extension WatchWorkoutManager: HKLiveWorkoutBuilderDelegate {
         _ workoutBuilder: HKLiveWorkoutBuilder,
         didCollectDataOf collectedTypes: Set<HKSampleType>
     ) {
-        var heartRate: Int?
-        var distanceMeters: Double?
-
-        for sampleType in collectedTypes {
-            guard let quantityType = sampleType as? HKQuantityType else { continue }
-            let statistics = workoutBuilder.statistics(for: quantityType)
-            switch quantityType.identifier {
-            case HKQuantityTypeIdentifier.heartRate.rawValue:
-                if let quantity = statistics?.mostRecentQuantity() {
-                    let unit = HKUnit.count().unitDivided(by: .minute())
-                    heartRate = Int(quantity.doubleValue(for: unit).rounded())
-                }
-            case HKQuantityTypeIdentifier.distanceWalkingRunning.rawValue:
-                distanceMeters = statistics?.sumQuantity()?.doubleValue(for: .meter())
-            default:
-                break
-            }
-        }
-
         Task { @MainActor [weak self] in
             guard let self, self.builder === workoutBuilder else { return }
-            self.applyStatistics(
-                heartRate: heartRate,
-                distanceMeters: distanceMeters,
-                publishUpdates: !self.isCompleting
-            )
+            self.restoreCurrentStatistics(from: workoutBuilder, publishUpdates: !self.isCompleting)
         }
     }
 
@@ -760,13 +910,7 @@ private enum WatchWorkoutError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .authorizationDenied:
-            "Health access is required to record a run."
+            "Health access is required to record a workout."
         }
     }
-}
-
-private enum RecoveryKey {
-    static let workoutID = "pawpace.watch.activeWorkoutID"
-    static let startedAt = "pawpace.watch.activeWorkoutStartedAt"
-    static let awaitingPhoneBinding = "pawpace.watch.awaitingPhoneBinding"
 }

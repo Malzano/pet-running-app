@@ -4,23 +4,24 @@ import UIKit
 #endif
 
 enum PawTheme {
-    static let adventureBlue = Color(hex: 0x3568E8)
-    static let energyYellow = Color(hex: 0xFFD65A)
-    static let grassGreen = Color(hex: 0x68C95B)
-    static let coralOrange = Color(hex: 0xFF795F)
-    static let teal = Color(hex: 0x2FB6C4)
+    static let adventureBlue = Color.dynamic(light: 0x376957, dark: 0x9BCBB0)
+    static let energyYellow = Color(hex: 0xD5AD63)
+    static let grassGreen = Color.dynamic(light: 0x64856A, dark: 0xA1C29A)
+    static let coralOrange = Color.dynamic(light: 0xBC745B, dark: 0xD8A08A)
+    static let teal = Color.dynamic(light: 0x5A8A8D, dark: 0x9BC5C7)
 
-    static let background = Color.dynamic(light: 0xFFF9E9, dark: 0x0E1424)
-    static let surface = Color.dynamic(light: 0xFFFFFF, dark: 0x18213A)
-    static let surfaceRaised = Color.dynamic(light: 0xF3F6FF, dark: 0x202B49)
-    static let ink = Color.dynamic(light: 0x17213B, dark: 0xF3F7FF)
-    static let inkSecondary = Color.dynamic(light: 0x66708A, dark: 0xAAB5D2)
-    static let line = Color.dynamic(light: 0xE4E9F5, dark: 0x303B5B)
+    static let background = Color.dynamic(light: 0xF7F7F2, dark: 0x151917)
+    static let surface = Color.dynamic(light: 0xFFFFFF, dark: 0x202722)
+    static let surfaceRaised = Color.dynamic(light: 0xECEFE8, dark: 0x2B342D)
+    static let ink = Color.dynamic(light: 0x23382B, dark: 0xF0F3ED)
+    static let inkSecondary = Color.dynamic(light: 0x737B70, dark: 0xADB8AA)
+    static let line = Color.dynamic(light: 0xE0E5DC, dark: 0x384239)
+    static let buttonForeground = Color.dynamic(light: 0xFFFFFF, dark: 0x193323)
 
     static let habitatGradient = LinearGradient(
-        colors: [Color.dynamic(light: 0xC9EEFF, dark: 0x203B56), Color.dynamic(light: 0xE8E1FF, dark: 0x302A54)],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
+        colors: [Color.dynamic(light: 0xEFF7F2, dark: 0x2B3D36), Color.dynamic(light: 0xFAF3E8, dark: 0x30352E)],
+        startPoint: .top,
+        endPoint: .bottom
     )
 }
 
@@ -69,7 +70,10 @@ extension View {
         self
             .padding(padding)
             .background(PawTheme.surface, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
-            .shadow(color: PawTheme.ink.opacity(0.08), radius: 14, x: 0, y: 7)
+            .overlay {
+                RoundedRectangle(cornerRadius: 22, style: .continuous)
+                    .stroke(PawTheme.line.opacity(0.6), lineWidth: 0.5)
+            }
     }
 }
 
@@ -79,9 +83,8 @@ struct SectionKicker: View {
 
     var body: some View {
         HStack {
-            Text(title.uppercased())
-                .font(.system(size: 11, weight: .bold, design: .rounded))
-                .tracking(1.3)
+            Text(title)
+                .font(.system(size: 17, weight: .semibold))
             Spacer()
             if let trailing {
                 Text(trailing)

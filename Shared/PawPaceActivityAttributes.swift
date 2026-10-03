@@ -14,6 +14,11 @@ struct PawPaceActivityAttributes: ActivityAttributes {
         var petStage: EvolutionStage?
         var petEnergy: Int?
         var petAccessory: String?
+        var petSpecies: PetSpecies?
+        var workoutConfiguration: WorkoutConfiguration?
+        var activeEnergyKilocalories: Double?
+        var petLifeStage: PetLifeStage? = nil
+        var petVariant: PetColorVariant? = nil
     }
 
     var petName: String

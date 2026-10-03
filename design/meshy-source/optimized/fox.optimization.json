@@ -1,0 +1,38 @@
+{
+  "source": "/Users/athikom/Developer/pet-running-app/design/meshy-source/fox.glb",
+  "output": "/Users/athikom/Developer/pet-running-app/design/meshy-source/optimized/fox.glb",
+  "sourceSHA256": "606e585f21e2a28025393002af2f0a780ca664f703b6c96475a2c2d45de16e58",
+  "outputSHA256": "abe2c746feb585ac483e914b92effa7673e4a2efb65e8948edfd573c5b9486e2",
+  "sourceBytes": 17671620,
+  "outputBytes": 6149772,
+  "targetTriangles": 30000,
+  "maximumError": 0.02,
+  "totalSourceTriangles": 256422,
+  "totalTriangles": 30000,
+  "skeletonAndInverseBindMatricesPreserved": true,
+  "embeddedTexturesPreserved": true,
+  "animationChannelsPreserved": true,
+  "serializedVertexAttributesExact": true,
+  "algorithms": [
+    "exact attribute weld",
+    "meshoptimizer index-only simplify + Regularize",
+    "lossless attribute compaction"
+  ],
+  "primitives": [
+    {
+      "primitive": 0,
+      "sourceVertices": 139194,
+      "sourceTriangles": 256422,
+      "vertices": 19410,
+      "triangles": 30000,
+      "geometricError": 0.0020715338177978992,
+      "skinStreamsPreserved": [
+        "JOINTS_0",
+        "JOINTS_1",
+        "WEIGHTS_0",
+        "WEIGHTS_1"
+      ],
+      "allSurvivingVertexAttributesExact": true
+    }
+  ]
+}

@@ -34,7 +34,8 @@ final class WatchPetConnectivityService: NSObject, ObservableObject {
             Self.decodePayload(from: $0.receivedApplicationContext)
         }
         let cachedPet = PawPaceShared.loadSnapshotIfPresent()
-        pet = initialPayload?.pet ?? cachedPet ?? .starter
+        // A neutral egg placeholder is replaced by the phone's saved starter.
+        pet = initialPayload?.pet ?? cachedPet ?? .newPlayer(seed: 0)
         phoneRunState = initialPayload?.run ?? .idle
         latestPhoneRunUpdate = initialPayload?.run.updatedAt ?? .distantPast
         if let initialControl = initialPayload?.control {
@@ -71,7 +72,7 @@ final class WatchPetConnectivityService: NSObject, ObservableObject {
         do {
             try session.updateApplicationContext([PawPaceWatchMessageKey.payload: data])
         } catch {
-            Self.log.error("state context failed: \(error.localizedDescription, privacy: .public)")
+            Self.log.error("state context failed: \(error.localizedDescription, privacy: .private)")
         }
         if payload.run.phase == .finished || payload.run.phase == .failed {
             session.transferUserInfo([PawPaceWatchMessageKey.payload: data])
@@ -83,7 +84,7 @@ final class WatchPetConnectivityService: NSObject, ObservableObject {
             ) { error in
                 let message = error.localizedDescription
                 Task { @MainActor in
-                    Self.log.error("state message failed: \(message, privacy: .public)")
+                    Self.log.error("state message failed: \(message, privacy: .private)")
                 }
             }
         }
@@ -105,7 +106,7 @@ final class WatchPetConnectivityService: NSObject, ObservableObject {
         }
         if let control = payload.control {
             Self.log.notice(
-                "payload action=\(control.action.rawValue, privacy: .public) workout=\(control.workoutID.uuidString, privacy: .public) reply=\(control.replyToWatchWorkoutID?.uuidString ?? "-", privacy: .public)"
+                "payload action=\(control.action.rawValue, privacy: .private) workout=\(control.workoutID.uuidString, privacy: .private) reply=\(control.replyToWatchWorkoutID?.uuidString ?? "-", privacy: .private)"
             )
             accept(control)
         }
@@ -124,7 +125,7 @@ final class WatchPetConnectivityService: NSObject, ObservableObject {
         }
         latestControlUpdateByWorkout[control.workoutID] = control.issuedAt
         Self.log.notice(
-            "accept action=\(control.action.rawValue, privacy: .public) workout=\(control.workoutID.uuidString, privacy: .public)"
+            "accept action=\(control.action.rawValue, privacy: .private) workout=\(control.workoutID.uuidString, privacy: .private)"
         )
         if let onControl {
             onControl(control)
@@ -170,7 +171,7 @@ extension WatchPetConnectivityService: WCSessionDelegate {
         if let error {
             let message = error.localizedDescription
             Task { @MainActor in
-                Self.log.error("state transfer failed: \(message, privacy: .public)")
+                Self.log.error("state transfer failed: \(message, privacy: .private)")
             }
         }
     }

@@ -42,14 +42,14 @@ final class PhoneWatchConnectivityService: NSObject {
         do {
             try session.updateApplicationContext([PawPaceWatchMessageKey.payload: data])
         } catch {
-            Self.log.error("context sync failed: \(error.localizedDescription, privacy: .public)")
+            Self.log.error("context sync failed: \(error.localizedDescription, privacy: .private)")
         }
         if session.isReachable {
             session.sendMessage(
                 [PawPaceWatchMessageKey.payload: data],
                 replyHandler: nil
             ) { error in
-                Self.log.error("message sync failed: \(error.localizedDescription, privacy: .public)")
+                Self.log.error("message sync failed: \(error.localizedDescription, privacy: .private)")
             }
         }
     }
@@ -76,21 +76,23 @@ final class PhoneWatchConnectivityService: NSObject {
             action: action,
             startedAt: startedAt,
             issuedAt: .now,
-            replyToWatchWorkoutID: replyToWatchWorkoutID
+            replyToWatchWorkoutID: replyToWatchWorkoutID,
+            workoutConfiguration: run.workoutConfiguration,
+            multisportLegIndex: run.multisportLegIndex
         )
         let payload = PawPaceWatchPayload(pet: pet, run: run, control: control)
         guard let data = try? JSONEncoder().encode(payload) else { return nil }
         latestPayload = payload
 
         Self.log.notice(
-            "send action=\(action.rawValue, privacy: .public) workout=\(workoutID.uuidString, privacy: .public) reply=\(replyToWatchWorkoutID?.uuidString ?? "-", privacy: .public) reachable=\(self.session?.isReachable ?? false)"
+            "send action=\(action.rawValue, privacy: .private) workout=\(workoutID.uuidString, privacy: .private) reply=\(replyToWatchWorkoutID?.uuidString ?? "-", privacy: .private) reachable=\(self.session?.isReachable ?? false)"
         )
 
         if let session {
             do {
                 try session.updateApplicationContext([PawPaceWatchMessageKey.payload: data])
             } catch {
-                Self.log.error("control context failed: \(error.localizedDescription, privacy: .public)")
+                Self.log.error("control context failed: \(error.localizedDescription, privacy: .private)")
             }
             session.transferUserInfo([PawPaceWatchMessageKey.payload: data])
             if session.isReachable {
@@ -98,7 +100,7 @@ final class PhoneWatchConnectivityService: NSObject {
                     [PawPaceWatchMessageKey.payload: data],
                     replyHandler: nil
                 ) { error in
-                    Self.log.error("control message failed: \(error.localizedDescription, privacy: .public)")
+                    Self.log.error("control message failed: \(error.localizedDescription, privacy: .private)")
                 }
             }
         }
@@ -147,7 +149,7 @@ extension PhoneWatchConnectivityService: WCSessionDelegate {
         if let error {
             let message = error.localizedDescription
             Task { @MainActor in
-                Self.log.error("user info transfer failed: \(message, privacy: .public)")
+                Self.log.error("user info transfer failed: \(message, privacy: .private)")
             }
         }
     }
@@ -191,13 +193,14 @@ extension PhoneWatchConnectivityService: WCSessionDelegate {
             let control = latestPayload.control,
             control.workoutID == state.workoutID,
             control.phase == state.phase,
+            control.action != .nextActivity || state.multisportLegIndex >= control.multisportLegIndex,
             state.updatedAt >= control.issuedAt
         {
             latestPayload.control = nil
         }
         if let onRunState {
             Self.log.notice(
-                "receive phase=\(state.phase.rawValue, privacy: .public) workout=\(state.workoutID?.uuidString ?? "-", privacy: .public)"
+                "receive phase=\(state.phase.rawValue, privacy: .private) workout=\(state.workoutID?.uuidString ?? "-", privacy: .private)"
             )
             onRunState(state)
         } else {

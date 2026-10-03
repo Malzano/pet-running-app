@@ -10,61 +10,196 @@
 		00A6F03561766078660FD0A0 /* PetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63CC091EBED9FD172463817 /* PetStore.swift */; };
 		02D93FA53EBA839E40B6156B /* PawPaceShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70951C7903C911AE21BFDBBE /* PawPaceShared.swift */; };
 		033700EAFE5F64A0DB781376 /* PetWidgetIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6617743A66D7D4EB22C7FD5 /* PetWidgetIntents.swift */; };
-		05E526C5B958983DEFC8DD69 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA48485E825B0AAB30A7D3C /* CollectionView.swift */; };
+		036486576E145126A12BB441 /* WorkoutActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FABE81C3427D40D160917D /* WorkoutActivity.swift */; };
+		06132F38D64F33D6053071E8 /* axolotl.scn in Resources */ = {isa = PBXBuildFile; fileRef = E600A194C3D6B7687EAF48F2 /* axolotl.scn */; };
+		071F132D0544826CDACBA970 /* WatchWorkoutRecoveryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */; };
+		08432FBA2D7A98CBE6E42471 /* WorkoutHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3705EAF6CA9255BC0E2BA154 /* WorkoutHistoryTests.swift */; };
+		0897FA1E3777C5685D68B979 /* CompanionHabitatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A67C202BE8CF1E46F8AC2E6 /* CompanionHabitatView.swift */; };
 		096D0AE028A772B3E532A118 /* PawTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4B902BF379E98AC27671C /* PawTheme.swift */; };
+		09AF0571848F4694734DD9BE /* DailyQuests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */; };
+		0A3C3469246D2965C8047D01 /* penguin.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 842C7E72E529899590720633 /* penguin.rig.json */; };
+		0CF55AB4A15F51658A0B29FB /* WorkoutIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54503706560A02CECE45D7B /* WorkoutIntegrationTests.swift */; };
 		0D08DFBB8B235DD471857689 /* PetWidgetIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6617743A66D7D4EB22C7FD5 /* PetWidgetIntents.swift */; };
 		0FA81E86CAC3C7B5463DA8DA /* PawPaceFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */; };
+		1034AE7829A1E2903BE91DD1 /* PlannerReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4085142EB0AC9E20A2767125 /* PlannerReminders.swift */; };
+		11126285ECC2876AE86D6770 /* BuddyMemoryBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DB3BECDD5CB9C80BCCF7BD7 /* BuddyMemoryBookView.swift */; };
+		16169DC0DE90EF2EA36D1190 /* WorkoutPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16982E769B0919909B478 /* WorkoutPickerView.swift */; };
 		170E79BD2B92E04C5BDD8C88 /* PetSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1A4612E68874B90887BA33A /* PetSnapshotTests.swift */; };
+		1766FDB688B1C14F761E3A01 /* DailyQuests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */; };
+		17F73401DCEAF0CD26EFA94B /* BuddyKeepsakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F29CF5CC7F3378B88FB3F3 /* BuddyKeepsakeTests.swift */; };
+		182DDD3CA0AC26A5D5C7CB32 /* dragon.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BE1A7DF70FC8FEE98C165A /* dragon.motion.json */; };
+		1A6EF076DA47B57389519046 /* CompanionRoaming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F47A2CD9AE6ED1203F7C85 /* CompanionRoaming.swift */; };
+		223F10C2A1EF01C36E9DE00F /* CompanionSpecialTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AB3E9C93ABE827ABE2DD27 /* CompanionSpecialTests.swift */; };
 		231DE3D258E57D25BD527632 /* PawPaceActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FC811D0926323608ABB7F /* PawPaceActivityAttributes.swift */; };
 		23BAD58BA7CCE2A7B68F373C /* MochiCreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */; };
+		255AADFA6698652E7444693C /* PhoneWorkoutRecoveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A565BBAC0E882C8FFA179BAD /* PhoneWorkoutRecoveryTests.swift */; };
+		259F3382623C0701BC8DC7DC /* AnimalPortraits.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */; };
+		297D950583EA3B14E37F00B5 /* DailyQuests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */; };
+		2A0171CC18E452CA5AF4C256 /* WorkoutPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE579D3734840FEE3A34D3C6 /* WorkoutPresentationTests.swift */; };
+		2A977638342147922F478AEE /* FriendModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F690176B4E2F2440D43EC356 /* FriendModels.swift */; };
 		2D3B1AFB213A33FACA92F8BD /* PawPaceLiveActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8C189C2910AE3992A19B3D /* PawPaceLiveActivityBundle.swift */; };
 		2E4FCF0E3260C4545EE6BB01 /* PawPaceLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCAF7981F375EF517A9D9A /* PawPaceLiveActivity.swift */; };
+		2FDB0D0B5EA4EFB194D40E4D /* PawPacePrivateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */; };
+		30C55896601B6B60C04ED002 /* WorkoutPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16982E769B0919909B478 /* WorkoutPickerView.swift */; };
+		316DBF77A289870873B2A92E /* PlannerPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9FD01C1C4A5B5256768B576 /* PlannerPresentationTests.swift */; };
+		31BCD1BE1A545972AEAD90B6 /* WatchWorkoutRecoveryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */; };
 		3284388B2AA6A092FB514D2B /* PawPaceWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 6C0D09543A81184995D63152 /* PawPaceWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		32D39FF2F5CB5FA31DDDEF91 /* SummaryDismissalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0189B2B1CBE5C444857B47A8 /* SummaryDismissalTests.swift */; };
+		33BC27F90565A2945E8993D6 /* BuddyBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8795E030B3F3409B9931AB /* BuddyBond.swift */; };
+		340555579CF126FE178956D6 /* BuddyBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8795E030B3F3409B9931AB /* BuddyBond.swift */; };
+		356C1FFED9C54DDBF7C3FDF5 /* AnimalAssetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A27E8505AC13EF9B122F9D17 /* AnimalAssetTests.swift */; };
+		3703AEE0F63CADB1110EFEA8 /* JourneyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068F8C84C2EA5D0E8ABA5316 /* JourneyView.swift */; };
+		3C0D3484364A86AECC85C725 /* unicorn.scn in Resources */ = {isa = PBXBuildFile; fileRef = C39AB12009442D0DB458BA7D /* unicorn.scn */; };
+		3D1FDCB691A79F9EDFB61455 /* PetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */; };
 		3DAF9C332351CCB5696D4742 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110AB21E299002A86437B280 /* AppModel.swift */; };
+		3E60C5B013E4225A3A3CB880 /* BuddyBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8795E030B3F3409B9931AB /* BuddyBond.swift */; };
 		3F6F1549BF135C5B187C5A9A /* PawPaceWatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */; };
+		405087FC877DBCD1B6A086D9 /* PetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */; };
+		42CCA299E6B8DE58A87E9236 /* WorkoutHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F446D80048AE7BFA25305B7 /* WorkoutHistoryView.swift */; };
+		4463F9764AA54CF32C532084 /* CompanionJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */; };
+		44C4191893D26CA8AA098521 /* WorkoutCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A83CA0B7B8D9245E8AB202 /* WorkoutCompletionTests.swift */; };
 		45EB3C2E4AC2B27B7DD0BFB9 /* PawPaceFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */; };
+		4A1F1E1874A17C9DF0EBE5E9 /* phoenix.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 3E043AFED5E696201285DCB4 /* phoenix.rig.json */; };
 		4ACAA111046566CCB0D09787 /* PawPaceShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70951C7903C911AE21BFDBBE /* PawPaceShared.swift */; };
+		4C3D7552304E930DD0D63BF2 /* EverydayActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87300D4D17325BC266F1D11 /* EverydayActivityTests.swift */; };
+		4CD600D5571ABC928814ABCC /* PetName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC3CB71F499B95ED6D2DD6C /* PetName.swift */; };
+		50261AE15295C74F547179ED /* WatchWorkoutRecoveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2E4177C5ED43249E82C458E /* WatchWorkoutRecoveryTests.swift */; };
+		512189F8D45146BD541174BF /* PrivateStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091BF1E081C780A1A354F841 /* PrivateStorageTests.swift */; };
+		51C8EBB550B7591174C6F396 /* AnimalRoamingIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5169A94411D434CEF835FA75 /* AnimalRoamingIntegrationTests.swift */; };
+		53699BD59F63A42E0963D48A /* ClubModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7A502FEF0AE391A95EBDEF /* ClubModels.swift */; };
+		54359687C225AFC072F69FC6 /* ClubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095052473BF956FEC70E8EA9 /* ClubTests.swift */; };
+		550B027AFD633A06A281F73B /* PhoneWorkoutCheckpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF746481906AECA02A03A77E /* PhoneWorkoutCheckpoint.swift */; };
+		554C087C1BA87BF5E30B3D96 /* axolotl.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = 6DD3512ACD19399ED2683745 /* axolotl.motion.json */; };
+		55A2230ADA4A1386DECFB5B1 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D542D039A694B7E7B71A1499 /* WelcomeView.swift */; };
+		59C379B25867697F30AA32B0 /* CompanionJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */; };
 		5D17DDE89BE6BB97AB36238A /* WatchConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E85A9FC076848E545CF8D9B0 /* WatchConnectivity.framework */; };
+		5DD3E27962FACE4015CEA16C /* corgi.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 70594AF555061BC9D3E6B5D9 /* corgi.rig.json */; };
+		5EAB7C9A026B690EDDBF4291 /* CompanionJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */; };
+		5F9CC768CCBCFCBA3C513A4C /* ClubPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E652A17C079DDFE9F3075ECD /* ClubPresentationTests.swift */; };
+		601809AF4C0E7628FD6EB883 /* dragon.scn in Resources */ = {isa = PBXBuildFile; fileRef = DC8D45A2E1D6E92481B62D7B /* dragon.scn */; };
+		633D8BCCAC86D72288095808 /* BuddyKeepsakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */; };
 		668DB74A03B5854C2FAFA625 /* PhoneWatchConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAEAF01F01ECC356478608E0 /* PhoneWatchConnectivityService.swift */; };
+		683B601D7BF5FD411EA32CFD /* WorkoutActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FABE81C3427D40D160917D /* WorkoutActivity.swift */; };
+		69688F09AE2D1C39A2FC3F6B /* AnimalPortraits.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */; };
 		6BD5CEB25E79F8721BD5CB84 /* MochiCreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */; };
-		767228CF24470EE88A230B1A /* CompanionChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CEE6FF3FA2066FD8B918E7 /* CompanionChatService.swift */; };
+		6C85DF0B6BAC3D5C19EAAFE2 /* PetLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB769F1E0422E477A84681F9 /* PetLifecycleTests.swift */; };
+		6E2293DB6FD5DBE50B4CCEBD /* CompanionSpecialEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC843DB54A8A751520ADD80 /* CompanionSpecialEffects.swift */; };
+		72E6B7050CE52D23895374CB /* BuddyKeepsakePresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81086C87D5F42091142D17AD /* BuddyKeepsakePresentationTests.swift */; };
+		72ED7BFE9866FC3D4D4C1D34 /* bunny.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 77BF1B5906CF35BE1D1B6B88 /* bunny.rig.json */; };
+		740B9EA2D2B720E566ED3154 /* CompanionProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A59E3E78BDA209F1E11427 /* CompanionProgressView.swift */; };
+		74180DC715233BBD5C3FFC9B /* WorkoutActivityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12FB5150EC1244D085F5F8 /* WorkoutActivityTests.swift */; };
 		77333F1BB8137AA052929965 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BA245A0C91B7FD2A26BEF2 /* HomeView.swift */; };
+		78D896B2ADFFC359DDEF450D /* PawPacePrivateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */; };
+		7B2403BF69F0BB8F7BFAC3F2 /* fox.scn in Resources */ = {isa = PBXBuildFile; fileRef = BB8F00167A9FA0741FBD8F03 /* fox.scn */; };
 		7FDF49D5628CAD4A306BC978 /* PetWidgetIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6617743A66D7D4EB22C7FD5 /* PetWidgetIntents.swift */; };
+		824949B9CAFD9AA417C1081F /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A30852306E317577CF412B /* PlannerView.swift */; };
+		83211432E7B3D301F10DA209 /* AnimalCompanionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D655E2F8DA497D2C095EF36 /* AnimalCompanionView.swift */; };
 		83B13CF8D14AC4AD3C2D2888 /* PawPaceWatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */; };
+		8737971232E1B6949436C4D8 /* MemoryPhotoStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C83F45A802ED87BE1A0D45 /* MemoryPhotoStore.swift */; };
+		88B262DD44C3D7A03B2BC1E0 /* CompanionJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */; };
+		896CC7E2BA026714B4509312 /* unicorn.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FCC96A72FF558314111803B /* unicorn.rig.json */; };
+		8A50BEF699A9A1AE02B12CB0 /* WorkoutHistoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077850004594F05E6C2823C1 /* WorkoutHistoryStore.swift */; };
 		8B2D7CD13AAD8FC22DD92E80 /* PawPaceFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */; };
 		8D3B08F2414C04C82132032A /* PawPaceLiveActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 1E02D59EFF20C3D188BFA7D1 /* PawPaceLiveActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9B292B2F584F6905AE654F9A /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4FCD78536255D8BC8FE121 /* ChatView.swift */; };
+		8E1EAE6021A8A0C044F3C37C /* phoenix.scn in Resources */ = {isa = PBXBuildFile; fileRef = 544DAE2832ABE9DFFB737702 /* phoenix.scn */; };
+		90546DC81333AED3F515ACE7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 5CFBE9AEB231A374604BE063 /* PrivacyInfo.xcprivacy */; };
+		9195C01D8C2CC809D0EE151C /* DailyQuestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43329E3299AF39CA80D1EDE /* DailyQuestsView.swift */; };
+		944DE573F1FE3B350F7FDE51 /* HabitatArrangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44852712660F5B3FA38A4C6B /* HabitatArrangeView.swift */; };
+		9629ABA4CA18680086E55CEC /* BuddyPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914B662A3D12DF8684862A57 /* BuddyPlayView.swift */; };
+		98E073D546FB73E3995242EC /* ClubDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F282AE3ED4A889F48B0A87E2 /* ClubDetailView.swift */; };
+		9AF65822836D692EDA401FD1 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6E04E926C8F87B54883119 /* SettingsView.swift */; };
+		9CADE79782592E24B9C7E372 /* phoenix.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = 1C45889138650EDCE36B5CC1 /* phoenix.motion.json */; };
 		9CBD77860486B4781717E935 /* WatchWorkoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651ED86A459DA77554428CE3 /* WatchWorkoutManager.swift */; };
 		9D7E5D0C9411EB82532D10DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08AEB49C28FAFB6B0A23190E /* Assets.xcassets */; };
 		9DA8322D2C11A31ED3B07761 /* PawPaceWatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */; };
+		9DF9F83BB746ECB3A7ABBF0F /* EverydayActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F146138212DC4889B6EF9D0D /* EverydayActivityService.swift */; };
+		9E36F834FA897633252548CB /* BuddyKeepsakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */; };
+		9E787C8153CDD6BFEC3D6FD3 /* CompanionRigProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE7BFD8DBCE2A8C6F9CFA56 /* CompanionRigProfile.swift */; };
 		A11D194DB2F099F7CA50E046 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A8B6C75EC6C5DBC30DC13FE7 /* Assets.xcassets */; };
 		A1D2328C086F75FCA96BBF0D /* MochiCreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */; };
+		A6AE4766B794537D4332F023 /* DailyFriendsPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D9F855884DFC92A29CC19 /* DailyFriendsPresentationTests.swift */; };
+		A90CA01B9941AAB73AE6BCE9 /* fox.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = 8A7886A3D1C5307D508A2207 /* fox.motion.json */; };
 		AA3D8312D2CC2AA0FADED578 /* PetWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C274349B853D554B1F66FAE /* PetWidgets.swift */; };
+		AAFA040B862707A4FE20E0F5 /* CompanionJourneyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2182DB77CD5F8801D38B834 /* CompanionJourneyTests.swift */; };
+		AB009C0CD394AE0961188D3D /* fox.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = DE34A3A9B075A198082BACE8 /* fox.rig.json */; };
+		ACB4AB76578165B6DB9A6705 /* AnimalPortraits.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */; };
 		ACD5FC32C088AE41F025DDC3 /* PawPaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936DCF013C8D5A34DE8F0984 /* PawPaceApp.swift */; };
+		ACF834870AE1B5E5440F3050 /* AnimalPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91902E7D774607218C6B802E /* AnimalPortraitView.swift */; };
+		AE7ED66EF9034BA4773CD60F /* WatchWorkoutRecoveryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */; };
+		AEFC9B0E3FAE1BDD98799F21 /* AnimalMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27C9CF56A848399DD0C782D /* AnimalMotionTests.swift */; };
 		AF2D787C137480D839A16E4B /* PawPaceWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506A20B870FFCCE994DF76E0 /* PawPaceWidgetBundle.swift */; };
 		AF42F49DD561FE6F883AD946 /* RunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D890A603D11DA65B5E3975D4 /* RunView.swift */; };
 		AF7A5DDE3452BB2E1D10F60A /* MochiCreatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */; };
+		B10C4894E152D943CC5648A3 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 1B76A3BDAB08F28683425809 /* PrivacyInfo.xcprivacy */; };
+		B1102880B3C4E2EED4F1B24B /* PetLifecycleVisualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9E53D31E173645C257DF18 /* PetLifecycleVisualTests.swift */; };
+		B12D827AC40167E7A9370DEE /* WorkoutActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FABE81C3427D40D160917D /* WorkoutActivity.swift */; };
+		B17AA93603CB1E0E7F5C165A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8C7DC10292EE4932B31BA4BD /* PrivacyInfo.xcprivacy */; };
+		B37DD9B25E2D68D01B509722 /* DailyQuests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */; };
 		B41CC618ED331180ABD0B213 /* HealthKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6192AA8749C642FD32672B9 /* HealthKitService.swift */; };
 		B63AC11A8F6A87CC06AE09A2 /* PawPaceShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70951C7903C911AE21BFDBBE /* PawPaceShared.swift */; };
+		B6B4086248483C8A0A837543 /* dragon.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 71A02672E8C73DD478D4AEAF /* dragon.rig.json */; };
 		B6C5EF5F5F72FDBBBA8DFC1B /* PawPaceWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D020101E2A93AD344299A0A4 /* PawPaceWatchApp.swift */; };
+		B77BA2CF2DB1A3AD558CF8FC /* red-panda.scn in Resources */ = {isa = PBXBuildFile; fileRef = 11541ABD82CC543F0F5344F6 /* red-panda.scn */; };
+		B922C6B1BCE9EF12474B7F25 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC14E299ECA6F34B1350366C /* FriendsView.swift */; };
+		B9B1BD241453E21F5C459F6E /* BuddyKeepsakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */; };
+		B9D206F21DAF0FE6A6C9AF65 /* CompanionShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF628E2EED642465CD99D7F /* CompanionShareView.swift */; };
+		BA47A18603CA5E1DAD980F32 /* EverydayActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46ECA88AB0A1514D0F81827F /* EverydayActivityView.swift */; };
+		BB12D30526EA6C000ED85B9E /* BuddyPlayPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA74F50370CA85CE2920B66 /* BuddyPlayPresentationTests.swift */; };
+		BB41E29AC3C10C1B616BC92E /* ClubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C716B313EF900928A15660 /* ClubView.swift */; };
 		BBBBF1E2ACE1C9180A656309 /* PawTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4B902BF379E98AC27671C /* PawTheme.swift */; };
+		BE1142F73C9B05EC23568345 /* axolotl.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 2B731FD3D80FDA6D8E85CA8A /* axolotl.rig.json */; };
+		BE67FD33220FCB55EE3192D0 /* red-panda.rig.json in Resources */ = {isa = PBXBuildFile; fileRef = 341B3841746A30FF22BEEB83 /* red-panda.rig.json */; };
+		BF3AA9354278B26BF302174D /* WorkoutPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16982E769B0919909B478 /* WorkoutPickerView.swift */; };
 		C04CFA4650982E0F70488E23 /* RunSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 030CEF182E87B8C1731DA97E /* RunSummaryView.swift */; };
+		C44492016ADCE5A0E65B17DD /* AnimalPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91902E7D774607218C6B802E /* AnimalPortraitView.swift */; };
 		C46FB67B89862743B44410EB /* PawTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4B902BF379E98AC27671C /* PawTheme.swift */; };
 		C4C3C50B2104AD8B64D97B62 /* PawPaceWatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */; };
 		C63862AED99205AF7E32A0BE /* PawTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A4B902BF379E98AC27671C /* PawTheme.swift */; };
+		C69B7C3B8DF9FAC261DDD46E /* AnimalPortraits.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */; };
+		C752AB61A605CBA262C2C211 /* PlannerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7CD9B2285F4391B4FADFDE5 /* PlannerStore.swift */; };
 		C7B0545D9364E0D581F00F00 /* WatchRunView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9CD535D302F056AE7C560F /* WatchRunView.swift */; };
 		C8816D9E9D516D938C3200D4 /* WatchSyncTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71883E23F964CE94957D6845 /* WatchSyncTests.swift */; };
 		CD9A65DA1CA76DB17EE41F43 /* LiveActivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07644CE8B70ED33994AB991C /* LiveActivityService.swift */; };
+		CE6B22E40CF4809D7BC5A4CE /* PetGrowthCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF838BC3A4414E1CD773E53 /* PetGrowthCard.swift */; };
+		CF31D8C03998443FCB902700 /* CompanionRoamingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420E351C327E14CBCC6CD30 /* CompanionRoamingTests.swift */; };
+		D0CE52BB1B33CABE7375053E /* FriendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1507D3CB7729D7B7D882AA /* FriendTests.swift */; };
+		D28726813C1FBA82F27075BC /* DailyQuestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE686FCE6513A761051E2C99 /* DailyQuestTests.swift */; };
+		D4D2FC900EBC182E08929B02 /* PetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */; };
+		D5552BBEB4AEE0677C801C78 /* ClubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F53E171293CF6C9896AB5C3B /* ClubAPI.swift */; };
+		D5E08AA5C83A6F81A4A4C41D /* WorkoutHandshakeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74BB151EDAC6FBF15810B36 /* WorkoutHandshakeTests.swift */; };
+		D74689E440E26768F0094BDE /* InterruptedWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3101B702628FD3444F1F1BB9 /* InterruptedWorkoutView.swift */; };
 		D8BDCBF621088506C670DD0A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF75C60E97A2491EC8E6A056 /* HealthKit.framework */; };
+		D9A126E309BC372349D4B45E /* AnimalPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91902E7D774607218C6B802E /* AnimalPortraitView.swift */; };
+		D9B5B344D34AC5D9B72FE62E /* BuddyBond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8795E030B3F3409B9931AB /* BuddyBond.swift */; };
+		D9C8AB3E885D0852622AEE3F /* BuddyPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450232C2239CEE256B0397B7 /* BuddyPlayTests.swift */; };
 		DDC2ADCBDE1619483ACE4907 /* PawPaceWatch.app in Embed Dependencies */ = {isa = PBXBuildFile; fileRef = 3DD4F51318F1CD8A758EA62A /* PawPaceWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		DFBCC2D8E1774D924A560BE7 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8C7DC10292EE4932B31BA4BD /* PrivacyInfo.xcprivacy */; };
+		E18DDDAC813442FF5E137805 /* PetLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */; };
 		E2E28FDD63D3998946C3453A /* PawPaceActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FC811D0926323608ABB7F /* PawPaceActivityAttributes.swift */; };
+		E30A2C605064CC1B58B57FC6 /* WorkoutCompletionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E90923BF0398B3B14BD72DD9 /* WorkoutCompletionStore.swift */; };
+		E39F35B4A7698AB110A516FE /* CompanionField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F01EA2EFE90F9599C903D2 /* CompanionField.swift */; };
+		E40463332471188645A1F7E4 /* AnimalPortraitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91902E7D774607218C6B802E /* AnimalPortraitView.swift */; };
 		E4FB562234A8516C8974834F /* RunTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D0BBD9E3C7A9747A3FA608E /* RunTracker.swift */; };
-		E9CC8D90696F568F98F69292 /* VoiceInputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6259AB7464EB315AEC0D50AD /* VoiceInputService.swift */; };
 		EA0B470ED0AFDCB2CE0E2C27 /* PawPaceFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */; };
 		EC5381987A682B1B96F42E06 /* PawPaceActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25FC811D0926323608ABB7F /* PawPaceActivityAttributes.swift */; };
+		EE0DA97EE0A2741D79896CB4 /* red-panda.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = BE66F0B114BC8086E6C38BDD /* red-panda.motion.json */; };
+		EE9D4784B7ED087EFA268798 /* WorkoutPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F16982E769B0919909B478 /* WorkoutPickerView.swift */; };
+		EF9AAB47BCD30647B75FF787 /* WatchWorkoutRecoveryRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */; };
+		EFA476A805FFC4DE03709301 /* bunny.scn in Resources */ = {isa = PBXBuildFile; fileRef = 48BB592C772FB14751470E1F /* bunny.scn */; };
+		F213D4D5E9C217B490AB2DA3 /* PlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC0F776D965815E142AE373 /* PlannerTests.swift */; };
 		F22F3E11769592ABABF0B0DF /* AppRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511AC4DBD18D07DE7568FCB4 /* AppRootView.swift */; };
+		F3A3D04D07BAFBD480592DC8 /* unicorn.motion.json in Resources */ = {isa = PBXBuildFile; fileRef = F8BE072A0D0F9ECE2D310793 /* unicorn.motion.json */; };
+		F3DBF2B72B91CF64FC90A837 /* penguin.scn in Resources */ = {isa = PBXBuildFile; fileRef = D68C3B216FFBE71020EC2AE8 /* penguin.scn */; };
 		F483308522E640C0B07DB2A0 /* WatchPetConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EFEEAEBF0BA9B57AA3048AC /* WatchPetConnectivityService.swift */; };
+		F4C65B788BC5BFFAC0DB3102 /* DeferredWatchCompletionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F39D751218DC00A4C5B063 /* DeferredWatchCompletionTests.swift */; };
+		F634DCF76E909116CFA8261D /* JourneyPresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C48B5AC704527F1CF1A0A0B /* JourneyPresentationTests.swift */; };
+		F8C0A0F692A40F57A89018B0 /* ClubStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9198F7CC618481969C343A /* ClubStore.swift */; };
+		F94832C582E9F3854E04EA29 /* BuddyKeepsakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */; };
+		FA3FA23B7E6D40BCD10F43D5 /* corgi.scn in Resources */ = {isa = PBXBuildFile; fileRef = 9F894560DD02C7AF59F26599 /* corgi.scn */; };
+		FA937F63FCA0250BC8C0B02B /* WorkoutActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FABE81C3427D40D160917D /* WorkoutActivity.swift */; };
 		FB6844AE03A167D16A458DAE /* PawPaceShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70951C7903C911AE21BFDBBE /* PawPaceShared.swift */; };
+		FD21413E1F51760B56B97CC8 /* PawPacePrivateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */; };
+		FD67AA447F979A4C71E16E0F /* PawPacePrivateStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,45 +260,146 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0189B2B1CBE5C444857B47A8 /* SummaryDismissalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryDismissalTests.swift; sourceTree = "<group>"; };
+		02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPacePrivateStorage.swift; sourceTree = "<group>"; };
 		030CEF182E87B8C1731DA97E /* RunSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunSummaryView.swift; sourceTree = "<group>"; };
+		068F8C84C2EA5D0E8ABA5316 /* JourneyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyView.swift; sourceTree = "<group>"; };
 		07644CE8B70ED33994AB991C /* LiveActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityService.swift; sourceTree = "<group>"; };
+		077850004594F05E6C2823C1 /* WorkoutHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryStore.swift; sourceTree = "<group>"; };
 		08AEB49C28FAFB6B0A23190E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		091BF1E081C780A1A354F841 /* PrivateStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateStorageTests.swift; sourceTree = "<group>"; };
+		095052473BF956FEC70E8EA9 /* ClubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubTests.swift; sourceTree = "<group>"; };
 		09A4B902BF379E98AC27671C /* PawTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawTheme.swift; sourceTree = "<group>"; };
 		0D0BBD9E3C7A9747A3FA608E /* RunTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunTracker.swift; sourceTree = "<group>"; };
 		0DB0C1D49C2F37414C683179 /* PawPace.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = PawPace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceFormatting.swift; sourceTree = "<group>"; };
 		110AB21E299002A86437B280 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
-		1D4FCD78536255D8BC8FE121 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		11541ABD82CC543F0F5344F6 /* red-panda.scn */ = {isa = PBXFileReference; path = "red-panda.scn"; sourceTree = "<group>"; };
+		1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionJourney.swift; sourceTree = "<group>"; };
+		1B76A3BDAB08F28683425809 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		1C45889138650EDCE36B5CC1 /* phoenix.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phoenix.motion.json; sourceTree = "<group>"; };
 		1E02D59EFF20C3D188BFA7D1 /* PawPaceLiveActivity.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PawPaceLiveActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FCC96A72FF558314111803B /* unicorn.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unicorn.rig.json; sourceTree = "<group>"; };
+		2420E351C327E14CBCC6CD30 /* CompanionRoamingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionRoamingTests.swift; sourceTree = "<group>"; };
+		2B731FD3D80FDA6D8E85CA8A /* axolotl.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = axolotl.rig.json; sourceTree = "<group>"; };
 		2C274349B853D554B1F66FAE /* PetWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWidgets.swift; sourceTree = "<group>"; };
+		2CC3CB71F499B95ED6D2DD6C /* PetName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetName.swift; sourceTree = "<group>"; };
+		2EF628E2EED642465CD99D7F /* CompanionShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionShareView.swift; sourceTree = "<group>"; };
+		3101B702628FD3444F1F1BB9 /* InterruptedWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterruptedWorkoutView.swift; sourceTree = "<group>"; };
+		341B3841746A30FF22BEEB83 /* red-panda.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "red-panda.rig.json"; sourceTree = "<group>"; };
+		347D9F855884DFC92A29CC19 /* DailyFriendsPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFriendsPresentationTests.swift; sourceTree = "<group>"; };
+		3705EAF6CA9255BC0E2BA154 /* WorkoutHistoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryTests.swift; sourceTree = "<group>"; };
 		37BCAF7981F375EF517A9D9A /* PawPaceLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceLiveActivity.swift; sourceTree = "<group>"; };
+		390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AnimalPortraits.xcassets; sourceTree = "<group>"; };
+		3B12FB5150EC1244D085F5F8 /* WorkoutActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutActivityTests.swift; sourceTree = "<group>"; };
 		3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MochiCreatureView.swift; sourceTree = "<group>"; };
+		3D1507D3CB7729D7B7D882AA /* FriendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendTests.swift; sourceTree = "<group>"; };
 		3DD4F51318F1CD8A758EA62A /* PawPaceWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PawPaceWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E043AFED5E696201285DCB4 /* phoenix.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = phoenix.rig.json; sourceTree = "<group>"; };
+		3EC843DB54A8A751520ADD80 /* CompanionSpecialEffects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionSpecialEffects.swift; sourceTree = "<group>"; };
+		3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetLifecycle.swift; sourceTree = "<group>"; };
+		4085142EB0AC9E20A2767125 /* PlannerReminders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerReminders.swift; sourceTree = "<group>"; };
+		44852712660F5B3FA38A4C6B /* HabitatArrangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitatArrangeView.swift; sourceTree = "<group>"; };
+		450232C2239CEE256B0397B7 /* BuddyPlayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPlayTests.swift; sourceTree = "<group>"; };
+		46ECA88AB0A1514D0F81827F /* EverydayActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverydayActivityView.swift; sourceTree = "<group>"; };
+		48BB592C772FB14751470E1F /* bunny.scn */ = {isa = PBXFileReference; path = bunny.scn; sourceTree = "<group>"; };
+		49C83F45A802ED87BE1A0D45 /* MemoryPhotoStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoryPhotoStore.swift; sourceTree = "<group>"; };
 		4B8C189C2910AE3992A19B3D /* PawPaceLiveActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceLiveActivityBundle.swift; sourceTree = "<group>"; };
+		4C48B5AC704527F1CF1A0A0B /* JourneyPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JourneyPresentationTests.swift; sourceTree = "<group>"; };
+		4D655E2F8DA497D2C095EF36 /* AnimalCompanionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalCompanionView.swift; sourceTree = "<group>"; };
+		4DB3BECDD5CB9C80BCCF7BD7 /* BuddyMemoryBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyMemoryBookView.swift; sourceTree = "<group>"; };
 		506A20B870FFCCE994DF76E0 /* PawPaceWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceWidgetBundle.swift; sourceTree = "<group>"; };
 		511AC4DBD18D07DE7568FCB4 /* AppRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRootView.swift; sourceTree = "<group>"; };
-		6259AB7464EB315AEC0D50AD /* VoiceInputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceInputService.swift; sourceTree = "<group>"; };
+		5169A94411D434CEF835FA75 /* AnimalRoamingIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalRoamingIntegrationTests.swift; sourceTree = "<group>"; };
+		544DAE2832ABE9DFFB737702 /* phoenix.scn */ = {isa = PBXFileReference; path = phoenix.scn; sourceTree = "<group>"; };
+		56F47A2CD9AE6ED1203F7C85 /* CompanionRoaming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionRoaming.swift; sourceTree = "<group>"; };
+		5A67C202BE8CF1E46F8AC2E6 /* CompanionHabitatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionHabitatView.swift; sourceTree = "<group>"; };
+		5A8795E030B3F3409B9931AB /* BuddyBond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyBond.swift; sourceTree = "<group>"; };
+		5CFBE9AEB231A374604BE063 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		5D6E04E926C8F87B54883119 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		5F446D80048AE7BFA25305B7 /* WorkoutHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHistoryView.swift; sourceTree = "<group>"; };
+		5F7A502FEF0AE391A95EBDEF /* ClubModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubModels.swift; sourceTree = "<group>"; };
 		651ED86A459DA77554428CE3 /* WatchWorkoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWorkoutManager.swift; sourceTree = "<group>"; };
 		6C0D09543A81184995D63152 /* PawPaceWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = PawPaceWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DD3512ACD19399ED2683745 /* axolotl.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = axolotl.motion.json; sourceTree = "<group>"; };
 		6EFEEAEBF0BA9B57AA3048AC /* WatchPetConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchPetConnectivityService.swift; sourceTree = "<group>"; };
+		70594AF555061BC9D3E6B5D9 /* corgi.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = corgi.rig.json; sourceTree = "<group>"; };
 		70951C7903C911AE21BFDBBE /* PawPaceShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceShared.swift; sourceTree = "<group>"; };
 		71883E23F964CE94957D6845 /* WatchSyncTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSyncTests.swift; sourceTree = "<group>"; };
+		71A02672E8C73DD478D4AEAF /* dragon.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dragon.rig.json; sourceTree = "<group>"; };
+		77BF1B5906CF35BE1D1B6B88 /* bunny.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bunny.rig.json; sourceTree = "<group>"; };
+		78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyKeepsakes.swift; sourceTree = "<group>"; };
+		81086C87D5F42091142D17AD /* BuddyKeepsakePresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyKeepsakePresentationTests.swift; sourceTree = "<group>"; };
+		842C7E72E529899590720633 /* penguin.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = penguin.rig.json; sourceTree = "<group>"; };
+		85A59E3E78BDA209F1E11427 /* CompanionProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionProgressView.swift; sourceTree = "<group>"; };
+		8A7886A3D1C5307D508A2207 /* fox.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fox.motion.json; sourceTree = "<group>"; };
+		8C7DC10292EE4932B31BA4BD /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		8D9E53D31E173645C257DF18 /* PetLifecycleVisualTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetLifecycleVisualTests.swift; sourceTree = "<group>"; };
+		8F9198F7CC618481969C343A /* ClubStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStore.swift; sourceTree = "<group>"; };
+		914B662A3D12DF8684862A57 /* BuddyPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPlayView.swift; sourceTree = "<group>"; };
+		91902E7D774607218C6B802E /* AnimalPortraitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalPortraitView.swift; sourceTree = "<group>"; };
+		91A30852306E317577CF412B /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		936DCF013C8D5A34DE8F0984 /* PawPaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceApp.swift; sourceTree = "<group>"; };
+		97A83CA0B7B8D9245E8AB202 /* WorkoutCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCompletionTests.swift; sourceTree = "<group>"; };
+		9F894560DD02C7AF59F26599 /* corgi.scn */ = {isa = PBXFileReference; path = corgi.scn; sourceTree = "<group>"; };
 		A1BA245A0C91B7FD2A26BEF2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A2182DB77CD5F8801D38B834 /* CompanionJourneyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionJourneyTests.swift; sourceTree = "<group>"; };
+		A27E8505AC13EF9B122F9D17 /* AnimalAssetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalAssetTests.swift; sourceTree = "<group>"; };
+		A54503706560A02CECE45D7B /* WorkoutIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutIntegrationTests.swift; sourceTree = "<group>"; };
+		A565BBAC0E882C8FFA179BAD /* PhoneWorkoutRecoveryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWorkoutRecoveryTests.swift; sourceTree = "<group>"; };
+		A74BB151EDAC6FBF15810B36 /* WorkoutHandshakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutHandshakeTests.swift; sourceTree = "<group>"; };
 		A8B6C75EC6C5DBC30DC13FE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWorkoutRecoveryRecord.swift; sourceTree = "<group>"; };
+		AE579D3734840FEE3A34D3C6 /* WorkoutPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPresentationTests.swift; sourceTree = "<group>"; };
+		AEF838BC3A4414E1CD773E53 /* PetGrowthCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetGrowthCard.swift; sourceTree = "<group>"; };
+		B0F01EA2EFE90F9599C903D2 /* CompanionField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionField.swift; sourceTree = "<group>"; };
+		B43329E3299AF39CA80D1EDE /* DailyQuestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestsView.swift; sourceTree = "<group>"; };
 		B5F9D348E8192C4643239708 /* PawPaceTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PawPaceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB8F00167A9FA0741FBD8F03 /* fox.scn */ = {isa = PBXFileReference; path = fox.scn; sourceTree = "<group>"; };
+		BE66F0B114BC8086E6C38BDD /* red-panda.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "red-panda.motion.json"; sourceTree = "<group>"; };
+		C2AB3E9C93ABE827ABE2DD27 /* CompanionSpecialTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionSpecialTests.swift; sourceTree = "<group>"; };
+		C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuests.swift; sourceTree = "<group>"; };
+		C39AB12009442D0DB458BA7D /* unicorn.scn */ = {isa = PBXFileReference; path = unicorn.scn; sourceTree = "<group>"; };
 		C6192AA8749C642FD32672B9 /* HealthKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitService.swift; sourceTree = "<group>"; };
 		C6617743A66D7D4EB22C7FD5 /* PetWidgetIntents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetWidgetIntents.swift; sourceTree = "<group>"; };
 		CAEAF01F01ECC356478608E0 /* PhoneWatchConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWatchConnectivityService.swift; sourceTree = "<group>"; };
-		CDA48485E825B0AAB30A7D3C /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		CB769F1E0422E477A84681F9 /* PetLifecycleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetLifecycleTests.swift; sourceTree = "<group>"; };
+		CCA74F50370CA85CE2920B66 /* BuddyPlayPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyPlayPresentationTests.swift; sourceTree = "<group>"; };
 		D020101E2A93AD344299A0A4 /* PawPaceWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceWatchApp.swift; sourceTree = "<group>"; };
+		D542D039A694B7E7B71A1499 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
+		D68C3B216FFBE71020EC2AE8 /* penguin.scn */ = {isa = PBXFileReference; path = penguin.scn; sourceTree = "<group>"; };
+		D7F16982E769B0919909B478 /* WorkoutPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPickerView.swift; sourceTree = "<group>"; };
 		D890A603D11DA65B5E3975D4 /* RunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunView.swift; sourceTree = "<group>"; };
+		DAE7BFD8DBCE2A8C6F9CFA56 /* CompanionRigProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionRigProfile.swift; sourceTree = "<group>"; };
+		DC8D45A2E1D6E92481B62D7B /* dragon.scn */ = {isa = PBXFileReference; path = dragon.scn; sourceTree = "<group>"; };
+		DE34A3A9B075A198082BACE8 /* fox.rig.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = fox.rig.json; sourceTree = "<group>"; };
+		DE686FCE6513A761051E2C99 /* DailyQuestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuestTests.swift; sourceTree = "<group>"; };
 		DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceWatchSync.swift; sourceTree = "<group>"; };
 		E25FC811D0926323608ABB7F /* PawPaceActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PawPaceActivityAttributes.swift; sourceTree = "<group>"; };
-		E3CEE6FF3FA2066FD8B918E7 /* CompanionChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanionChatService.swift; sourceTree = "<group>"; };
+		E27C9CF56A848399DD0C782D /* AnimalMotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalMotionTests.swift; sourceTree = "<group>"; };
+		E600A194C3D6B7687EAF48F2 /* axolotl.scn */ = {isa = PBXFileReference; path = axolotl.scn; sourceTree = "<group>"; };
+		E652A17C079DDFE9F3075ECD /* ClubPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubPresentationTests.swift; sourceTree = "<group>"; };
 		E85A9FC076848E545CF8D9B0 /* WatchConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WatchConnectivity.framework; path = System/Library/Frameworks/WatchConnectivity.framework; sourceTree = SDKROOT; };
+		E90923BF0398B3B14BD72DD9 /* WorkoutCompletionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutCompletionStore.swift; sourceTree = "<group>"; };
+		E9FD01C1C4A5B5256768B576 /* PlannerPresentationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerPresentationTests.swift; sourceTree = "<group>"; };
+		EC14E299ECA6F34B1350366C /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		F0F39D751218DC00A4C5B063 /* DeferredWatchCompletionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeferredWatchCompletionTests.swift; sourceTree = "<group>"; };
+		F146138212DC4889B6EF9D0D /* EverydayActivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverydayActivityService.swift; sourceTree = "<group>"; };
 		F1A4612E68874B90887BA33A /* PetSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSnapshotTests.swift; sourceTree = "<group>"; };
+		F282AE3ED4A889F48B0A87E2 /* ClubDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailView.swift; sourceTree = "<group>"; };
+		F2E4177C5ED43249E82C458E /* WatchWorkoutRecoveryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchWorkoutRecoveryTests.swift; sourceTree = "<group>"; };
+		F3FABE81C3427D40D160917D /* WorkoutActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutActivity.swift; sourceTree = "<group>"; };
+		F4F29CF5CC7F3378B88FB3F3 /* BuddyKeepsakeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuddyKeepsakeTests.swift; sourceTree = "<group>"; };
+		F53E171293CF6C9896AB5C3B /* ClubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubAPI.swift; sourceTree = "<group>"; };
+		F5C716B313EF900928A15660 /* ClubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubView.swift; sourceTree = "<group>"; };
 		F63CC091EBED9FD172463817 /* PetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetStore.swift; sourceTree = "<group>"; };
+		F690176B4E2F2440D43EC356 /* FriendModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendModels.swift; sourceTree = "<group>"; };
+		F7CD9B2285F4391B4FADFDE5 /* PlannerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerStore.swift; sourceTree = "<group>"; };
+		F87300D4D17325BC266F1D11 /* EverydayActivityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverydayActivityTests.swift; sourceTree = "<group>"; };
+		F8BE072A0D0F9ECE2D310793 /* unicorn.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = unicorn.motion.json; sourceTree = "<group>"; };
+		F8BE1A7DF70FC8FEE98C165A /* dragon.motion.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = dragon.motion.json; sourceTree = "<group>"; };
+		FAC0F776D965815E142AE373 /* PlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerTests.swift; sourceTree = "<group>"; };
+		FF746481906AECA02A03A77E /* PhoneWorkoutCheckpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneWorkoutCheckpoint.swift; sourceTree = "<group>"; };
 		FF75C60E97A2491EC8E6A056 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		FF9CD535D302F056AE7C560F /* WatchRunView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRunView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,19 +417,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01846B9B78DA8F8C90A7B9D9 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				5F446D80048AE7BFA25305B7 /* WorkoutHistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
 		0AA9ECAD7B905E30B688B4A0 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				BA8451248680BC08CC371167 /* Animals */,
 				A8B6C75EC6C5DBC30DC13FE7 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		13B5CAAD6B56B7DD55387F28 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				189762DF55A398ACEF29C46E /* Privacy */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		14C7911C176CAC51411910B0 /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				91A30852306E317577CF412B /* PlannerView.swift */,
+			);
+			path = Planner;
+			sourceTree = "<group>";
+		};
+		189762DF55A398ACEF29C46E /* Privacy */ = {
+			isa = PBXGroup;
+			children = (
+				5B17291EFB535F81A010717A /* iOS */,
+				CDD730B446E85F0D681E7768 /* Phone */,
+				C6A843A6D228AE8999DD520B /* watchOS */,
+			);
+			path = Privacy;
+			sourceTree = "<group>";
+		};
 		198F1AD6ACEF5543FDE8FB70 /* SharedUI */ = {
 			isa = PBXGroup;
 			children = (
+				390DE5942C2B6DD7956B76A4 /* AnimalPortraits.xcassets */,
+				91902E7D774607218C6B802E /* AnimalPortraitView.swift */,
 				3C0E061C5A606232354CCD45 /* MochiCreatureView.swift */,
 				09A4B902BF379E98AC27671C /* PawTheme.swift */,
+				D7F16982E769B0919909B478 /* WorkoutPickerView.swift */,
 			);
 			path = SharedUI;
 			sourceTree = "<group>";
@@ -209,6 +483,7 @@
 		3965545CA72C97152511AE3D = {
 			isa = PBXGroup;
 			children = (
+				13B5CAAD6B56B7DD55387F28 /* Config */,
 				6ABD5D106351844625C5ADEE /* PawPace */,
 				316176D54AC8D33AA21A72C3 /* PawPaceLiveActivityWidgets */,
 				F3454AA56AE12CB1543E6BCB /* PawPaceTests */,
@@ -221,25 +496,34 @@
 			);
 			sourceTree = "<group>";
 		};
-		3980F3E708ABB431C0E950CE /* Chat */ = {
-			isa = PBXGroup;
-			children = (
-				1D4FCD78536255D8BC8FE121 /* ChatView.swift */,
-			);
-			path = Chat;
-			sourceTree = "<group>";
-		};
 		3FF86C6D542CC7D1BB1232E7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				E3CEE6FF3FA2066FD8B918E7 /* CompanionChatService.swift */,
+				F53E171293CF6C9896AB5C3B /* ClubAPI.swift */,
+				5F7A502FEF0AE391A95EBDEF /* ClubModels.swift */,
+				8F9198F7CC618481969C343A /* ClubStore.swift */,
+				F146138212DC4889B6EF9D0D /* EverydayActivityService.swift */,
+				F690176B4E2F2440D43EC356 /* FriendModels.swift */,
 				C6192AA8749C642FD32672B9 /* HealthKitService.swift */,
 				07644CE8B70ED33994AB991C /* LiveActivityService.swift */,
+				49C83F45A802ED87BE1A0D45 /* MemoryPhotoStore.swift */,
 				CAEAF01F01ECC356478608E0 /* PhoneWatchConnectivityService.swift */,
+				FF746481906AECA02A03A77E /* PhoneWorkoutCheckpoint.swift */,
+				4085142EB0AC9E20A2767125 /* PlannerReminders.swift */,
+				F7CD9B2285F4391B4FADFDE5 /* PlannerStore.swift */,
 				0D0BBD9E3C7A9747A3FA608E /* RunTracker.swift */,
-				6259AB7464EB315AEC0D50AD /* VoiceInputService.swift */,
+				E90923BF0398B3B14BD72DD9 /* WorkoutCompletionStore.swift */,
+				077850004594F05E6C2823C1 /* WorkoutHistoryStore.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5B17291EFB535F81A010717A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8C7DC10292EE4932B31BA4BD /* PrivacyInfo.xcprivacy */,
+			);
+			path = iOS;
 			sourceTree = "<group>";
 		};
 		5B1842759CFABD1D3F0CDB6C /* App */ = {
@@ -247,6 +531,7 @@
 			children = (
 				110AB21E299002A86437B280 /* AppModel.swift */,
 				511AC4DBD18D07DE7568FCB4 /* AppRootView.swift */,
+				2CC3CB71F499B95ED6D2DD6C /* PetName.swift */,
 				F63CC091EBED9FD172463817 /* PetStore.swift */,
 			);
 			path = App;
@@ -276,12 +561,26 @@
 		7E9A735622A4E3909779C15B /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				3980F3E708ABB431C0E950CE /* Chat */,
-				C79453A4932E15E79DE77E8C /* Collection */,
+				839E82589497C87500EB7116 /* Club */,
+				8E8073FD26C22A06E7500C37 /* Companion */,
+				01846B9B78DA8F8C90A7B9D9 /* History */,
 				CD508EDA9B74E4D7E55B7049 /* Home */,
+				A160F586EEE57916FFDDAEBE /* Onboarding */,
+				14C7911C176CAC51411910B0 /* Planner */,
 				F49315A467AEFB9BA8D5CD8B /* Run */,
+				F6B082A74609F49C377175A1 /* Settings */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		839E82589497C87500EB7116 /* Club */ = {
+			isa = PBXGroup;
+			children = (
+				F282AE3ED4A889F48B0A87E2 /* ClubDetailView.swift */,
+				F5C716B313EF900928A15660 /* ClubView.swift */,
+				EC14E299ECA6F34B1350366C /* FriendsView.swift */,
+			);
+			path = Club;
 			sourceTree = "<group>";
 		};
 		88048DACAA0D1D42006E3692 /* Products */ = {
@@ -294,6 +593,18 @@
 				6C0D09543A81184995D63152 /* PawPaceWidgets.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8E8073FD26C22A06E7500C37 /* Companion */ = {
+			isa = PBXGroup;
+			children = (
+				4D655E2F8DA497D2C095EF36 /* AnimalCompanionView.swift */,
+				B0F01EA2EFE90F9599C903D2 /* CompanionField.swift */,
+				DAE7BFD8DBCE2A8C6F9CFA56 /* CompanionRigProfile.swift */,
+				56F47A2CD9AE6ED1203F7C85 /* CompanionRoaming.swift */,
+				3EC843DB54A8A751520ADD80 /* CompanionSpecialEffects.swift */,
+			);
+			path = Companion;
 			sourceTree = "<group>";
 		};
 		9892C613AFDA4ACDDA2D659D /* PawPaceWidgets */ = {
@@ -310,12 +621,59 @@
 		99A343B2EE855B84C2481084 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				5A8795E030B3F3409B9931AB /* BuddyBond.swift */,
+				78DEEFB1180A1E8FE3838C5D /* BuddyKeepsakes.swift */,
+				1460DDD2F480DE74CE9CDC91 /* CompanionJourney.swift */,
+				C34DD57E845B5D0BE2030C54 /* DailyQuests.swift */,
 				E25FC811D0926323608ABB7F /* PawPaceActivityAttributes.swift */,
 				10BDA2DE24D400D9C2533AE0 /* PawPaceFormatting.swift */,
+				02DF69E5F51BF829CBA48901 /* PawPacePrivateStorage.swift */,
 				70951C7903C911AE21BFDBBE /* PawPaceShared.swift */,
 				DF29D1B07D2331C182938707 /* PawPaceWatchSync.swift */,
+				3FB88F5D55DF4AEB43A13CB1 /* PetLifecycle.swift */,
+				AAABA091C4CBE9B7F869D3B5 /* WatchWorkoutRecoveryRecord.swift */,
+				F3FABE81C3427D40D160917D /* WorkoutActivity.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		A160F586EEE57916FFDDAEBE /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				D542D039A694B7E7B71A1499 /* WelcomeView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		BA8451248680BC08CC371167 /* Animals */ = {
+			isa = PBXGroup;
+			children = (
+				6DD3512ACD19399ED2683745 /* axolotl.motion.json */,
+				2B731FD3D80FDA6D8E85CA8A /* axolotl.rig.json */,
+				E600A194C3D6B7687EAF48F2 /* axolotl.scn */,
+				77BF1B5906CF35BE1D1B6B88 /* bunny.rig.json */,
+				48BB592C772FB14751470E1F /* bunny.scn */,
+				70594AF555061BC9D3E6B5D9 /* corgi.rig.json */,
+				9F894560DD02C7AF59F26599 /* corgi.scn */,
+				F8BE1A7DF70FC8FEE98C165A /* dragon.motion.json */,
+				71A02672E8C73DD478D4AEAF /* dragon.rig.json */,
+				DC8D45A2E1D6E92481B62D7B /* dragon.scn */,
+				8A7886A3D1C5307D508A2207 /* fox.motion.json */,
+				DE34A3A9B075A198082BACE8 /* fox.rig.json */,
+				BB8F00167A9FA0741FBD8F03 /* fox.scn */,
+				842C7E72E529899590720633 /* penguin.rig.json */,
+				D68C3B216FFBE71020EC2AE8 /* penguin.scn */,
+				1C45889138650EDCE36B5CC1 /* phoenix.motion.json */,
+				3E043AFED5E696201285DCB4 /* phoenix.rig.json */,
+				544DAE2832ABE9DFFB737702 /* phoenix.scn */,
+				BE66F0B114BC8086E6C38BDD /* red-panda.motion.json */,
+				341B3841746A30FF22BEEB83 /* red-panda.rig.json */,
+				11541ABD82CC543F0F5344F6 /* red-panda.scn */,
+				F8BE072A0D0F9ECE2D310793 /* unicorn.motion.json */,
+				1FCC96A72FF558314111803B /* unicorn.rig.json */,
+				C39AB12009442D0DB458BA7D /* unicorn.scn */,
+			);
+			path = Animals;
 			sourceTree = "<group>";
 		};
 		C612DDD5B8B2B24E6D033299 /* PawPaceWatch */ = {
@@ -330,27 +688,76 @@
 			path = PawPaceWatch;
 			sourceTree = "<group>";
 		};
-		C79453A4932E15E79DE77E8C /* Collection */ = {
+		C6A843A6D228AE8999DD520B /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
-				CDA48485E825B0AAB30A7D3C /* CollectionView.swift */,
+				1B76A3BDAB08F28683425809 /* PrivacyInfo.xcprivacy */,
 			);
-			path = Collection;
+			path = watchOS;
 			sourceTree = "<group>";
 		};
 		CD508EDA9B74E4D7E55B7049 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4DB3BECDD5CB9C80BCCF7BD7 /* BuddyMemoryBookView.swift */,
+				914B662A3D12DF8684862A57 /* BuddyPlayView.swift */,
+				5A67C202BE8CF1E46F8AC2E6 /* CompanionHabitatView.swift */,
+				85A59E3E78BDA209F1E11427 /* CompanionProgressView.swift */,
+				2EF628E2EED642465CD99D7F /* CompanionShareView.swift */,
+				B43329E3299AF39CA80D1EDE /* DailyQuestsView.swift */,
+				44852712660F5B3FA38A4C6B /* HabitatArrangeView.swift */,
 				A1BA245A0C91B7FD2A26BEF2 /* HomeView.swift */,
+				068F8C84C2EA5D0E8ABA5316 /* JourneyView.swift */,
+				AEF838BC3A4414E1CD773E53 /* PetGrowthCard.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		CDD730B446E85F0D681E7768 /* Phone */ = {
+			isa = PBXGroup;
+			children = (
+				5CFBE9AEB231A374604BE063 /* PrivacyInfo.xcprivacy */,
+			);
+			path = Phone;
 			sourceTree = "<group>";
 		};
 		F3454AA56AE12CB1543E6BCB /* PawPaceTests */ = {
 			isa = PBXGroup;
 			children = (
+				A27E8505AC13EF9B122F9D17 /* AnimalAssetTests.swift */,
+				E27C9CF56A848399DD0C782D /* AnimalMotionTests.swift */,
+				5169A94411D434CEF835FA75 /* AnimalRoamingIntegrationTests.swift */,
+				81086C87D5F42091142D17AD /* BuddyKeepsakePresentationTests.swift */,
+				F4F29CF5CC7F3378B88FB3F3 /* BuddyKeepsakeTests.swift */,
+				CCA74F50370CA85CE2920B66 /* BuddyPlayPresentationTests.swift */,
+				450232C2239CEE256B0397B7 /* BuddyPlayTests.swift */,
+				E652A17C079DDFE9F3075ECD /* ClubPresentationTests.swift */,
+				095052473BF956FEC70E8EA9 /* ClubTests.swift */,
+				A2182DB77CD5F8801D38B834 /* CompanionJourneyTests.swift */,
+				2420E351C327E14CBCC6CD30 /* CompanionRoamingTests.swift */,
+				C2AB3E9C93ABE827ABE2DD27 /* CompanionSpecialTests.swift */,
+				347D9F855884DFC92A29CC19 /* DailyFriendsPresentationTests.swift */,
+				DE686FCE6513A761051E2C99 /* DailyQuestTests.swift */,
+				F0F39D751218DC00A4C5B063 /* DeferredWatchCompletionTests.swift */,
+				F87300D4D17325BC266F1D11 /* EverydayActivityTests.swift */,
+				3D1507D3CB7729D7B7D882AA /* FriendTests.swift */,
+				4C48B5AC704527F1CF1A0A0B /* JourneyPresentationTests.swift */,
+				CB769F1E0422E477A84681F9 /* PetLifecycleTests.swift */,
+				8D9E53D31E173645C257DF18 /* PetLifecycleVisualTests.swift */,
 				F1A4612E68874B90887BA33A /* PetSnapshotTests.swift */,
+				A565BBAC0E882C8FFA179BAD /* PhoneWorkoutRecoveryTests.swift */,
+				E9FD01C1C4A5B5256768B576 /* PlannerPresentationTests.swift */,
+				FAC0F776D965815E142AE373 /* PlannerTests.swift */,
+				091BF1E081C780A1A354F841 /* PrivateStorageTests.swift */,
+				0189B2B1CBE5C444857B47A8 /* SummaryDismissalTests.swift */,
 				71883E23F964CE94957D6845 /* WatchSyncTests.swift */,
+				F2E4177C5ED43249E82C458E /* WatchWorkoutRecoveryTests.swift */,
+				3B12FB5150EC1244D085F5F8 /* WorkoutActivityTests.swift */,
+				97A83CA0B7B8D9245E8AB202 /* WorkoutCompletionTests.swift */,
+				A74BB151EDAC6FBF15810B36 /* WorkoutHandshakeTests.swift */,
+				3705EAF6CA9255BC0E2BA154 /* WorkoutHistoryTests.swift */,
+				A54503706560A02CECE45D7B /* WorkoutIntegrationTests.swift */,
+				AE579D3734840FEE3A34D3C6 /* WorkoutPresentationTests.swift */,
 			);
 			path = PawPaceTests;
 			sourceTree = "<group>";
@@ -358,10 +765,20 @@
 		F49315A467AEFB9BA8D5CD8B /* Run */ = {
 			isa = PBXGroup;
 			children = (
+				3101B702628FD3444F1F1BB9 /* InterruptedWorkoutView.swift */,
 				030CEF182E87B8C1731DA97E /* RunSummaryView.swift */,
 				D890A603D11DA65B5E3975D4 /* RunView.swift */,
 			);
 			path = Run;
+			sourceTree = "<group>";
+		};
+		F6B082A74609F49C377175A1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				46ECA88AB0A1514D0F81827F /* EverydayActivityView.swift */,
+				5D6E04E926C8F87B54883119 /* SettingsView.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -432,6 +849,7 @@
 			buildConfigurationList = 9C02147DC4E42518E0364B8F /* Build configuration list for PBXNativeTarget "PawPaceWidgets" */;
 			buildPhases = (
 				8628243C7A6373170383DE36 /* Sources */,
+				0D1BC225551273840F0CD7B1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -449,6 +867,7 @@
 			buildConfigurationList = B667C6D722ABB579C9CE772D /* Build configuration list for PBXNativeTarget "PawPaceLiveActivity" */;
 			buildPhases = (
 				FD5C45CA01BF5E85EA7EF889 /* Sources */,
+				214CDFD4FB6E87C710201110 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -516,11 +935,55 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		0D1BC225551273840F0CD7B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C69B7C3B8DF9FAC261DDD46E /* AnimalPortraits.xcassets in Resources */,
+				B17AA93603CB1E0E7F5C165A /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		214CDFD4FB6E87C710201110 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				69688F09AE2D1C39A2FC3F6B /* AnimalPortraits.xcassets in Resources */,
+				DFBCC2D8E1774D924A560BE7 /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6A18CD87EB9F24CC601865A0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACB4AB76578165B6DB9A6705 /* AnimalPortraits.xcassets in Resources */,
 				A11D194DB2F099F7CA50E046 /* Assets.xcassets in Resources */,
+				90546DC81333AED3F515ACE7 /* PrivacyInfo.xcprivacy in Resources */,
+				554C087C1BA87BF5E30B3D96 /* axolotl.motion.json in Resources */,
+				BE1142F73C9B05EC23568345 /* axolotl.rig.json in Resources */,
+				06132F38D64F33D6053071E8 /* axolotl.scn in Resources */,
+				72ED7BFE9866FC3D4D4C1D34 /* bunny.rig.json in Resources */,
+				EFA476A805FFC4DE03709301 /* bunny.scn in Resources */,
+				5DD3E27962FACE4015CEA16C /* corgi.rig.json in Resources */,
+				FA3FA23B7E6D40BCD10F43D5 /* corgi.scn in Resources */,
+				182DDD3CA0AC26A5D5C7CB32 /* dragon.motion.json in Resources */,
+				B6B4086248483C8A0A837543 /* dragon.rig.json in Resources */,
+				601809AF4C0E7628FD6EB883 /* dragon.scn in Resources */,
+				A90CA01B9941AAB73AE6BCE9 /* fox.motion.json in Resources */,
+				AB009C0CD394AE0961188D3D /* fox.rig.json in Resources */,
+				7B2403BF69F0BB8F7BFAC3F2 /* fox.scn in Resources */,
+				0A3C3469246D2965C8047D01 /* penguin.rig.json in Resources */,
+				F3DBF2B72B91CF64FC90A837 /* penguin.scn in Resources */,
+				9CADE79782592E24B9C7E372 /* phoenix.motion.json in Resources */,
+				4A1F1E1874A17C9DF0EBE5E9 /* phoenix.rig.json in Resources */,
+				8E1EAE6021A8A0C044F3C37C /* phoenix.scn in Resources */,
+				EE0DA97EE0A2741D79896CB4 /* red-panda.motion.json in Resources */,
+				BE67FD33220FCB55EE3192D0 /* red-panda.rig.json in Resources */,
+				B77BA2CF2DB1A3AD558CF8FC /* red-panda.scn in Resources */,
+				F3A3D04D07BAFBD480592DC8 /* unicorn.motion.json in Resources */,
+				896CC7E2BA026714B4509312 /* unicorn.rig.json in Resources */,
+				3C0D3484364A86AECC85C725 /* unicorn.scn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +991,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				259F3382623C0701BC8DC7DC /* AnimalPortraits.xcassets in Resources */,
 				9D7E5D0C9411EB82532D10DE /* Assets.xcassets in Resources */,
+				B10C4894E152D943CC5648A3 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,15 +1004,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C44492016ADCE5A0E65B17DD /* AnimalPortraitView.swift in Sources */,
+				D9B5B344D34AC5D9B72FE62E /* BuddyBond.swift in Sources */,
+				9E36F834FA897633252548CB /* BuddyKeepsakes.swift in Sources */,
+				4463F9764AA54CF32C532084 /* CompanionJourney.swift in Sources */,
+				297D950583EA3B14E37F00B5 /* DailyQuests.swift in Sources */,
 				23BAD58BA7CCE2A7B68F373C /* MochiCreatureView.swift in Sources */,
 				0FA81E86CAC3C7B5463DA8DA /* PawPaceFormatting.swift in Sources */,
+				2FDB0D0B5EA4EFB194D40E4D /* PawPacePrivateStorage.swift in Sources */,
 				4ACAA111046566CCB0D09787 /* PawPaceShared.swift in Sources */,
 				B6C5EF5F5F72FDBBBA8DFC1B /* PawPaceWatchApp.swift in Sources */,
 				83B13CF8D14AC4AD3C2D2888 /* PawPaceWatchSync.swift in Sources */,
 				BBBBF1E2ACE1C9180A656309 /* PawTheme.swift in Sources */,
+				405087FC877DBCD1B6A086D9 /* PetLifecycle.swift in Sources */,
 				F483308522E640C0B07DB2A0 /* WatchPetConnectivityService.swift in Sources */,
 				C7B0545D9364E0D581F00F00 /* WatchRunView.swift in Sources */,
 				9CBD77860486B4781717E935 /* WatchWorkoutManager.swift in Sources */,
+				EF9AAB47BCD30647B75FF787 /* WatchWorkoutRecoveryRecord.swift in Sources */,
+				683B601D7BF5FD411EA32CFD /* WorkoutActivity.swift in Sources */,
+				EE9D4784B7ED087EFA268798 /* WorkoutPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,15 +1030,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E40463332471188645A1F7E4 /* AnimalPortraitView.swift in Sources */,
+				340555579CF126FE178956D6 /* BuddyBond.swift in Sources */,
+				B9B1BD241453E21F5C459F6E /* BuddyKeepsakes.swift in Sources */,
+				5EAB7C9A026B690EDDBF4291 /* CompanionJourney.swift in Sources */,
+				09AF0571848F4694734DD9BE /* DailyQuests.swift in Sources */,
 				6BD5CEB25E79F8721BD5CB84 /* MochiCreatureView.swift in Sources */,
 				EC5381987A682B1B96F42E06 /* PawPaceActivityAttributes.swift in Sources */,
 				45EB3C2E4AC2B27B7DD0BFB9 /* PawPaceFormatting.swift in Sources */,
+				FD67AA447F979A4C71E16E0F /* PawPacePrivateStorage.swift in Sources */,
 				02D93FA53EBA839E40B6156B /* PawPaceShared.swift in Sources */,
 				9DA8322D2C11A31ED3B07761 /* PawPaceWatchSync.swift in Sources */,
 				AF2D787C137480D839A16E4B /* PawPaceWidgetBundle.swift in Sources */,
 				C46FB67B89862743B44410EB /* PawTheme.swift in Sources */,
+				3D1FDCB691A79F9EDFB61455 /* PetLifecycle.swift in Sources */,
 				033700EAFE5F64A0DB781376 /* PetWidgetIntents.swift in Sources */,
 				AA3D8312D2CC2AA0FADED578 /* PetWidgets.swift in Sources */,
+				AE7ED66EF9034BA4773CD60F /* WatchWorkoutRecoveryRecord.swift in Sources */,
+				B12D827AC40167E7A9370DEE /* WorkoutActivity.swift in Sources */,
+				30C55896601B6B60C04ED002 /* WorkoutPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,8 +1056,40 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				356C1FFED9C54DDBF7C3FDF5 /* AnimalAssetTests.swift in Sources */,
+				AEFC9B0E3FAE1BDD98799F21 /* AnimalMotionTests.swift in Sources */,
+				51C8EBB550B7591174C6F396 /* AnimalRoamingIntegrationTests.swift in Sources */,
+				72E6B7050CE52D23895374CB /* BuddyKeepsakePresentationTests.swift in Sources */,
+				17F73401DCEAF0CD26EFA94B /* BuddyKeepsakeTests.swift in Sources */,
+				BB12D30526EA6C000ED85B9E /* BuddyPlayPresentationTests.swift in Sources */,
+				D9C8AB3E885D0852622AEE3F /* BuddyPlayTests.swift in Sources */,
+				5F9CC768CCBCFCBA3C513A4C /* ClubPresentationTests.swift in Sources */,
+				54359687C225AFC072F69FC6 /* ClubTests.swift in Sources */,
+				AAFA040B862707A4FE20E0F5 /* CompanionJourneyTests.swift in Sources */,
+				CF31D8C03998443FCB902700 /* CompanionRoamingTests.swift in Sources */,
+				223F10C2A1EF01C36E9DE00F /* CompanionSpecialTests.swift in Sources */,
+				A6AE4766B794537D4332F023 /* DailyFriendsPresentationTests.swift in Sources */,
+				D28726813C1FBA82F27075BC /* DailyQuestTests.swift in Sources */,
+				F4C65B788BC5BFFAC0DB3102 /* DeferredWatchCompletionTests.swift in Sources */,
+				4C3D7552304E930DD0D63BF2 /* EverydayActivityTests.swift in Sources */,
+				D0CE52BB1B33CABE7375053E /* FriendTests.swift in Sources */,
+				F634DCF76E909116CFA8261D /* JourneyPresentationTests.swift in Sources */,
+				6C85DF0B6BAC3D5C19EAAFE2 /* PetLifecycleTests.swift in Sources */,
+				B1102880B3C4E2EED4F1B24B /* PetLifecycleVisualTests.swift in Sources */,
 				170E79BD2B92E04C5BDD8C88 /* PetSnapshotTests.swift in Sources */,
+				255AADFA6698652E7444693C /* PhoneWorkoutRecoveryTests.swift in Sources */,
+				316DBF77A289870873B2A92E /* PlannerPresentationTests.swift in Sources */,
+				F213D4D5E9C217B490AB2DA3 /* PlannerTests.swift in Sources */,
+				512189F8D45146BD541174BF /* PrivateStorageTests.swift in Sources */,
+				32D39FF2F5CB5FA31DDDEF91 /* SummaryDismissalTests.swift in Sources */,
 				C8816D9E9D516D938C3200D4 /* WatchSyncTests.swift in Sources */,
+				50261AE15295C74F547179ED /* WatchWorkoutRecoveryTests.swift in Sources */,
+				74180DC715233BBD5C3FFC9B /* WorkoutActivityTests.swift in Sources */,
+				44C4191893D26CA8AA098521 /* WorkoutCompletionTests.swift in Sources */,
+				D5E08AA5C83A6F81A4A4C41D /* WorkoutHandshakeTests.swift in Sources */,
+				08432FBA2D7A98CBE6E42471 /* WorkoutHistoryTests.swift in Sources */,
+				0CF55AB4A15F51658A0B29FB /* WorkoutIntegrationTests.swift in Sources */,
+				2A0171CC18E452CA5AF4C256 /* WorkoutPresentationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,28 +1097,69 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83211432E7B3D301F10DA209 /* AnimalCompanionView.swift in Sources */,
+				ACF834870AE1B5E5440F3050 /* AnimalPortraitView.swift in Sources */,
 				3DAF9C332351CCB5696D4742 /* AppModel.swift in Sources */,
 				F22F3E11769592ABABF0B0DF /* AppRootView.swift in Sources */,
-				9B292B2F584F6905AE654F9A /* ChatView.swift in Sources */,
-				05E526C5B958983DEFC8DD69 /* CollectionView.swift in Sources */,
-				767228CF24470EE88A230B1A /* CompanionChatService.swift in Sources */,
+				33BC27F90565A2945E8993D6 /* BuddyBond.swift in Sources */,
+				F94832C582E9F3854E04EA29 /* BuddyKeepsakes.swift in Sources */,
+				11126285ECC2876AE86D6770 /* BuddyMemoryBookView.swift in Sources */,
+				9629ABA4CA18680086E55CEC /* BuddyPlayView.swift in Sources */,
+				D5552BBEB4AEE0677C801C78 /* ClubAPI.swift in Sources */,
+				98E073D546FB73E3995242EC /* ClubDetailView.swift in Sources */,
+				53699BD59F63A42E0963D48A /* ClubModels.swift in Sources */,
+				F8C0A0F692A40F57A89018B0 /* ClubStore.swift in Sources */,
+				BB41E29AC3C10C1B616BC92E /* ClubView.swift in Sources */,
+				E39F35B4A7698AB110A516FE /* CompanionField.swift in Sources */,
+				0897FA1E3777C5685D68B979 /* CompanionHabitatView.swift in Sources */,
+				88B262DD44C3D7A03B2BC1E0 /* CompanionJourney.swift in Sources */,
+				740B9EA2D2B720E566ED3154 /* CompanionProgressView.swift in Sources */,
+				9E787C8153CDD6BFEC3D6FD3 /* CompanionRigProfile.swift in Sources */,
+				1A6EF076DA47B57389519046 /* CompanionRoaming.swift in Sources */,
+				B9D206F21DAF0FE6A6C9AF65 /* CompanionShareView.swift in Sources */,
+				6E2293DB6FD5DBE50B4CCEBD /* CompanionSpecialEffects.swift in Sources */,
+				B37DD9B25E2D68D01B509722 /* DailyQuests.swift in Sources */,
+				9195C01D8C2CC809D0EE151C /* DailyQuestsView.swift in Sources */,
+				9DF9F83BB746ECB3A7ABBF0F /* EverydayActivityService.swift in Sources */,
+				BA47A18603CA5E1DAD980F32 /* EverydayActivityView.swift in Sources */,
+				2A977638342147922F478AEE /* FriendModels.swift in Sources */,
+				B922C6B1BCE9EF12474B7F25 /* FriendsView.swift in Sources */,
+				944DE573F1FE3B350F7FDE51 /* HabitatArrangeView.swift in Sources */,
 				B41CC618ED331180ABD0B213 /* HealthKitService.swift in Sources */,
 				77333F1BB8137AA052929965 /* HomeView.swift in Sources */,
+				D74689E440E26768F0094BDE /* InterruptedWorkoutView.swift in Sources */,
+				3703AEE0F63CADB1110EFEA8 /* JourneyView.swift in Sources */,
 				CD9A65DA1CA76DB17EE41F43 /* LiveActivityService.swift in Sources */,
+				8737971232E1B6949436C4D8 /* MemoryPhotoStore.swift in Sources */,
 				AF7A5DDE3452BB2E1D10F60A /* MochiCreatureView.swift in Sources */,
 				E2E28FDD63D3998946C3453A /* PawPaceActivityAttributes.swift in Sources */,
 				ACD5FC32C088AE41F025DDC3 /* PawPaceApp.swift in Sources */,
 				8B2D7CD13AAD8FC22DD92E80 /* PawPaceFormatting.swift in Sources */,
+				78D896B2ADFFC359DDEF450D /* PawPacePrivateStorage.swift in Sources */,
 				B63AC11A8F6A87CC06AE09A2 /* PawPaceShared.swift in Sources */,
 				C4C3C50B2104AD8B64D97B62 /* PawPaceWatchSync.swift in Sources */,
 				096D0AE028A772B3E532A118 /* PawTheme.swift in Sources */,
+				CE6B22E40CF4809D7BC5A4CE /* PetGrowthCard.swift in Sources */,
+				E18DDDAC813442FF5E137805 /* PetLifecycle.swift in Sources */,
+				4CD600D5571ABC928814ABCC /* PetName.swift in Sources */,
 				00A6F03561766078660FD0A0 /* PetStore.swift in Sources */,
 				7FDF49D5628CAD4A306BC978 /* PetWidgetIntents.swift in Sources */,
 				668DB74A03B5854C2FAFA625 /* PhoneWatchConnectivityService.swift in Sources */,
+				550B027AFD633A06A281F73B /* PhoneWorkoutCheckpoint.swift in Sources */,
+				1034AE7829A1E2903BE91DD1 /* PlannerReminders.swift in Sources */,
+				C752AB61A605CBA262C2C211 /* PlannerStore.swift in Sources */,
+				824949B9CAFD9AA417C1081F /* PlannerView.swift in Sources */,
 				C04CFA4650982E0F70488E23 /* RunSummaryView.swift in Sources */,
 				E4FB562234A8516C8974834F /* RunTracker.swift in Sources */,
 				AF42F49DD561FE6F883AD946 /* RunView.swift in Sources */,
-				E9CC8D90696F568F98F69292 /* VoiceInputService.swift in Sources */,
+				9AF65822836D692EDA401FD1 /* SettingsView.swift in Sources */,
+				31BCD1BE1A545972AEAD90B6 /* WatchWorkoutRecoveryRecord.swift in Sources */,
+				55A2230ADA4A1386DECFB5B1 /* WelcomeView.swift in Sources */,
+				FA937F63FCA0250BC8C0B02B /* WorkoutActivity.swift in Sources */,
+				E30A2C605064CC1B58B57FC6 /* WorkoutCompletionStore.swift in Sources */,
+				8A50BEF699A9A1AE02B12CB0 /* WorkoutHistoryStore.swift in Sources */,
+				42CCA299E6B8DE58A87E9236 /* WorkoutHistoryView.swift in Sources */,
+				16169DC0DE90EF2EA36D1190 /* WorkoutPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,15 +1167,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A126E309BC372349D4B45E /* AnimalPortraitView.swift in Sources */,
+				3E60C5B013E4225A3A3CB880 /* BuddyBond.swift in Sources */,
+				633D8BCCAC86D72288095808 /* BuddyKeepsakes.swift in Sources */,
+				59C379B25867697F30AA32B0 /* CompanionJourney.swift in Sources */,
+				1766FDB688B1C14F761E3A01 /* DailyQuests.swift in Sources */,
 				A1D2328C086F75FCA96BBF0D /* MochiCreatureView.swift in Sources */,
 				231DE3D258E57D25BD527632 /* PawPaceActivityAttributes.swift in Sources */,
 				EA0B470ED0AFDCB2CE0E2C27 /* PawPaceFormatting.swift in Sources */,
 				2E4FCF0E3260C4545EE6BB01 /* PawPaceLiveActivity.swift in Sources */,
 				2D3B1AFB213A33FACA92F8BD /* PawPaceLiveActivityBundle.swift in Sources */,
+				FD21413E1F51760B56B97CC8 /* PawPacePrivateStorage.swift in Sources */,
 				FB6844AE03A167D16A458DAE /* PawPaceShared.swift in Sources */,
 				3F6F1549BF135C5B187C5A9A /* PawPaceWatchSync.swift in Sources */,
 				C63862AED99205AF7E32A0BE /* PawTheme.swift in Sources */,
+				D4D2FC900EBC182E08929B02 /* PetLifecycle.swift in Sources */,
 				0D08DFBB8B235DD471857689 /* PetWidgetIntents.swift in Sources */,
+				071F132D0544826CDACBA970 /* WatchWorkoutRecoveryRecord.swift in Sources */,
+				036486576E145126A12BB441 /* WorkoutActivity.swift in Sources */,
+				BF3AA9354278B26BF302174D /* WorkoutPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -789,7 +1357,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -851,6 +1419,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PAWPACE_CLUB_API_URL = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pawpace.app;
 				PRODUCT_NAME = PawPace;
 				SDKROOT = iphoneos;
@@ -899,6 +1468,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -909,13 +1479,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5;
+				VALIDATE_PRODUCT = YES;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
@@ -931,6 +1502,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				PAWPACE_CLUB_API_URL = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pawpace.app;
 				PRODUCT_NAME = PawPace;
 				SDKROOT = iphoneos;

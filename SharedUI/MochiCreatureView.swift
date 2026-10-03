@@ -2,8 +2,13 @@ import SwiftUI
 
 enum PetMotion: Sendable {
     case idle
+    case walking
     case running
+    case jumping
+    case playing
+    case feeding
     case celebrating
+    case special
 }
 
 struct MochiCreatureView: View {
@@ -70,16 +75,22 @@ struct MochiCreatureView: View {
     private func verticalBounce(size: CGFloat, phase: Double) -> CGFloat {
         switch motion {
         case .idle: CGFloat(phase) * size * 0.008
+        case .walking: -abs(CGFloat(phase)) * size * 0.018
         case .running: -abs(CGFloat(phase)) * size * 0.045
-        case .celebrating: -abs(CGFloat(phase)) * size * 0.035
+        case .jumping, .playing, .feeding, .celebrating, .special: -abs(CGFloat(phase)) * size * 0.035
         }
     }
 
     private var accessibilityDescription: String {
         let action = switch motion {
         case .idle: "resting"
+        case .walking: "walking"
         case .running: "running"
+        case .jumping: "jumping"
+        case .playing: "playing"
+        case .feeding: "having a snack"
         case .celebrating: "celebrating"
+        case .special: "showing a special move"
         }
         return "\(stage.displayName) \(mood.label.lowercased()) companion \(action) in \(decoration ?? "Flower Meadow")"
     }

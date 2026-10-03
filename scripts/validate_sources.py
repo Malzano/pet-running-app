@@ -123,7 +123,7 @@ def main() -> None:
     for path in swift_files:
         validate_delimiters(path)
 
-    plist_files = sorted([*ROOT.rglob("*.plist"), *ROOT.rglob("*.entitlements")])
+    plist_files = sorted([*ROOT.rglob("*.plist"), *ROOT.rglob("*.entitlements"), *ROOT.rglob("*.xcprivacy")])
     for path in plist_files:
         with path.open("rb") as handle:
             plistlib.load(handle)

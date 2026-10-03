@@ -1,28 +1,29 @@
+import Combine
 import Foundation
 
 enum AppTab: String, CaseIterable, Identifiable, Hashable {
     case home
-    case chat
+    case planner
+    case club
     case run
-    case collection
 
     var id: String { rawValue }
 
     var title: String {
         switch self {
-        case .home: "Home"
-        case .chat: "Chat"
-        case .run: "Run"
-        case .collection: "Collect"
+        case .home: "Buddy"
+        case .planner: "Planner"
+        case .club: "Club"
+        case .run: "Workout"
         }
     }
 
     var symbol: String {
         switch self {
-        case .home: "house.fill"
-        case .chat: "message.fill"
-        case .run: "figure.run"
-        case .collection: "square.grid.2x2.fill"
+        case .home: "house"
+        case .planner: "calendar"
+        case .club: "person.2"
+        case .run: "figure.mixed.cardio"
         }
     }
 }
@@ -32,12 +33,21 @@ final class AppModel: ObservableObject {
     @Published var selectedTab: AppTab = .home
     @Published var completedRun: RunSummary?
 
+    let everydayActivity = EverydayActivityService()
     let petStore: PetStore
+    let planner: PlannerStore
+    let club = ClubStore()
+    let workoutHistory: WorkoutHistoryStore
+    let workoutCompletions: WorkoutCompletionStore
     let healthKit: HealthKitService
     let runTracker: RunTracker
     let watchConnectivity: PhoneWatchConnectivityService
+    private var historyObservation: AnyCancellable?
 
-    init() {
+    init(workoutHistory: WorkoutHistoryStore? = nil, workoutCompletions: WorkoutCompletionStore? = nil) {
+        self.workoutHistory = workoutHistory ?? WorkoutHistoryStore()
+        self.workoutCompletions = workoutCompletions ?? WorkoutCompletionStore()
+        self.planner = PlannerStore()
         let petStore = PetStore()
         let healthKit = HealthKitService()
         let watchConnectivity = PhoneWatchConnectivityService()
@@ -51,13 +61,23 @@ final class AppModel: ObservableObject {
         self.watchConnectivity = watchConnectivity
         self.runTracker = runTracker
 
-        petStore.onSnapshotChange = { [weak watchConnectivity, weak runTracker] pet in
+        historyObservation = self.workoutHistory.$workouts.sink { [weak self] workouts in
+            self?.planner.reconcile(workouts)
+        }
+        if let reminders = planner.reminders as? PlannerReminders {
+            reminders.onOpenPlanner = { [weak self] in self?.selectedTab = .planner }
+            reminders.installDelegate()
+        }
+
+        petStore.onSnapshotChange = { [weak watchConnectivity, weak runTracker, weak club] pet in
+            club?.observeActivity(pet)
             guard let runTracker else { return }
             watchConnectivity?.sync(pet: pet, run: runTracker.currentRunState)
         }
         watchConnectivity.onRunState = { [weak self] state in
             guard let self else { return }
             if runTracker.handleWatchLaunchChallenge(state) { return }
+            if handlePendingCompletionTerminal(state) { return }
             if runTracker.consumePreviouslyRewardedWatchTerminal(state) { return }
             healthKit.observeWatchStateFromConnectivity(state)
             if handleDeferredWatchTerminal(state) { return }
@@ -75,8 +95,10 @@ final class AppModel: ObservableObject {
             let canStartFallback = (runTracker.phase == .idle || runTracker.phase == .finished)
                 && PawPaceSyncPolicy.canStartConnectivityFallback(from: state)
             if canStartFallback, !shouldSuppressPhase {
+                runTracker.configure(state.workoutConfiguration)
                 applyMirroredPhase(state.phase)
             }
+            let previousWorkoutID = runTracker.currentRunState.workoutID
             guard runTracker.applyWatchState(
                 state,
                 allowWorkoutAdoption: canStartFallback || canAdoptPendingPhoneLaunch
@@ -88,7 +110,9 @@ final class AppModel: ObservableObject {
                 state.phase == .finished,
                 let workoutID = state.workoutID
             {
-                _ = PawPaceShared.registerReward(for: workoutID)
+                if let summary = completedRun, summary.id == previousWorkoutID {
+                    recordCompletedWorkout(summary, rewardAliases: [workoutID])
+                }
                 return
             }
             if
@@ -106,6 +130,9 @@ final class AppModel: ObservableObject {
             } else if runTracker.phase == .idle || runTracker.phase == .finished {
                 self.completedRun = nil
                 self.selectedTab = .run
+                if let configuration = healthKit.mirroredWorkoutConfiguration {
+                    runTracker.configure(configuration)
+                }
                 runTracker.markWatchWorkoutActive()
                 runTracker.start(syncToWatch: false)
             } else {
@@ -115,6 +142,7 @@ final class AppModel: ObservableObject {
         healthKit.onMirroredRunState = { [weak self] state in
             guard let self else { return }
             if runTracker.handleWatchLaunchChallenge(state) { return }
+            if handlePendingCompletionTerminal(state) { return }
             if runTracker.consumePreviouslyRewardedWatchTerminal(state) { return }
             if handleDeferredWatchTerminal(state) { return }
             if
@@ -153,27 +181,62 @@ final class AppModel: ObservableObject {
     func handle(url: URL) {
         guard url.scheme == "pawpace" else { return }
         switch url.host {
-        case "chat": selectedTab = .chat
-        case "run": selectedTab = .run
-        case "collection": selectedTab = .collection
+        case "planner": selectedTab = .planner
+        case "club":
+            selectedTab = .club
+            if let token = ClubStore.invitationToken(url.absoluteString) { club.incomingInvitation = token }
+        case "run", "workout", "workouts": selectedTab = .run
         default: selectedTab = .home
         }
     }
 
+    func startPlannedWorkout(_ plan: PlannedActivity) async {
+        guard !plan.isRestDay, plan.completion == nil,
+              !runTracker.isFinishing, runTracker.interruptedWorkout == nil,
+              runTracker.phase == .idle || runTracker.phase == .finished else { return }
+        runTracker.configure(WorkoutConfiguration(activity: plan.activity))
+        completedRun = nil
+        selectedTab = .run
+        await healthKit.requestAuthorization()
+        guard !Task.isCancelled, selectedTab == .run, !runTracker.isFinishing,
+              runTracker.interruptedWorkout == nil,
+              runTracker.phase == .idle || runTracker.phase == .finished else { return }
+        runTracker.start()
+    }
+
     func refreshPetFromSharedStorage() {
         petStore.reloadFromSharedStorage()
+        petStore.refreshQuests()
     }
 
     func retryPendingWatchHealthSaves() async {
+        if workoutCompletions.reload() {
+            for entry in workoutCompletions.pending { processCompletion(entry) }
+        }
+        for summary in workoutHistory.workouts where !PawPaceShared.hasRegisteredReward(for: summary.id) {
+            recordCompletedWorkout(summary)
+        }
         for summary in runTracker.pendingFailedWatchSummaries() {
             await savePendingWatchHealthFallback(summary)
         }
     }
 
+    func syncEverydayActivity() async {
+        guard runTracker.phase == .idle || runTracker.phase == .finished else { return }
+        await everydayActivity.refresh(store: petStore, history: workoutHistory) { summary in
+            self.recordCompletedWorkout(summary)
+        }
+    }
+
+    @discardableResult
+    func deleteWorkoutJournal() -> Bool {
+        guard workoutCompletions.stopPendingJournalWrites() else { return false }
+        return workoutHistory.deleteAll()
+    }
+
     func finishRun(syncToWatch: Bool = true) async {
         guard let summary = await runTracker.finish(syncToWatch: syncToWatch) else { return }
-        guard PawPaceShared.registerReward(for: summary.id) else { return }
-        petStore.applyRun(summary)
+        recordCompletedWorkout(summary)
         if runTracker.phase == .idle || runTracker.phase == .finished {
             completedRun = summary
         }
@@ -184,10 +247,10 @@ final class AppModel: ObservableObject {
             state.phase == .finished || state.phase == .failed,
             let workoutID = state.workoutID,
             state.elapsedSeconds > 0,
-            PawPaceShared.registerReward(for: workoutID)
+            !PawPaceShared.hasRegisteredReward(for: workoutID)
         else { return }
 
-        let endedAt = state.updatedAt
+        let endedAt = state.endedAt ?? state.updatedAt
         let startedAt = state.startedAt
             ?? endedAt.addingTimeInterval(-Double(state.elapsedSeconds))
         let summary = RunSummary(
@@ -198,14 +261,14 @@ final class AppModel: ObservableObject {
             elapsedSeconds: state.elapsedSeconds,
             averagePaceSecondsPerKilometer: state.paceSecondsPerKilometer,
             averageHeartRate: state.heartRate > 0 ? state.heartRate : nil,
-            experienceEarned: state.experienceEarned
+            experienceEarned: state.experienceEarned,
+            workoutConfiguration: state.workoutConfiguration,
+            activeEnergyKilocalories: state.activeEnergyKilocalories,
+            activitySegments: state.activitySegments,
+            pauseIntervals: state.pauseIntervals
         )
-        petStore.applyRun(summary)
+        recordCompletedWorkout(summary, deferredTerminal: state)
         completedRun = summary
-        if state.phase == .failed {
-            runTracker.queueFailedWatchHealthFallback(summary)
-            Task { await savePendingWatchHealthFallback(summary) }
-        }
     }
 
     private func handleDeferredWatchTerminal(_ state: PawPaceRunState) -> Bool {
@@ -213,29 +276,71 @@ final class AppModel: ObservableObject {
 
         let summary: RunSummary
         let remoteWorkoutID: UUID
-        let needsPhoneHealthSave: Bool
         switch resolution {
         case let .finished(resolvedSummary, resolvedRemoteWorkoutID):
             summary = resolvedSummary
             remoteWorkoutID = resolvedRemoteWorkoutID
-            needsPhoneHealthSave = false
         case let .failed(resolvedSummary, resolvedRemoteWorkoutID):
             summary = resolvedSummary
             remoteWorkoutID = resolvedRemoteWorkoutID
-            needsPhoneHealthSave = true
         }
 
-        if PawPaceShared.registerReward(for: summary.id) {
-            petStore.applyRun(summary)
-        }
-        if remoteWorkoutID != summary.id {
-            _ = PawPaceShared.registerReward(for: remoteWorkoutID)
-        }
+        recordCompletedWorkout(summary, rewardAliases: [remoteWorkoutID], deferredTerminal: state)
         if runTracker.phase == .idle || runTracker.phase == .finished {
             completedRun = summary
         }
-        if needsPhoneHealthSave {
-            Task { await savePendingWatchHealthFallback(summary) }
+        return true
+    }
+
+    private func handlePendingCompletionTerminal(_ state: PawPaceRunState) -> Bool {
+        guard state.phase == .finished || state.phase == .failed,
+              let identifier = state.workoutID,
+              let entry = workoutCompletions.pending.first(where: { $0.rewardIDs.contains(identifier) })
+        else { return false }
+        recordCompletedWorkout(entry.summary, rewardAliases: entry.rewardIDs, deferredTerminal: state)
+        return true
+    }
+
+    /// Persist the summary and known phone/Watch aliases before changing any
+    /// destination. A retry can finish the journal without awarding XP again.
+    @discardableResult
+    private func recordCompletedWorkout(
+        _ summary: RunSummary,
+        rewardAliases: Set<UUID> = [],
+        deferredTerminal: PawPaceRunState? = nil
+    ) -> Bool {
+        let identities = rewardAliases.union([summary.id])
+        let alreadyRewarded = identities.contains { PawPaceShared.hasRegisteredReward(for: $0) }
+        guard let entry = workoutCompletions.enqueue(
+            summary, aliases: rewardAliases, journalRequested: !alreadyRewarded,
+            deferredTerminal: deferredTerminal
+        ) else { return false }
+        return processCompletion(entry)
+    }
+
+    @discardableResult
+    private func processCompletion(_ entry: WorkoutCompletionStore.Entry) -> Bool {
+        let completed = workoutCompletions.process(entry, persistPet: {
+            let alreadyRewarded = entry.rewardIDs.contains { PawPaceShared.hasRegisteredReward(for: $0) }
+            guard petStore.applyRun(entry.summary, rewardAliases: entry.rewardIDs,
+                                   awardIfUnrecorded: !alreadyRewarded) else { return false }
+            for identifier in entry.rewardIDs { _ = PawPaceShared.registerReward(for: identifier) }
+            return true
+        }, persistJournal: {
+            workoutHistory.workouts.contains(where: { $0.id == entry.summary.id })
+                || workoutHistory.append(entry.summary)
+        }, acknowledge: {
+            if entry.deferredTerminal?.phase == .failed,
+               !runTracker.queueFailedWatchHealthFallback(entry.summary) { return false }
+            if let terminal = entry.deferredTerminal {
+                return runTracker.acknowledgeDeferredWatchTerminal(terminal, summaryID: entry.summary.id)
+            }
+            return true
+        })
+        guard completed else { return false }
+        runTracker.acknowledgeWorkoutSaved(entry.summary.id)
+        if entry.deferredTerminal?.phase == .failed {
+            Task { await savePendingWatchHealthFallback(entry.summary) }
         }
         return true
     }

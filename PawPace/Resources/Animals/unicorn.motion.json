@@ -1,0 +1,106 @@
+{
+  "gait": "quadruped",
+  "legs": [
+    {
+      "pivots": [
+        "Bone_030",
+        "Bone_029",
+        "Bone_028",
+        "Bone_027"
+      ],
+      "foot": "Bone_026",
+      "front": true,
+      "left": true,
+      "phase": 0
+    },
+    {
+      "pivots": [
+        "Bone_036",
+        "Bone_035",
+        "Bone_034",
+        "Bone_033"
+      ],
+      "foot": "Bone_032",
+      "front": true,
+      "left": false,
+      "phase": 0.5
+    },
+    {
+      "pivots": [
+        "Bone_021",
+        "Bone_020",
+        "Bone_019",
+        "Bone_018"
+      ],
+      "foot": "Bone_017",
+      "front": false,
+      "left": true,
+      "phase": 0.75
+    },
+    {
+      "pivots": [
+        "Bone_015",
+        "Bone_014",
+        "Bone_013",
+        "Bone_012"
+      ],
+      "foot": "Bone_011",
+      "front": false,
+      "left": false,
+      "phase": 0.25
+    }
+  ],
+  "head": [
+    {
+      "name": "Bone_024",
+      "weight": 0.35
+    },
+    {
+      "name": "Bone_022",
+      "weight": 0.65
+    }
+  ],
+  "torso": [
+    {
+      "name": "Bone_004",
+      "weight": 0.65
+    },
+    {
+      "name": "Bone_003",
+      "weight": 0.35
+    }
+  ],
+  "tail": [
+    {
+      "name": "Bone_009",
+      "weight": 1
+    },
+    {
+      "name": "Bone_008",
+      "weight": 0.35
+    },
+    {
+      "name": "Bone_007",
+      "weight": 0.2
+    }
+  ],
+  "ears": [
+    {
+      "name": "Bone_038",
+      "weight": 1
+    },
+    {
+      "name": "Bone_040",
+      "weight": 0.8
+    }
+  ],
+  "leftWing": [],
+  "rightWing": [],
+  "jaw": null,
+  "modelYawDegrees": 0,
+  "muzzleOffset": [
+    0,
+    -0.11,
+    0.09
+  ]
+}

@@ -4,4 +4,6 @@ build/
 *.xcuserstate
 xcuserdata/
 .swiftpm/
-
+server/club/data/
+server/club/.env
+server/club/*.p8

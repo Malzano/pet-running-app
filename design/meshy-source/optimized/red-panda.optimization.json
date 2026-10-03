@@ -1,0 +1,40 @@
+{
+  "source": "/Users/athikom/Developer/pet-running-app/design/meshy-source/red-panda.glb",
+  "output": "/Users/athikom/Developer/pet-running-app/design/meshy-source/optimized/red-panda.glb",
+  "sourceSHA256": "3cebab1c0d9f18d6c015c4996c6e2b6fc8af29f82a99e07666414e998d541694",
+  "outputSHA256": "0e3cd425d8ea62150c3b1cbed95026f8e33ed7d907b55628fd9b45395f142c60",
+  "sourceBytes": 18006028,
+  "outputBytes": 6490540,
+  "targetTriangles": 30000,
+  "maximumError": 0.02,
+  "totalSourceTriangles": 216760,
+  "totalTriangles": 30000,
+  "skeletonAndInverseBindMatricesPreserved": true,
+  "embeddedTexturesPreserved": true,
+  "animationChannelsPreserved": true,
+  "serializedVertexAttributesExact": true,
+  "algorithms": [
+    "exact attribute weld",
+    "meshoptimizer index-only simplify + Regularize",
+    "lossless attribute compaction"
+  ],
+  "primitives": [
+    {
+      "primitive": 0,
+      "sourceVertices": 117682,
+      "sourceTriangles": 216760,
+      "vertices": 18835,
+      "triangles": 30000,
+      "geometricError": 0.0024414039216935635,
+      "skinStreamsPreserved": [
+        "JOINTS_0",
+        "JOINTS_1",
+        "JOINTS_2",
+        "WEIGHTS_0",
+        "WEIGHTS_1",
+        "WEIGHTS_2"
+      ],
+      "allSurvivingVertexAttributesExact": true
+    }
+  ]
+}
